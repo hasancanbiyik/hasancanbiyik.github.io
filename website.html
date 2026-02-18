@@ -1,0 +1,1038 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Hasan Can Biyik — Computational Linguist & NLP Engineer</title>
+<meta name="description" content="Computational linguist and NLP/ML engineer specializing in cross-lingual transfer, euphemism detection, and production AI systems."/>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg:         #080808;
+  --surface:    #101010;
+  --surface2:   #141414;
+  --border:     #1c1c1c;
+  --border2:    #262626;
+  --text:       #ebebeb;
+  --muted:      #444;
+  --muted2:     #777;
+  --muted3:     #aaa;
+  --accent:     #00E5FF;
+  --accent-dim: rgba(0,229,255,0.06);
+  --accent-glow: rgba(0,229,255,0.15);
+  --r:          8px;
+  --font-h:     'Syne', sans-serif;
+  --font-m:     'DM Mono', monospace;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-m);
+  font-size: 13px;
+  line-height: 1.7;
+  overflow-x: hidden;
+}
+
+/* noise overlay */
+body::after {
+  content:''; position:fixed; inset:0; pointer-events:none; z-index:998;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+  opacity: 0.4;
+}
+
+/* ── PARTICLE CANVAS ────────────────────────────────────────────── */
+#particle-canvas {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* ── NAV ─────────────────────────────────────────────────────────── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 40px; height: 56px;
+  border-bottom: 1px solid var(--border);
+  background: rgba(8,8,8,0.88);
+  backdrop-filter: blur(14px);
+}
+
+.nav-logo {
+  font-family: var(--font-h);
+  font-size: 13px; font-weight: 700;
+  letter-spacing: 0.06em;
+  color: var(--text);
+  text-decoration: none;
+}
+.nav-logo span { color: var(--accent); }
+
+.nav-links {
+  display: flex; gap: 32px; list-style: none;
+}
+.nav-links a {
+  font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--muted2); text-decoration: none;
+  transition: color 0.18s;
+}
+.nav-links a:hover { color: var(--text); }
+
+.nav-cta {
+  background: transparent;
+  color: var(--accent);
+  font-family: var(--font-h); font-size: 11px; font-weight: 700;
+  letter-spacing: 0.08em; text-transform: uppercase;
+  padding: 7px 16px; border-radius: var(--r);
+  text-decoration: none;
+  border: 1px solid var(--accent);
+  transition: background 0.18s, color 0.18s, transform 0.18s;
+}
+.nav-cta:hover {
+  background: var(--accent);
+  color: #080808;
+  transform: translateY(-1px);
+}
+
+/* ── HERO ────────────────────────────────────────────────────────── */
+#hero {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 100px 80px 80px;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+  text-align: center;
+}
+
+/* subtle glow behind text */
+#hero::after {
+  content: '';
+  position: absolute;
+  width: 500px; height: 500px;
+  background: radial-gradient(circle, rgba(0,229,255,0.05) 0%, transparent 70%);
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+
+.hero-left {
+  position: relative; z-index: 1;
+}
+
+.hero-tag {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--muted2);
+  border: 1px solid var(--border2);
+  padding: 5px 14px; border-radius: 20px;
+  margin-bottom: 32px;
+  animation: fadeUp 0.7s ease both;
+}
+.hero-tag::before {
+  content: '';
+  width: 5px; height: 5px; border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 8px var(--accent);
+  animation: pulse 2s ease infinite;
+}
+
+@keyframes pulse {
+  0%,100% { opacity:1; box-shadow: 0 0 8px var(--accent); }
+  50% { opacity:0.4; box-shadow: 0 0 3px var(--accent); }
+}
+
+h1.hero-name {
+  font-family: var(--font-h);
+  font-size: clamp(42px, 6vw, 80px);
+  font-weight: 800;
+  line-height: 0.95;
+  letter-spacing: -0.03em;
+  color: var(--text);
+  margin-bottom: 8px;
+  animation: fadeUp 0.7s 0.1s ease both;
+}
+h1.hero-name .accent { color: var(--accent); }
+
+.hero-title {
+  font-family: var(--font-m);
+  font-size: clamp(10px, 1.2vw, 12px);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--muted2);
+  margin-bottom: 36px;
+  animation: fadeUp 0.7s 0.18s ease both;
+}
+
+.hero-bio {
+  max-width: 600px;
+  font-size: 14px; line-height: 1.85;
+  color: var(--muted3);
+  margin: 0 auto 44px;
+  animation: fadeUp 0.7s 0.25s ease both;
+}
+.hero-bio strong { color: var(--text); font-weight: 400; }
+
+.hero-actions {
+  display: flex; gap: 12px; flex-wrap: wrap;
+  justify-content: center;
+  animation: fadeUp 0.7s 0.32s ease both;
+}
+
+.btn-primary {
+  background: var(--accent); color: #080808;
+  font-family: var(--font-h); font-size: 12px; font-weight: 700;
+  letter-spacing: 0.06em;
+  padding: 11px 24px; border-radius: var(--r);
+  text-decoration: none; border: none; cursor: pointer;
+  transition: opacity 0.18s, transform 0.18s, box-shadow 0.18s;
+  display: inline-flex; align-items: center; gap: 7px;
+}
+.btn-primary:hover {
+  opacity: 0.85;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0,229,255,0.2);
+}
+
+.btn-ghost {
+  background: transparent; color: var(--muted3);
+  font-family: var(--font-m); font-size: 12px;
+  letter-spacing: 0.06em;
+  padding: 11px 24px; border-radius: var(--r);
+  text-decoration: none;
+  border: 1px solid var(--border2);
+  transition: border-color 0.18s, color 0.18s, transform 0.18s;
+  display: inline-flex; align-items: center; gap: 7px;
+}
+.btn-ghost:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-1px); }
+
+/* ── HERO RIGHT — STATS CARD ─────────────────────────────────────── */
+.hero-right {
+  position: relative; z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 16px;
+  animation: fadeUp 0.7s 0.4s ease both;
+}
+
+.stat-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  padding: 20px 28px;
+  width: 220px;
+  transition: border-color 0.2s, transform 0.2s;
+}
+.stat-card:hover {
+  border-color: rgba(0,229,255,0.25);
+  transform: translateX(-4px);
+}
+
+.stat-num {
+  font-family: var(--font-h);
+  font-size: 36px; font-weight: 800;
+  line-height: 1; color: var(--text);
+  margin-bottom: 4px;
+}
+.stat-num .accent { color: var(--accent); }
+
+.stat-label {
+  font-size: 10px; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--muted2);
+}
+
+.hero-right-divider {
+  width: 1px; height: 40px;
+  background: linear-gradient(to bottom, transparent, var(--border2), transparent);
+  align-self: flex-end;
+  margin-right: 110px;
+}
+
+/* ── SECTION WRAPPER ─────────────────────────────────────────────── */
+section {
+  max-width: 960px; margin: 0 auto;
+  padding: 100px 40px;
+  position: relative; z-index: 1;
+}
+
+.section-eyebrow {
+  font-size: 10px; letter-spacing: 0.2em;
+  text-transform: uppercase; color: var(--accent);
+  margin-bottom: 8px;
+}
+
+.section-title {
+  font-family: var(--font-h);
+  font-size: clamp(24px, 4vw, 36px);
+  font-weight: 700; letter-spacing: -0.02em;
+  margin-bottom: 48px;
+  color: var(--text);
+}
+
+.divider {
+  border: none;
+  border-top: 1px solid var(--border);
+  max-width: 960px; margin: 0 auto;
+  position: relative; z-index: 1;
+}
+
+/* ── ABOUT ───────────────────────────────────────────────────────── */
+.about-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 56px;
+  align-items: start;
+}
+
+.about-text p {
+  color: var(--muted3); font-size: 14px; line-height: 1.9;
+  margin-bottom: 16px;
+}
+.about-text p strong { color: var(--text); font-weight: 400; }
+
+.about-skills { display: flex; flex-direction: column; gap: 20px; }
+
+.skill-group-label {
+  font-size: 10px; letter-spacing: 0.16em;
+  text-transform: uppercase; color: var(--muted);
+  margin-bottom: 10px;
+}
+
+.skill-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+
+.tag {
+  font-size: 11px; letter-spacing: 0.04em;
+  padding: 4px 12px; border-radius: 20px;
+  border: 1px solid var(--border2);
+  color: var(--muted3);
+  transition: border-color 0.18s, color 0.18s;
+}
+.tag:hover { border-color: var(--accent); color: var(--accent); }
+.tag.accent {
+  border-color: rgba(0,229,255,0.3);
+  color: var(--accent);
+  background: var(--accent-dim);
+}
+
+/* ── PROJECTS ────────────────────────────────────────────────────── */
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+  gap: 16px;
+}
+
+.project-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  padding: 28px;
+  text-decoration: none; color: inherit;
+  display: flex; flex-direction: column;
+  transition: border-color 0.2s, transform 0.2s, background 0.2s, box-shadow 0.2s;
+  position: relative; overflow: hidden;
+}
+.project-card::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: linear-gradient(135deg, rgba(0,229,255,0.04) 0%, transparent 60%);
+  opacity: 0; transition: opacity 0.3s;
+}
+.project-card:hover {
+  border-color: rgba(0,229,255,0.2);
+  transform: translateY(-3px);
+  background: var(--surface2);
+  box-shadow: 0 12px 32px rgba(0,0,0,0.3);
+}
+.project-card:hover::before { opacity: 1; }
+
+.project-card-top {
+  display: flex; align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.project-icon {
+  width: 36px; height: 36px;
+  background: var(--accent-dim);
+  border: 1px solid rgba(0,229,255,0.15);
+  border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 16px;
+}
+
+.project-arrow {
+  color: var(--muted); font-size: 16px;
+  transition: color 0.18s, transform 0.18s;
+}
+.project-card:hover .project-arrow { color: var(--accent); transform: translate(3px,-3px); }
+
+.project-name {
+  font-family: var(--font-h);
+  font-size: 16px; font-weight: 700;
+  margin-bottom: 8px; color: var(--text);
+}
+
+.project-desc {
+  font-size: 12px; color: var(--muted2);
+  line-height: 1.7; flex: 1;
+  margin-bottom: 20px;
+}
+
+.project-meta {
+  display: flex; gap: 8px; flex-wrap: wrap;
+}
+
+.meta-tag {
+  font-size: 10px; letter-spacing: 0.06em;
+  padding: 3px 10px; border-radius: 20px;
+  border: 1px solid var(--border2); color: var(--muted2);
+}
+.meta-tag.highlight {
+  border-color: rgba(0,229,255,0.25);
+  color: var(--accent);
+  background: var(--accent-dim);
+}
+
+/* ── PUBLICATIONS ────────────────────────────────────────────────── */
+.pub-list { display: flex; flex-direction: column; gap: 2px; }
+
+.pub-item {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  padding: 24px 28px;
+  transition: border-color 0.2s;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 20px;
+  align-items: center;
+}
+.pub-item:hover { border-color: rgba(0,229,255,0.18); }
+
+.pub-year {
+  font-family: var(--font-h);
+  font-size: 11px; font-weight: 600;
+  color: var(--accent);
+  letter-spacing: 0.06em;
+  white-space: nowrap;
+}
+
+.pub-title {
+  font-family: var(--font-h);
+  font-size: 14px; font-weight: 600;
+  color: var(--text); margin-bottom: 4px;
+  line-height: 1.4;
+}
+
+.pub-venue {
+  font-size: 11px; color: var(--muted2);
+  letter-spacing: 0.04em;
+}
+.pub-venue em { color: var(--muted3); font-style: normal; }
+
+.pub-badge {
+  font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase;
+  padding: 4px 12px; border-radius: 20px; white-space: nowrap;
+  border: 1px solid rgba(0,229,255,0.25);
+  color: var(--accent); background: var(--accent-dim);
+}
+.pub-badge.review {
+  border-color: var(--border2);
+  color: var(--muted2); background: transparent;
+}
+
+.pub-placeholder {
+  border: 1px dashed var(--border2);
+  border-radius: var(--r);
+  padding: 24px 28px;
+  text-align: center;
+  color: var(--muted);
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  margin-top: 8px;
+}
+
+/* ── BLOG ────────────────────────────────────────────────────────── */
+.blog-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 14px;
+}
+
+.blog-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  padding: 24px;
+  text-decoration: none; color: inherit;
+  transition: border-color 0.2s, transform 0.18s;
+}
+.blog-card:hover { border-color: rgba(0,229,255,0.18); transform: translateY(-2px); }
+
+.blog-date {
+  font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--muted); margin-bottom: 10px;
+}
+
+.blog-title {
+  font-family: var(--font-h);
+  font-size: 15px; font-weight: 600;
+  color: var(--text); line-height: 1.4;
+  margin-bottom: 8px;
+}
+
+.blog-excerpt {
+  font-size: 12px; color: var(--muted2); line-height: 1.7;
+}
+
+.blog-coming {
+  border: 1px dashed var(--border2);
+  border-radius: var(--r);
+  padding: 40px;
+  text-align: center;
+  color: var(--muted);
+  font-size: 12px; letter-spacing: 0.08em;
+}
+
+/* ── CONTACT ─────────────────────────────────────────────────────── */
+.contact-wrap {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+  align-items: start;
+}
+
+.contact-left p {
+  font-size: 14px; color: var(--muted3); line-height: 1.9;
+  margin-bottom: 32px;
+}
+
+.contact-links { display: flex; flex-direction: column; gap: 10px; }
+
+.contact-link {
+  display: flex; align-items: center; gap: 14px;
+  padding: 14px 18px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  text-decoration: none; color: var(--muted3);
+  font-size: 13px;
+  transition: border-color 0.18s, color 0.18s, transform 0.18s;
+}
+.contact-link:hover { border-color: var(--accent); color: var(--text); transform: translateX(4px); }
+
+.contact-link-icon {
+  width: 32px; height: 32px;
+  background: var(--accent-dim);
+  border: 1px solid rgba(0,229,255,0.15);
+  border-radius: 6px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 14px; flex-shrink: 0;
+  color: var(--accent);
+}
+
+.contact-link-label { flex: 1; }
+.contact-link-handle { font-size: 11px; color: var(--muted); }
+.contact-link-arrow { color: var(--muted); font-size: 12px; transition: color 0.18s, transform 0.18s; }
+.contact-link:hover .contact-link-arrow { color: var(--accent); transform: translateX(3px); }
+
+.contact-right {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  padding: 32px;
+}
+
+.contact-right h3 {
+  font-family: var(--font-h);
+  font-size: 16px; font-weight: 700;
+  margin-bottom: 20px; color: var(--text);
+}
+
+.form-field { margin-bottom: 16px; }
+.form-label {
+  display: block;
+  font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--muted); margin-bottom: 8px;
+}
+.form-input, .form-textarea {
+  width: 100%; background: var(--bg);
+  border: 1px solid var(--border2); border-radius: 6px;
+  padding: 10px 14px;
+  font-family: var(--font-m); font-size: 13px; color: var(--text);
+  outline: none; resize: none;
+  transition: border-color 0.18s, box-shadow 0.18s;
+  caret-color: var(--accent);
+}
+.form-input:focus, .form-textarea:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(0,229,255,0.06);
+}
+::placeholder { color: var(--muted); }
+.form-textarea { min-height: 100px; }
+
+.form-submit {
+  width: 100%;
+  background: var(--accent); color: #080808;
+  font-family: var(--font-h); font-size: 13px; font-weight: 700;
+  letter-spacing: 0.04em;
+  padding: 12px; border-radius: var(--r); border: none; cursor: pointer;
+  transition: opacity 0.18s, transform 0.18s, box-shadow 0.18s;
+  margin-top: 4px;
+}
+.form-submit:hover {
+  opacity: 0.85;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(0,229,255,0.2);
+}
+
+/* ── FOOTER ──────────────────────────────────────────────────────── */
+footer {
+  border-top: 1px solid var(--border);
+  padding: 28px 40px;
+  display: flex; align-items: center; justify-content: space-between;
+  flex-wrap: wrap; gap: 12px;
+  position: relative; z-index: 1;
+}
+
+.footer-name {
+  font-family: var(--font-h);
+  font-size: 12px; font-weight: 700;
+  color: var(--muted2);
+}
+.footer-name span { color: var(--accent); }
+.footer-copy { font-size: 11px; color: var(--muted); }
+
+/* ── ANIMATIONS ──────────────────────────────────────────────────── */
+@keyframes fadeUp {
+  from { opacity:0; transform:translateY(16px); }
+  to   { opacity:1; transform:translateY(0); }
+}
+
+.reveal {
+  opacity: 0; transform: translateY(20px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+/* ── RESPONSIVE ──────────────────────────────────────────────────── */
+@media (max-width: 860px) {
+  #hero {
+    padding: 100px 40px 60px;
+  }
+}
+
+@media (max-width: 680px) {
+  nav { padding: 0 20px; }
+  .nav-links { display: none; }
+  section { padding: 72px 20px; }
+  #hero { padding: 100px 20px 60px; }
+  .about-grid, .contact-wrap { grid-template-columns: 1fr; }
+  .pub-item { grid-template-columns: 1fr; gap: 8px; }
+  .pub-badge { justify-self: start; }
+  footer { padding: 24px 20px; }
+}
+</style>
+</head>
+<body>
+
+<!-- PARTICLE CANVAS -->
+<canvas id="particle-canvas"></canvas>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">HCB<span>.</span></a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#publications">Research</a></li>
+    <li><a href="#blog">Blog</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="https://drive.google.com/file/d/1YPlsspkHKGILiUhbFiLVl74KoeofpuXQ/view?usp=drive_link" target="_blank" class="nav-cta" id="cv-link">Download CV</a>
+</nav>
+
+<!-- HERO -->
+<div id="hero">
+  <div class="hero-left">
+    <div class="hero-tag">Open to work</div>
+    <h1 class="hero-name">HASAN<br>CAN <span class="accent">BIYIK</span></h1>
+    <div class="hero-title">Computational Linguist &nbsp;·&nbsp; AI & NLP Engineer</div>
+    <p class="hero-bio">
+      I build systems that understand language — from <strong>cross-lingual euphemism detection</strong> to <strong>production RAG pipelines</strong>. MS in Computational Linguistics (Montclair State, AI/ML specialization). Currently looking for industry roles in <strong>NLP, ML engineering, or AI analytics</strong>.
+    </p>
+    <div class="hero-actions">
+      <a href="#projects" class="btn-primary">View Projects →</a>
+      <a href="#contact" class="btn-ghost">Get in Touch</a>
+    </div>
+  </div>
+</div>
+
+<hr class="divider"/>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-eyebrow">About</div>
+  <div class="section-title">Background</div>
+  <div class="about-grid reveal">
+    <div class="about-text">
+      <p>
+        I'm a <strong>Turkish computational linguist</strong> based in the US, with a Master's in Computational Linguistics from Montclair State University, specializing in AI and machine learning. My research sits at the intersection of NLP and cross-lingual transfer — specifically how meaning shifts across languages in subtle, culturally-loaded ways.
+      </p>
+      <p>
+        My published work covers <strong>euphemism detection in Turkish and English</strong>, sarcasm detection in sitcom dialogue, and cross-lingual transfer learning using transformer models. I've presented at ACL-affiliated venues and managed annotation pipelines across multiple languages.
+      </p>
+      <p>
+        Outside research, I build things: <strong>production RAG systems</strong>, AWS-deployed models, and full-stack NLP tools from training scripts to web interfaces. I'm targeting ML engineering, NLP engineering, or AI analytics roles while continuing to publish.
+      </p>
+    </div>
+    <div class="about-skills">
+      <div>
+        <div class="skill-group-label">Core</div>
+        <div class="skill-tags">
+          <span class="tag accent">Python</span>
+          <span class="tag accent">PyTorch</span>
+          <span class="tag accent">HuggingFace</span>
+          <span class="tag accent">NLP / NLU</span>
+          <span class="tag">Transformers</span>
+          <span class="tag">Fine-tuning</span>
+        </div>
+      </div>
+      <div>
+        <div class="skill-group-label">ML & Data</div>
+        <div class="skill-tags">
+          <span class="tag">scikit-learn</span>
+          <span class="tag">pandas</span>
+          <span class="tag">SQL</span>
+          <span class="tag">RAG Systems</span>
+          <span class="tag">Vector DBs</span>
+          <span class="tag">AWS</span>
+        </div>
+      </div>
+      <div>
+        <div class="skill-group-label">Tools & Other</div>
+        <div class="skill-tags">
+          <span class="tag">FastAPI</span>
+          <span class="tag">Git</span>
+          <span class="tag">LaTeX</span>
+          <span class="tag">Linux / HPC</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider"/>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="section-eyebrow">Work</div>
+  <div class="section-title">Projects</div>
+  <div class="projects-grid">
+
+    <a href="https://github.com/hasancanbiyik/euphemism-detector" target="_blank" class="project-card reveal">
+      <div class="project-card-top">
+        <div class="project-icon">🔍</div>
+        <div class="project-arrow">↗</div>
+      </div>
+      <div class="project-name">Euphemism Detector</div>
+      <div class="project-desc">
+        Multilingual euphemism detection system fine-tuned on XLM-RoBERTa. Classifies whether a phrase is used euphemistically or literally across 5 languages. Includes a minimal web UI built with FastAPI.
+      </div>
+      <div class="project-meta">
+        <span class="meta-tag">XLM-RoBERTa</span>
+        <span class="meta-tag">FastAPI</span>
+        <span class="meta-tag">5 languages</span>
+      </div>
+    </a>
+
+    <div class="project-card reveal" style="cursor:default;">
+      <div class="project-card-top">
+        <div class="project-icon">😏</div>
+        <div class="project-arrow" style="opacity:0.3">↗</div>
+      </div>
+      <div class="project-name">Sarcasm Detector</div>
+      <div class="project-desc">
+        Sarcasm detection in sitcom dialogue using fine-tuned transformers and zero-shot LLMs. Achieved 71.6% accuracy with XLM-RoBERTa. Discovered the "Chandler Effect" — models exploiting character shortcuts over linguistic patterns.
+      </div>
+      <div class="project-meta">
+        <span class="meta-tag">XLM-RoBERTa</span>
+        <span class="meta-tag">Dialogue NLP</span>
+      </div>
+    </div>
+
+    <div class="project-card reveal" style="cursor:default; opacity:0.5;">
+      <div class="project-card-top">
+        <div class="project-icon">➕</div>
+      </div>
+      <div class="project-name">More coming</div>
+      <div class="project-desc">
+        Additional projects will be added here — RAG systems, annotation pipelines, and more.
+      </div>
+      <div class="project-meta">
+        <span class="meta-tag">In progress</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<hr class="divider"/>
+
+<!-- PUBLICATIONS -->
+<section id="publications">
+  <div class="section-eyebrow">Research</div>
+  <div class="section-title">Publications</div>
+  <div class="pub-list">
+
+    <a href="https://drive.google.com/file/d/1DGbUJZ-80HbYasr0nzfYUQqd97eCYOMd/view?usp=sharing" target="_blank" class="pub-item reveal" style="text-decoration:none; color:inherit;">
+      <div class="pub-year">2026</div>
+      <div class="pub-content">
+        <div class="pub-title">PET Crossing: Investigating Cross-Lingual Generalization of Euphemisms in LLMs</div>
+        <div class="pub-venue">EACL 2026 &nbsp;·&nbsp; <em>Hasan Can Biyik</em></div>
+      </div>
+      <div class="pub-badge">Accepted ↗</div>
+    </a>
+
+    <a href="https://aclanthology.org/2024.sigturk-1.7/" target="_blank" class="pub-item reveal" style="text-decoration:none; color:inherit;">
+      <div class="pub-year">2024</div>
+      <div class="pub-content">
+        <div class="pub-title">Turkish Delights: A Dataset on Turkish Euphemisms</div>
+        <div class="pub-venue">SIGTURK @ ACL 2024, Bangkok &nbsp;·&nbsp; <em>Biyik, H., Lee, P., & Feldman, A.</em></div>
+      </div>
+      <div class="pub-badge">Published ↗</div>
+    </a>
+
+    <a href="https://drive.google.com/file/d/1xEpwwYM9JMp_UYSwRS8vYQpw__pjZioD/view" target="_blank" class="pub-item reveal" style="text-decoration:none; color:inherit;">
+      <div class="pub-year">2024</div>
+      <div class="pub-content">
+        <div class="pub-title">Analysis of the Tone and Framing of the LGBTQ+ Community in Turkish Media</div>
+        <div class="pub-venue">Student Research Symposium, Montclair State University &nbsp;·&nbsp; <em>Hasan Can Biyik</em></div>
+      </div>
+      <div class="pub-badge">Presentation ↗</div>
+    </a>
+
+  </div>
+  <div class="pub-placeholder reveal" style="margin-top:12px;">
+    More publications will be added here
+  </div>
+</section>
+
+<hr class="divider"/>
+
+<!-- BLOG -->
+<section id="blog">
+  <div class="section-eyebrow">Blog</div>
+  <div class="section-title">Writing</div>
+  <div class="blog-coming reveal">
+    Writing coming soon — NLP deep dives, research notes, and thoughts on building AI systems.
+  </div>
+</section>
+
+<hr class="divider"/>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-eyebrow">Contact</div>
+  <div class="section-title">Get in Touch</div>
+  <div class="contact-wrap">
+    <div class="contact-left reveal">
+      <p>
+        I'm actively looking for <strong style="color:var(--text)">NLP engineering, ML engineering, or AI analytics roles</strong>. If you're working on something interesting with language models or data, let's talk.
+      </p>
+      <div class="contact-links">
+        <a href="mailto:byk.hasancan@gmail.com" class="contact-link">
+          <div class="contact-link-icon">✉</div>
+          <div class="contact-link-label">
+            <div>Email</div>
+            <div class="contact-link-handle">byk.hasancan@gmail.com</div>
+          </div>
+          <div class="contact-link-arrow">→</div>
+        </a>
+        <a href="https://www.linkedin.com/in/hasancanbyk/" target="_blank" class="contact-link">
+          <div class="contact-link-icon">in</div>
+          <div class="contact-link-label">
+            <div>LinkedIn</div>
+            <div class="contact-link-handle">linkedin.com/in/hasancanbyk</div>
+          </div>
+          <div class="contact-link-arrow">→</div>
+        </a>
+        <a href="https://github.com/hasancanbiyik" target="_blank" class="contact-link">
+          <div class="contact-link-icon">⌥</div>
+          <div class="contact-link-label">
+            <div>GitHub</div>
+            <div class="contact-link-handle">github.com/hasancanbiyik</div>
+          </div>
+          <div class="contact-link-arrow">→</div>
+        </a>
+      </div>
+    </div>
+    <div class="contact-right reveal">
+      <h3>Send a message</h3>
+      <form onsubmit="handleForm(event)">
+        <div class="form-field">
+          <label class="form-label">Name</label>
+          <input type="text" class="form-input" placeholder="Your name"/>
+        </div>
+        <div class="form-field">
+          <label class="form-label">Email</label>
+          <input type="email" class="form-input" placeholder="your@email.com"/>
+        </div>
+        <div class="form-field">
+          <label class="form-label">Message</label>
+          <textarea class="form-textarea" placeholder="What's on your mind?"></textarea>
+        </div>
+        <button type="submit" class="form-submit">Send Message</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-name">HASAN CAN BIYIK<span>.</span></div>
+  <div class="footer-copy">© 2026 · Computational Linguist & NLP Engineer</div>
+</footer>
+
+<script>
+// ── PARTICLE NETWORK ──────────────────────────────────────────────
+const canvas = document.getElementById('particle-canvas');
+const ctx = canvas.getContext('2d');
+
+let particles = [];
+let animationId;
+
+const CONFIG = {
+  count: 55,
+  color: '0, 229, 255',
+  maxDist: 140,
+  speed: 0.35,
+  radius: 1.5,
+  opacity: 0.18,
+  lineOpacity: 0.07,
+};
+
+function resize() {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+}
+
+function createParticle() {
+  return {
+    x: Math.random() * canvas.width,
+    y: Math.random() * canvas.height,
+    vx: (Math.random() - 0.5) * CONFIG.speed,
+    vy: (Math.random() - 0.5) * CONFIG.speed,
+  };
+}
+
+function init() {
+  resize();
+  particles = Array.from({ length: CONFIG.count }, createParticle);
+}
+
+function draw() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+  // draw connections
+  for (let i = 0; i < particles.length; i++) {
+    for (let j = i + 1; j < particles.length; j++) {
+      const dx = particles[i].x - particles[j].x;
+      const dy = particles[i].y - particles[j].y;
+      const dist = Math.sqrt(dx * dx + dy * dy);
+      if (dist < CONFIG.maxDist) {
+        const alpha = CONFIG.lineOpacity * (1 - dist / CONFIG.maxDist);
+        ctx.beginPath();
+        ctx.strokeStyle = `rgba(${CONFIG.color}, ${alpha})`;
+        ctx.lineWidth = 0.6;
+        ctx.moveTo(particles[i].x, particles[i].y);
+        ctx.lineTo(particles[j].x, particles[j].y);
+        ctx.stroke();
+      }
+    }
+  }
+
+  // draw dots
+  particles.forEach(p => {
+    ctx.beginPath();
+    ctx.arc(p.x, p.y, CONFIG.radius, 0, Math.PI * 2);
+    ctx.fillStyle = `rgba(${CONFIG.color}, ${CONFIG.opacity})`;
+    ctx.fill();
+  });
+
+  // update positions
+  particles.forEach(p => {
+    p.x += p.vx;
+    p.y += p.vy;
+    if (p.x < 0 || p.x > canvas.width) p.vx *= -1;
+    if (p.y < 0 || p.y > canvas.height) p.vy *= -1;
+  });
+
+  animationId = requestAnimationFrame(draw);
+}
+
+window.addEventListener('resize', () => {
+  cancelAnimationFrame(animationId);
+  init();
+  draw();
+});
+
+init();
+draw();
+
+// ── SCROLL REVEAL ──────────────────────────────────────────────
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+      observer.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.01, rootMargin: '0px' });
+
+document.querySelectorAll('.reveal').forEach((el, i) => {
+  el.style.transitionDelay = `${(i % 4) * 0.07}s`;
+  observer.observe(el);
+  // Force visible if already in viewport on load
+  const rect = el.getBoundingClientRect();
+  if (rect.top < window.innerHeight) {
+    setTimeout(() => el.classList.add('visible'), i * 60);
+  }
+});
+
+// ── ACTIVE NAV LINK ────────────────────────────────────────────
+const sections = document.querySelectorAll('section[id]');
+const navLinks = document.querySelectorAll('.nav-links a');
+
+window.addEventListener('scroll', () => {
+  let current = '';
+  sections.forEach(s => {
+    if (window.scrollY >= s.offsetTop - 120) current = s.id;
+  });
+  navLinks.forEach(a => {
+    a.style.color = a.getAttribute('href') === `#${current}` ? 'var(--text)' : '';
+  });
+});
+
+// ── CONTACT FORM ───────────────────────────────────────────────
+function handleForm(e) {
+  e.preventDefault();
+  const btn = e.target.querySelector('.form-submit');
+  btn.textContent = 'Sent ✓';
+  btn.style.background = 'rgba(0,229,255,0.15)';
+  btn.style.color = 'var(--accent)';
+  btn.style.border = '1px solid rgba(0,229,255,0.3)';
+  btn.disabled = true;
+}
+</script>
+</body>
+</html>
