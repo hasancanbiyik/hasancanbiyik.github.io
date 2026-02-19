@@ -404,18 +404,17 @@ section {
 
 .demo-link {
   display: inline-flex; align-items: center; gap: 5px;
-  font-size: 12px; letter-spacing: 0.06em;
-  padding: 5px 14px; border-radius: 20px;
-  border: 1px solid rgba(0,229,255,0.4);
+  font-size: 11px; letter-spacing: 0.05em; font-weight: 600;
+  padding: 4px 12px; border-radius: 20px;
+  border: 1px solid rgba(0,229,255,0.35);
   color: var(--accent);
-  background: rgba(0,229,255,0.08);
+  background: rgba(0,229,255,0.07);
   text-decoration: none;
-  font-weight: 600;
   transition: background 0.18s, border-color 0.18s;
 }
 .demo-link:hover {
-  background: rgba(0,229,255,0.15);
-  border-color: rgba(0,229,255,0.7);
+  background: rgba(0,229,255,0.14);
+  border-color: rgba(0,229,255,0.6);
 }
 
 /* ── PUBLICATIONS ────────────────────────────────────────────────── */
@@ -475,48 +474,6 @@ section {
   font-size: 12px;
   letter-spacing: 0.06em;
   margin-top: 8px;
-}
-
-/* ── BLOG ────────────────────────────────────────────────────────── */
-.blog-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-  gap: 14px;
-}
-
-.blog-card {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: var(--r);
-  padding: 24px;
-  text-decoration: none; color: inherit;
-  transition: border-color 0.2s, transform 0.18s;
-}
-.blog-card:hover { border-color: rgba(0,229,255,0.18); transform: translateY(-2px); }
-
-.blog-date {
-  font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase;
-  color: var(--muted); margin-bottom: 10px;
-}
-
-.blog-title {
-  font-family: var(--font-h);
-  font-size: 15px; font-weight: 600;
-  color: var(--text); line-height: 1.4;
-  margin-bottom: 8px;
-}
-
-.blog-excerpt {
-  font-size: 12px; color: var(--muted2); line-height: 1.7;
-}
-
-.blog-coming {
-  border: 1px dashed var(--border2);
-  border-radius: var(--r);
-  padding: 40px;
-  text-align: center;
-  color: var(--muted);
-  font-size: 12px; letter-spacing: 0.08em;
 }
 
 /* ── CONTACT ─────────────────────────────────────────────────────── */
@@ -683,7 +640,7 @@ footer {
     <h1 class="hero-name">HASAN<br>CAN <span class="accent">BIYIK</span></h1>
     <div class="hero-title">Computational Linguist &nbsp;·&nbsp; AI & NLP Engineer</div>
     <p class="hero-bio">
-      I build systems that understand language — from <strong>cross-lingual euphemism detection</strong> to <strong>production RAG pipelines</strong>. MS in Computational Linguistics (Montclair State, AI/ML specialization). Currently looking for industry roles in <strong>NLP, ML engineering, or AI analytics</strong>.
+      I build systems that understand language — from <strong>cross-lingual euphemism detection</strong> to <strong>production RAG pipelines</strong>. MS in Computational Linguistics (Montclair State, AI/ML specialization). Currently looking for industry roles in <strong>NLP, AI, ML engineering, and Generative AI-Related Roles</strong>.
     </p>
     <div class="hero-actions">
       <a href="#projects" class="btn-primary">View Projects →</a>
@@ -701,13 +658,13 @@ footer {
   <div class="about-grid reveal">
     <div class="about-text">
       <p>
-        I'm a <strong>Turkish computational linguist</strong> based in the US, with a Master's in Computational Linguistics from Montclair State University, specializing in AI and machine learning. My research sits at the intersection of NLP and cross-lingual transfer — specifically how meaning shifts across languages in subtle, culturally-loaded ways.
+        I'm a <strong>computational linguist</strong> based in the US, with a Master's of Science degree in Computational Linguistics from Montclair State University, specializing in AI and machine learning. My research sits at the intersection of NLP and cross-lingual transfer, specifically how meaning shifts across languages in subtle, culturally-loaded ways.
       </p>
       <p>
         My published work covers <strong>euphemism detection in Turkish and English</strong>, sarcasm detection in sitcom dialogue, and cross-lingual transfer learning using transformer models. I've presented at ACL-affiliated venues and managed annotation pipelines across multiple languages.
       </p>
       <p>
-        Outside research, I build things: <strong>production RAG systems</strong>, AWS-deployed models, and full-stack NLP tools from training scripts to web interfaces. I'm targeting ML engineering, NLP engineering, or AI analytics roles while continuing to publish.
+        Outside research, I build things: <strong>production RAG systems</strong>, AWS-deployed models, and full-stack NLP tools from training scripts to web interfaces. I'm targeting AI, NLP, AI engineering, chatbot development, LLM fine-tuning roles while continuing to publish.
       </p>
     </div>
     <div class="about-skills">
@@ -760,52 +717,153 @@ footer {
         <div class="project-arrow">↗</div>
       </div>
       <div class="project-name">Euphemism Detector</div>
-      <div class="project-desc">
-        Multilingual euphemism detection system fine-tuned on XLM-RoBERTa. Classifies whether a phrase is used euphemistically or literally across 5 languages. Includes a minimal web UI built with FastAPI.
-      </div>
+      <div class="project-desc">Multilingual euphemism detection fine-tuned on XLM-RoBERTa. Classifies euphemistic vs. literal usage across 5 languages with a FastAPI web UI.</div>
       <div class="project-meta">
+        <span class="meta-tag highlight">80%+ F1</span>
         <span class="meta-tag">XLM-RoBERTa</span>
         <span class="meta-tag">FastAPI</span>
-        <span class="meta-tag">5 languages</span>
         <a href="https://huggingface.co/spaces/hasancanbiyik/euphemism-detector" target="_blank" class="demo-link" onclick="event.stopPropagation()">▶ Live Demo</a>
       </div>
     </a>
 
-    <div class="project-card reveal" style="cursor:default;">
+    <a href="https://github.com/hasancanbiyik/PETs-investigating-LLMs-generalization-capabilities" target="_blank" class="project-card reveal">
+      <div class="project-card-top">
+        <div class="project-icon">🌐</div>
+        <div class="project-arrow">↗</div>
+      </div>
+      <div class="project-name">PETs Cross-Lingual Generalization</div>
+      <div class="project-desc">Investigates cross-lingual generalization of Potentially Euphemistic Terms in LLMs. Shows sequential fine-tuning with semantic/pragmatic overlap improves transfer. Published at EACL 2026.</div>
+      <div class="project-meta">
+        <span class="meta-tag highlight">EACL 2026</span>
+        <span class="meta-tag">Cross-lingual</span>
+        <span class="meta-tag">LLMs</span>
+        <a href="#" target="_blank" class="demo-link" onclick="event.stopPropagation()">▶ Live Demo</a>
+      </div>
+    </a>
+
+    <a href="https://github.com/hasancanbiyik/sarcasm_detection" target="_blank" class="project-card reveal">
       <div class="project-card-top">
         <div class="project-icon">😏</div>
-        <div class="project-arrow" style="opacity:0.3">↗</div>
+        <div class="project-arrow">↗</div>
       </div>
-      <div class="project-name">Sarcasm Detector</div>
-      <div class="project-desc">
-        Sarcasm detection in sitcom dialogue using fine-tuned transformers and zero-shot LLMs. Achieved 71.6% accuracy with XLM-RoBERTa. Discovered the "Chandler Effect" — models exploiting character shortcuts over linguistic patterns.
-      </div>
+      <div class="project-name">Sarcasm Detection</div>
+      <div class="project-desc">Sarcasm detection in sitcom dialogue using fine-tuned transformers and zero-shot LLMs. Achieved 85% F1 with Twitter-RoBERTa. Discovered the "Chandler Effect" — models exploiting character shortcuts over linguistic patterns.</div>
       <div class="project-meta">
-        <span class="meta-tag">XLM-RoBERTa</span>
+        <span class="meta-tag highlight">85% F1</span>
+        <span class="meta-tag">RoBERTa</span>
         <span class="meta-tag">Dialogue NLP</span>
+        <a href="#" target="_blank" class="demo-link" onclick="event.stopPropagation()">▶ Live Demo</a>
       </div>
-    </div>
+    </a>
 
-    <div class="project-card reveal" style="cursor:default; opacity:0.5;">
+    <a href="https://github.com/hasancanbiyik/multi-source-research-agent" target="_blank" class="project-card reveal">
       <div class="project-card-top">
-        <div class="project-icon">➕</div>
+        <div class="project-icon">🤖</div>
+        <div class="project-arrow">↗</div>
       </div>
-      <div class="project-name">More coming</div>
-      <div class="project-desc">
-        Additional projects will be added here — RAG systems, annotation pipelines, and more.
-      </div>
+      <div class="project-name">Multi-Source Research Agent</div>
+      <div class="project-desc">LLM-powered research system that retrieves and synthesizes information from web and Reddit using LangGraph orchestration, ChromaDB semantic retrieval, and GPT-4 reasoning. Deployed with FastAPI + Prometheus.</div>
       <div class="project-meta">
-        <span class="meta-tag">In progress</span>
+        <span class="meta-tag">LangGraph</span>
+        <span class="meta-tag">ChromaDB</span>
+        <span class="meta-tag">GPT-4</span>
+        <a href="#" target="_blank" class="demo-link" onclick="event.stopPropagation()">▶ Live Demo</a>
       </div>
-    </div>
+    </a>
+
+    <a href="https://github.com/hasancanbiyik/resume-fit-analyzer-smart-ats" target="_blank" class="project-card reveal">
+      <div class="project-card-top">
+        <div class="project-icon">📄</div>
+        <div class="project-arrow">↗</div>
+      </div>
+      <div class="project-name">Resume Fit Analyzer — Smart ATS</div>
+      <div class="project-desc">AI-powered ATS resume analyzer that scores fit against job descriptions, identifies gaps, and suggests improvements using semantic similarity and LLM reasoning.</div>
+      <div class="project-meta">
+        <span class="meta-tag">NLP</span>
+        <span class="meta-tag">Semantic Search</span>
+        <span class="meta-tag">Python</span>
+        <a href="#" target="_blank" class="demo-link" onclick="event.stopPropagation()">▶ Live Demo</a>
+      </div>
+    </a>
+
+    <a href="https://github.com/hasancanbiyik/immigration_chatbot" target="_blank" class="project-card reveal">
+      <div class="project-card-top">
+        <div class="project-icon">💬</div>
+        <div class="project-arrow">↗</div>
+      </div>
+      <div class="project-name">RAG Chatbot — AWS Bedrock</div>
+      <div class="project-desc">AI chatbot using Amazon Lex for conversation management, AWS Bedrock (Claude/Titan) for LLM inference, and RAG with Bedrock Knowledge Bases for semantic search over domain documents.</div>
+      <div class="project-meta">
+        <span class="meta-tag">AWS Bedrock</span>
+        <span class="meta-tag">RAG</span>
+        <span class="meta-tag">LangChain</span>
+        <a href="#" target="_blank" class="demo-link" onclick="event.stopPropagation()">▶ Live Demo</a>
+      </div>
+    </a>
+
+    <a href="https://github.com/hasancanbiyik/turkish-product-sentiment-analyzer" target="_blank" class="project-card reveal">
+      <div class="project-card-top">
+        <div class="project-icon">🇹🇷</div>
+        <div class="project-arrow">↗</div>
+      </div>
+      <div class="project-name">Turkish Product Sentiment Analyzer</div>
+      <div class="project-desc">Fine-tuned BERTurk on 235K Turkish product reviews for binary sentiment classification. 94.2% accuracy with real-time inference, Google Translate API integration, and interactive Plotly visualizations.</div>
+      <div class="project-meta">
+        <span class="meta-tag highlight">94.2% Acc</span>
+        <span class="meta-tag">BERTurk</span>
+        <span class="meta-tag">Streamlit</span>
+        <a href="#" target="_blank" class="demo-link" onclick="event.stopPropagation()">▶ Live Demo</a>
+      </div>
+    </a>
+
+    <a href="https://github.com/hasancanbiyik/prosodic_event_detection" target="_blank" class="project-card reveal">
+      <div class="project-card-top">
+        <div class="project-icon">🎙️</div>
+        <div class="project-arrow">↗</div>
+      </div>
+      <div class="project-name">Prosodic Event Detection</div>
+      <div class="project-desc">CNN/LSTM/MLP models for prosodic prominence and boundary detection in speech. 85% F1 on prominence, 117% improvement over classical ML baselines. Built on the BU Radio News Corpus with 420K+ frames.</div>
+      <div class="project-meta">
+        <span class="meta-tag highlight">85% F1</span>
+        <span class="meta-tag">PyTorch</span>
+        <span class="meta-tag">Speech NLP</span>
+        <a href="#" target="_blank" class="demo-link" onclick="event.stopPropagation()">▶ Live Demo</a>
+      </div>
+    </a>
+
+    <a href="https://github.com/hasancanbiyik/nsfw_identifier" target="_blank" class="project-card reveal">
+      <div class="project-card-top">
+        <div class="project-icon">🛡️</div>
+        <div class="project-arrow">↗</div>
+      </div>
+      <div class="project-name">NSFW Content Identifier</div>
+      <div class="project-desc">Content moderation classifier for identifying NSFW pictures using fine-tuned transformer models. Designed for production content filtering pipelines. Google Chrome extension was also developed and it's ready for use.</div>
+      <div class="project-meta">
+        <span class="meta-tag">Content Moderation</span>
+        <span class="meta-tag">Transformers</span>
+        <span class="meta-tag">Python</span>
+        <a href="#" target="_blank" class="demo-link" onclick="event.stopPropagation()">▶ Live Demo</a>
+      </div>
+    </a>
+
+    <a href="https://github.com/hasancanbiyik/Turkish_PETs" target="_blank" class="project-card reveal">
+      <div class="project-card-top">
+        <div class="project-icon">📚</div>
+        <div class="project-arrow">↗</div>
+      </div>
+      <div class="project-name">Turkish PETs Dataset</div>
+      <div class="project-desc">The dataset behind the ACL 2024 publication. 7,000+ annotated Turkish euphemism examples with 92% inter-annotator agreement, built with human-in-the-loop annotation workflows across 15 annotators.</div>
+      <div class="project-meta">
+        <span class="meta-tag highlight">ACL 2024</span>
+        <span class="meta-tag">7K+ examples</span>
+        <span class="meta-tag">Annotation</span>
+      </div>
+    </a>
 
   </div>
 </section>
 
-<hr class="divider"/>
 
-<!-- PUBLICATIONS -->
-<section id="publications">
   <div class="section-eyebrow">Research</div>
   <div class="section-title">Publications</div>
   <div class="pub-list">
@@ -813,8 +871,8 @@ footer {
     <a href="https://drive.google.com/file/d/1DGbUJZ-80HbYasr0nzfYUQqd97eCYOMd/view?usp=sharing" target="_blank" class="pub-item reveal" style="text-decoration:none; color:inherit;">
       <div class="pub-year">2026</div>
       <div class="pub-content">
-        <div class="pub-title">PET Crossing: Investigating Cross-Lingual Generalization of Euphemisms in LLMs</div>
-        <div class="pub-venue">EACL 2026 &nbsp;·&nbsp; <em>Hasan Can Biyik</em></div>
+        <div class="pub-title">When Semantic Overlap Is Not Enough: Cross-Lingual Euphemism Transfer Between Turkish and English</div>
+        <div class="pub-venue">EACL 2026 &nbsp;·&nbsp; <em>Biyik, H., Barak L., Peng J., Feldman A.</em></div>
       </div>
       <div class="pub-badge">Accepted ↗</div>
     </a>
@@ -852,14 +910,14 @@ footer {
   <div class="contact-wrap">
     <div class="contact-left reveal">
       <p>
-        I'm actively looking for <strong style="color:var(--text)">NLP engineering, ML engineering, or AI analytics roles</strong>. If you're working on something interesting with language models or data, let's talk.
+        I'm actively looking for <strong style="color:var(--text)">NLP, ML, AI engineering or chatbot development roles</strong>. If you're working on something interesting with language models or data, let's connect.
       </p>
       <div class="contact-links">
-        <a href="/cdn-cgi/l/email-protection#1072697b3e787163717e73717e50777d71797c3e737f7d" class="contact-link">
+        <a href="/cdn-cgi/l/email-protection#a8cad1c386c0c9dbc9c6cbc9c6e8cfc5c9c1c486cbc7c5" class="contact-link">
           <div class="contact-link-icon">✉</div>
           <div class="contact-link-label">
             <div>Email</div>
-            <div class="contact-link-handle"><span class="__cf_email__" data-cfemail="a3c1dac88dcbc2d0c2cdc0c2cde3c4cec2cacf8dc0ccce">[email&#160;protected]</span></div>
+            <div class="contact-link-handle"><span class="__cf_email__" data-cfemail="80e2f9ebaee8e1f3e1eee3e1eec0e7ede1e9ecaee3efed">[email&#160;protected]</span></div>
           </div>
           <div class="contact-link-arrow">→</div>
         </a>
