@@ -446,6 +446,22 @@ section {
   color: var(--muted2); background: transparent;
 }
 
+.pub-links {
+  display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px;
+}
+.pub-link {
+  font-size: 10px; letter-spacing: 0.06em;
+  padding: 3px 10px; border-radius: 20px;
+  border: 1px solid var(--border2);
+  color: var(--muted2); background: transparent;
+  text-decoration: none;
+  transition: border-color 0.18s, color 0.18s;
+}
+.pub-link:hover {
+  border-color: rgba(0,229,255,0.35);
+  color: var(--accent);
+}
+
 .pub-placeholder {
   border: 1px dashed var(--border2);
   border-radius: var(--r);
@@ -707,7 +723,7 @@ footer {
         <div class="project-name">PETs Cross-Lingual Generalization</div>
         <div class="project-desc">Investigates cross-lingual generalization of Potentially Euphemistic Terms in LLMs. Shows sequential fine-tuning with semantic/pragmatic overlap improves transfer. Published at EACL 2026.</div>
       </a>
-      <a href="#" target="_blank" class="demo-btn">▶ Live Demo</a>
+      <a href="https://drive.google.com/file/d/175udbcgBX8IsKw1ulGuj-k3srIRmzimA/view?usp=sharing" target="_blank" class="demo-btn">📂 Dataset</a>
     </div>
 
     <div class="project-row reveal">
@@ -779,7 +795,7 @@ footer {
         <div class="project-name">Turkish PETs Dataset</div>
         <div class="project-desc">The dataset behind the ACL 2024 publication. 7,000+ annotated Turkish euphemism examples with 92% inter-annotator agreement across 15 annotators.</div>
       </a>
-      <a href="#" target="_blank" class="demo-btn">▶ Live Demo</a>
+      <a href="https://drive.google.com/file/d/1s-KVj785fR5Ubdy2WrHlm8F3xyEpWjZ4/view?usp=sharing" target="_blank" class="demo-btn">📂 Dataset</a>
     </div>
 
   </div>
@@ -798,6 +814,10 @@ footer {
       <div class="pub-content">
         <div class="pub-title">When Semantic Overlap Is Not Enough: Cross-Lingual Euphemism Transfer Between Turkish and English</div>
         <div class="pub-venue">EACL 2026 &nbsp;·&nbsp; <em>Biyik, H., Barak L., Peng J., Feldman A.</em></div>
+        <div class="pub-links">
+          <a href="https://drive.google.com/file/d/175udbcgBX8IsKw1ulGuj-k3srIRmzimA/view?usp=sharing" target="_blank" class="pub-link" onclick="event.stopPropagation()">📂 Dataset</a>
+          <a href="https://github.com/hasancanbiyik/PETs-investigating-LLMs-generalization-capabilities" target="_blank" class="pub-link" onclick="event.stopPropagation()">⌥ GitHub</a>
+        </div>
       </div>
       <div class="pub-badge">Accepted ↗</div>
     </a>
@@ -807,6 +827,11 @@ footer {
       <div class="pub-content">
         <div class="pub-title">Turkish Delights: A Dataset on Turkish Euphemisms</div>
         <div class="pub-venue">SIGTURK @ ACL 2024, Bangkok &nbsp;·&nbsp; <em>Biyik, H., Lee, P., & Feldman, A.</em></div>
+        <div class="pub-links">
+          <a href="https://drive.google.com/file/d/1s-KVj785fR5Ubdy2WrHlm8F3xyEpWjZ4/view?usp=sharing" target="_blank" class="pub-link" onclick="event.stopPropagation()">📂 Dataset (trimmed)</a>
+          <a href="https://drive.google.com/file/d/15u3P2IMr97F85C1bdban1Yn0MhaP1uJJ/view?usp=sharing" target="_blank" class="pub-link" onclick="event.stopPropagation()">📂 Dataset (full · 6–7K)</a>
+          <a href="https://github.com/hasancanbiyik/Turkish_PETs" target="_blank" class="pub-link" onclick="event.stopPropagation()">⌥ GitHub</a>
+        </div>
       </div>
       <div class="pub-badge">Published ↗</div>
     </a>
