@@ -325,19 +325,26 @@ section {
 
 /* ── PROJECTS ────────────────────────────────────────────────────── */
 .projects-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
-  gap: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
 }
+.project-row {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: stretch;
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  overflow: hidden;
+  transition: border-color 0.2s;
+}
+.project-row:hover { border-color: rgba(0,229,255,0.2); }
 
 .project-card {
   background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: var(--r);
-  padding: 28px;
+  padding: 20px 24px;
   text-decoration: none; color: inherit;
   display: flex; flex-direction: column;
-  transition: border-color 0.2s, transform 0.2s, background 0.2s, box-shadow 0.2s;
   position: relative; overflow: hidden;
 }
 .project-card::before {
@@ -346,19 +353,8 @@ section {
   background: linear-gradient(135deg, rgba(0,229,255,0.04) 0%, transparent 60%);
   opacity: 0; transition: opacity 0.3s;
 }
-.project-card:hover {
-  border-color: rgba(0,229,255,0.2);
-  transform: translateY(-3px);
-  background: var(--surface2);
-  box-shadow: 0 12px 32px rgba(0,0,0,0.3);
-}
-.project-card:hover::before { opacity: 1; }
-
-.project-card-top {
-  display: flex; align-items: flex-start;
-  justify-content: space-between;
-  margin-bottom: 16px;
-}
+.project-row:hover .project-card::before { opacity: 1; }
+.project-row:hover .project-arrow { color: var(--accent); transform: translate(2px,-2px); }
 
 .project-icon {
   width: 36px; height: 36px;
@@ -370,35 +366,36 @@ section {
 }
 
 .project-arrow {
-  color: var(--muted); font-size: 16px;
+  color: var(--muted); font-size: 13px;
   transition: color 0.18s, transform 0.18s;
 }
-.project-card:hover .project-arrow { color: var(--accent); transform: translate(3px,-3px); }
+.project-card:hover .project-arrow { color: var(--accent); transform: translate(2px,-2px); }
 
 .project-name {
   font-family: var(--font-h);
-  font-size: 16px; font-weight: 700;
-  margin-bottom: 8px; color: var(--text);
+  font-size: 15px; font-weight: 700;
+  margin-bottom: 6px; color: var(--text);
 }
 
 .project-desc {
   font-size: 12px; color: var(--muted2);
-  line-height: 1.7; flex: 1;
-  margin-bottom: 20px;
+  line-height: 1.7;
 }
-.demo-link {
-  display: inline-flex; align-items: center; gap: 5px;
-  font-size: 11px; letter-spacing: 0.05em; font-weight: 600;
-  padding: 4px 12px; border-radius: 20px;
-  border: 1px solid rgba(0,229,255,0.35);
+.demo-btn {
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+  width: 120px;
+  font-family: var(--font-h); font-size: 11px; letter-spacing: 0.08em; font-weight: 700;
+  padding: 0 20px;
+  border-left: 1px solid var(--border);
   color: var(--accent);
-  background: rgba(0,229,255,0.07);
+  background: rgba(0,229,255,0.04);
   text-decoration: none;
-  transition: background 0.18s, border-color 0.18s;
+  text-align: center;
+  transition: background 0.18s;
 }
-.demo-link:hover {
-  background: rgba(0,229,255,0.14);
-  border-color: rgba(0,229,255,0.6);
+.demo-btn:hover {
+  background: rgba(0,229,255,0.12);
 }
 
 /* ── PUBLICATIONS ────────────────────────────────────────────────── */
@@ -695,154 +692,95 @@ footer {
   <div class="section-title">Projects</div>
   <div class="projects-grid">
 
-    <a href="https://github.com/hasancanbiyik/euphemism-detector" target="_blank" class="project-card reveal">
-      <div class="project-card-top">
-        <div class="project-icon">🔍</div>
-        <div class="project-arrow">↗</div>
-      </div>
-      <div class="project-name">Euphemism Detector</div>
-      <div class="project-desc">Multilingual euphemism detection fine-tuned on XLM-RoBERTa. Classifies euphemistic vs. literal usage across 5 languages with a FastAPI web UI.</div>
-      <div class="project-meta">
-        <span class="meta-tag highlight">80%+ F1</span>
-        <span class="meta-tag">XLM-RoBERTa</span>
-        <span class="meta-tag">FastAPI</span>
-        <a href="https://huggingface.co/spaces/hasancanbiyik/euphemism-detector" target="_blank" class="demo-link" onclick="event.stopPropagation()">▶ Live Demo</a>
-      </div>
-    </a>
+    <div class="project-row reveal">
+      <a href="https://github.com/hasancanbiyik/euphemism-detector" target="_blank" class="project-card">
+        <div class="project-card-top"><div class="project-icon">🔍</div><div class="project-arrow">↗</div></div>
+        <div class="project-name">Euphemism Detector</div>
+        <div class="project-desc">Multilingual euphemism detection fine-tuned on XLM-RoBERTa. Classifies euphemistic vs. literal usage across 5 languages with a FastAPI web UI.</div>
+      </a>
+      <a href="https://huggingface.co/spaces/hasancanbiyik/euphemism-detector" target="_blank" class="demo-btn">▶ Live Demo</a>
+    </div>
 
-    <a href="https://github.com/hasancanbiyik/PETs-investigating-LLMs-generalization-capabilities" target="_blank" class="project-card reveal">
-      <div class="project-card-top">
-        <div class="project-icon">🌐</div>
-        <div class="project-arrow">↗</div>
-      </div>
-      <div class="project-name">PETs Cross-Lingual Generalization</div>
-      <div class="project-desc">Investigates cross-lingual generalization of Potentially Euphemistic Terms in LLMs. Shows sequential fine-tuning with semantic/pragmatic overlap improves transfer. Published at EACL 2026.</div>
-      <div class="project-meta">
-        <span class="meta-tag highlight">EACL 2026</span>
-        <span class="meta-tag">Cross-lingual</span>
-        <span class="meta-tag">LLMs</span>
-        <a href="#" target="_blank" class="demo-link" onclick="event.stopPropagation()">▶ Live Demo</a>
-      </div>
-    </a>
+    <div class="project-row reveal">
+      <a href="https://github.com/hasancanbiyik/PETs-investigating-LLMs-generalization-capabilities" target="_blank" class="project-card">
+        <div class="project-card-top"><div class="project-icon">🌐</div><div class="project-arrow">↗</div></div>
+        <div class="project-name">PETs Cross-Lingual Generalization</div>
+        <div class="project-desc">Investigates cross-lingual generalization of Potentially Euphemistic Terms in LLMs. Shows sequential fine-tuning with semantic/pragmatic overlap improves transfer. Published at EACL 2026.</div>
+      </a>
+      <a href="#" target="_blank" class="demo-btn">▶ Live Demo</a>
+    </div>
 
-    <a href="https://github.com/hasancanbiyik/sarcasm_detection" target="_blank" class="project-card reveal">
-      <div class="project-card-top">
-        <div class="project-icon">😏</div>
-        <div class="project-arrow">↗</div>
-      </div>
-      <div class="project-name">Sarcasm Detection</div>
-      <div class="project-desc">Sarcasm detection in sitcom dialogue using fine-tuned transformers and zero-shot LLMs. Achieved 85% F1 with Twitter-RoBERTa. Discovered the "Chandler Effect" — models exploiting character shortcuts over linguistic patterns.</div>
-      <div class="project-meta">
-        <span class="meta-tag highlight">85% F1</span>
-        <span class="meta-tag">RoBERTa</span>
-        <span class="meta-tag">Dialogue NLP</span>
-        <a href="#" target="_blank" class="demo-link" onclick="event.stopPropagation()">▶ Live Demo</a>
-      </div>
-    </a>
+    <div class="project-row reveal">
+      <a href="https://github.com/hasancanbiyik/sarcasm_detection" target="_blank" class="project-card">
+        <div class="project-card-top"><div class="project-icon">😏</div><div class="project-arrow">↗</div></div>
+        <div class="project-name">Sarcasm Detection</div>
+        <div class="project-desc">Sarcasm detection in sitcom dialogue using fine-tuned transformers and zero-shot LLMs. Achieved 85% F1 with Twitter-RoBERTa. Discovered the "Chandler Effect" — models exploiting character shortcuts over linguistic patterns.</div>
+      </a>
+      <a href="#" target="_blank" class="demo-btn">▶ Live Demo</a>
+    </div>
 
-    <a href="https://github.com/hasancanbiyik/multi-source-research-agent" target="_blank" class="project-card reveal">
-      <div class="project-card-top">
-        <div class="project-icon">🤖</div>
-        <div class="project-arrow">↗</div>
-      </div>
-      <div class="project-name">Multi-Source Research Agent</div>
-      <div class="project-desc">LLM-powered research system that retrieves and synthesizes information from web and Reddit using LangGraph orchestration, ChromaDB semantic retrieval, and GPT-4 reasoning. Deployed with FastAPI + Prometheus.</div>
-      <div class="project-meta">
-        <span class="meta-tag">LangGraph</span>
-        <span class="meta-tag">ChromaDB</span>
-        <span class="meta-tag">GPT-4</span>
-        <a href="#" target="_blank" class="demo-link" onclick="event.stopPropagation()">▶ Live Demo</a>
-      </div>
-    </a>
+    <div class="project-row reveal">
+      <a href="https://github.com/hasancanbiyik/multi-source-research-agent" target="_blank" class="project-card">
+        <div class="project-card-top"><div class="project-icon">🤖</div><div class="project-arrow">↗</div></div>
+        <div class="project-name">Multi-Source Research Agent</div>
+        <div class="project-desc">LLM-powered research system that retrieves and synthesizes information from web and Reddit using LangGraph orchestration, ChromaDB semantic retrieval, and GPT-4 reasoning.</div>
+      </a>
+      <a href="#" target="_blank" class="demo-btn">▶ Live Demo</a>
+    </div>
 
-    <a href="https://github.com/hasancanbiyik/resume-fit-analyzer-smart-ats" target="_blank" class="project-card reveal">
-      <div class="project-card-top">
-        <div class="project-icon">📄</div>
-        <div class="project-arrow">↗</div>
-      </div>
-      <div class="project-name">Resume Fit Analyzer — Smart ATS</div>
-      <div class="project-desc">AI-powered ATS resume analyzer that scores fit against job descriptions, identifies gaps, and suggests improvements using semantic similarity and LLM reasoning.</div>
-      <div class="project-meta">
-        <span class="meta-tag">NLP</span>
-        <span class="meta-tag">Semantic Search</span>
-        <span class="meta-tag">Python</span>
-        <a href="#" target="_blank" class="demo-link" onclick="event.stopPropagation()">▶ Live Demo</a>
-      </div>
-    </a>
+    <div class="project-row reveal">
+      <a href="https://github.com/hasancanbiyik/resume-fit-analyzer-smart-ats" target="_blank" class="project-card">
+        <div class="project-card-top"><div class="project-icon">📄</div><div class="project-arrow">↗</div></div>
+        <div class="project-name">Resume Fit Analyzer — Smart ATS</div>
+        <div class="project-desc">AI-powered ATS resume analyzer that scores fit against job descriptions, identifies gaps, and suggests improvements using semantic similarity and LLM reasoning.</div>
+      </a>
+      <a href="#" target="_blank" class="demo-btn">▶ Live Demo</a>
+    </div>
 
-    <a href="https://github.com/hasancanbiyik/immigration_chatbot" target="_blank" class="project-card reveal">
-      <div class="project-card-top">
-        <div class="project-icon">💬</div>
-        <div class="project-arrow">↗</div>
-      </div>
-      <div class="project-name">RAG Chatbot — AWS Bedrock</div>
-      <div class="project-desc">AI chatbot using Amazon Lex for conversation management, AWS Bedrock (Claude/Titan) for LLM inference, and RAG with Bedrock Knowledge Bases for semantic search over domain documents.</div>
-      <div class="project-meta">
-        <span class="meta-tag">AWS Bedrock</span>
-        <span class="meta-tag">RAG</span>
-        <span class="meta-tag">LangChain</span>
-        <a href="#" target="_blank" class="demo-link" onclick="event.stopPropagation()">▶ Live Demo</a>
-      </div>
-    </a>
+    <div class="project-row reveal">
+      <a href="https://github.com/hasancanbiyik/immigration_chatbot" target="_blank" class="project-card">
+        <div class="project-card-top"><div class="project-icon">💬</div><div class="project-arrow">↗</div></div>
+        <div class="project-name">RAG Chatbot — AWS Bedrock</div>
+        <div class="project-desc">AI chatbot using Amazon Lex, AWS Bedrock (Claude/Titan) for LLM inference, and RAG with Bedrock Knowledge Bases for semantic search over domain documents.</div>
+      </a>
+      <a href="#" target="_blank" class="demo-btn">▶ Live Demo</a>
+    </div>
 
-    <a href="https://github.com/hasancanbiyik/turkish-product-sentiment-analyzer" target="_blank" class="project-card reveal">
-      <div class="project-card-top">
-        <div class="project-icon">🇹🇷</div>
-        <div class="project-arrow">↗</div>
-      </div>
-      <div class="project-name">Turkish Product Sentiment Analyzer</div>
-      <div class="project-desc">Fine-tuned BERTurk on 235K Turkish product reviews for binary sentiment classification. 94.2% accuracy with real-time inference, Google Translate API integration, and interactive Plotly visualizations.</div>
-      <div class="project-meta">
-        <span class="meta-tag highlight">94.2% Acc</span>
-        <span class="meta-tag">BERTurk</span>
-        <span class="meta-tag">Streamlit</span>
-        <a href="#" target="_blank" class="demo-link" onclick="event.stopPropagation()">▶ Live Demo</a>
-      </div>
-    </a>
+    <div class="project-row reveal">
+      <a href="https://github.com/hasancanbiyik/turkish-product-sentiment-analyzer" target="_blank" class="project-card">
+        <div class="project-card-top"><div class="project-icon">🇹🇷</div><div class="project-arrow">↗</div></div>
+        <div class="project-name">Turkish Product Sentiment Analyzer</div>
+        <div class="project-desc">Fine-tuned BERTurk on 235K Turkish product reviews for binary sentiment classification. 94.2% accuracy with real-time inference and interactive Plotly visualizations.</div>
+      </a>
+      <a href="#" target="_blank" class="demo-btn">▶ Live Demo</a>
+    </div>
 
-    <a href="https://github.com/hasancanbiyik/prosodic_event_detection" target="_blank" class="project-card reveal">
-      <div class="project-card-top">
-        <div class="project-icon">🎙️</div>
-        <div class="project-arrow">↗</div>
-      </div>
-      <div class="project-name">Prosodic Event Detection</div>
-      <div class="project-desc">CNN/LSTM/MLP models for prosodic prominence and boundary detection in speech. 85% F1 on prominence, 117% improvement over classical ML baselines. Built on the BU Radio News Corpus with 420K+ frames.</div>
-      <div class="project-meta">
-        <span class="meta-tag highlight">85% F1</span>
-        <span class="meta-tag">PyTorch</span>
-        <span class="meta-tag">Speech NLP</span>
-        <a href="#" target="_blank" class="demo-link" onclick="event.stopPropagation()">▶ Live Demo</a>
-      </div>
-    </a>
+    <div class="project-row reveal">
+      <a href="https://github.com/hasancanbiyik/prosodic_event_detection" target="_blank" class="project-card">
+        <div class="project-card-top"><div class="project-icon">🎙️</div><div class="project-arrow">↗</div></div>
+        <div class="project-name">Prosodic Event Detection</div>
+        <div class="project-desc">CNN/LSTM/MLP models for prosodic prominence and boundary detection in speech. 85% F1 on prominence, 117% improvement over classical ML baselines.</div>
+      </a>
+      <a href="#" target="_blank" class="demo-btn">▶ Live Demo</a>
+    </div>
 
-    <a href="https://github.com/hasancanbiyik/nsfw_identifier" target="_blank" class="project-card reveal">
-      <div class="project-card-top">
-        <div class="project-icon">🛡️</div>
-        <div class="project-arrow">↗</div>
-      </div>
-      <div class="project-name">NSFW Content Identifier</div>
-      <div class="project-desc">Content moderation classifier for identifying NSFW pictures using fine-tuned transformer models. Designed for production content filtering pipelines. Google Chrome extension was also developed and it's ready for use.</div>
-      <div class="project-meta">
-        <span class="meta-tag">Content Moderation</span>
-        <span class="meta-tag">Transformers</span>
-        <span class="meta-tag">Python</span>
-        <a href="#" target="_blank" class="demo-link" onclick="event.stopPropagation()">▶ Live Demo</a>
-      </div>
-    </a>
+    <div class="project-row reveal">
+      <a href="https://github.com/hasancanbiyik/nsfw_identifier" target="_blank" class="project-card">
+        <div class="project-card-top"><div class="project-icon">🛡️</div><div class="project-arrow">↗</div></div>
+        <div class="project-name">NSFW Content Identifier</div>
+        <div class="project-desc">Content moderation classifier for identifying NSFW pictures using fine-tuned transformer models. Chrome extension also developed and ready for use.</div>
+      </a>
+      <a href="#" target="_blank" class="demo-btn">▶ Live Demo</a>
+    </div>
 
-    <a href="https://github.com/hasancanbiyik/Turkish_PETs" target="_blank" class="project-card reveal">
-      <div class="project-card-top">
-        <div class="project-icon">📚</div>
-        <div class="project-arrow">↗</div>
-      </div>
-      <div class="project-name">Turkish PETs Dataset</div>
-      <div class="project-desc">The dataset behind the ACL 2024 publication. 7,000+ annotated Turkish euphemism examples with 92% inter-annotator agreement, built with human-in-the-loop annotation workflows across 15 annotators.</div>
-      <div class="project-meta">
-        <span class="meta-tag highlight">ACL 2024</span>
-        <span class="meta-tag">7K+ examples</span>
-        <span class="meta-tag">Annotation</span>
-      </div>
-    </a>
+    <div class="project-row reveal">
+      <a href="https://github.com/hasancanbiyik/Turkish_PETs" target="_blank" class="project-card">
+        <div class="project-card-top"><div class="project-icon">📚</div><div class="project-arrow">↗</div></div>
+        <div class="project-name">Turkish PETs Dataset</div>
+        <div class="project-desc">The dataset behind the ACL 2024 publication. 7,000+ annotated Turkish euphemism examples with 92% inter-annotator agreement across 15 annotators.</div>
+      </a>
+      <a href="#" target="_blank" class="demo-btn">▶ Live Demo</a>
+    </div>
 
   </div>
 </section>
