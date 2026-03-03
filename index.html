@@ -725,7 +725,7 @@ footer {
         <div class="project-name">Sarcasm Detection</div>
         <div class="project-desc">Sarcasm detection in sitcom dialogue using fine-tuned transformers and zero-shot LLMs. Achieved 85% F1 with Twitter-RoBERTa. Discovered the "Chandler Effect" — models exploiting character shortcuts over linguistic patterns.</div>
       </a>
-      <a href="#" target="_blank" class="demo-btn">▶ Live Demo</a>
+      <a href="https://github.com/hasancanbiyik/sarcasm_detection" target="_blank" class="demo-btn">GitHub →</a>
     </div>
 
     <div class="project-row reveal">
@@ -734,7 +734,7 @@ footer {
         <div class="project-name">Multi-Source Research Agent</div>
         <div class="project-desc">LLM-powered research system that retrieves and synthesizes information from web and Reddit using LangGraph orchestration, ChromaDB semantic retrieval, and GPT-4 reasoning.</div>
       </a>
-      <a href="#" target="_blank" class="demo-btn">▶ Live Demo</a>
+      <a href="https://github.com/hasancanbiyik/multi-source-research-agent" target="_blank" class="demo-btn">GitHub →</a>
     </div>
 
     <div class="project-row reveal">
@@ -770,7 +770,7 @@ footer {
         <div class="project-name">Prosodic Event Detection</div>
         <div class="project-desc">CNN/LSTM/MLP models for prosodic prominence and boundary detection in speech. 85% F1 on prominence, 117% improvement over classical ML baselines.</div>
       </a>
-      <a href="#" target="_blank" class="demo-btn">▶ Live Demo</a>
+      <a href="https://github.com/hasancanbiyik/prosodic_event_detection" target="_blank" class="demo-btn">GitHub →</a>
     </div>
 
     <div class="project-row reveal">
@@ -779,7 +779,7 @@ footer {
         <div class="project-name">NSFW Content Identifier</div>
         <div class="project-desc">Content moderation classifier for identifying NSFW pictures using fine-tuned transformer models. Chrome extension also developed and ready for use.</div>
       </a>
-      <a href="#" target="_blank" class="demo-btn">▶ Live Demo</a>
+      <a href="https://github.com/hasancanbiyik/nsfw_identifier" target="_blank" class="demo-btn">GitHub →</a>
     </div>
 
   </div>
@@ -875,21 +875,24 @@ footer {
     </div>
     <div class="contact-right reveal">
       <h3>Send a message</h3>
-      <form onsubmit="handleForm(event)">
+      <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST" id="contact-form">
         <div class="form-field">
           <label class="form-label">Name</label>
-          <input type="text" class="form-input" placeholder="Your name"/>
+          <input type="text" name="name" class="form-input" placeholder="Your name" required/>
         </div>
         <div class="form-field">
           <label class="form-label">Email</label>
-          <input type="email" class="form-input" placeholder="your@email.com"/>
+          <input type="email" name="email" class="form-input" placeholder="your@email.com" required/>
         </div>
         <div class="form-field">
           <label class="form-label">Message</label>
-          <textarea class="form-textarea" placeholder="What's on your mind?"></textarea>
+          <textarea name="message" class="form-textarea" placeholder="What's on your mind?" required></textarea>
         </div>
         <button type="submit" class="form-submit">Send Message</button>
       </form>
+      <p style="font-size:10px; color:var(--muted); margin-top:8px;">
+        <!-- Replace YOUR_FORM_ID above: go to formspree.io, create free account, get your form endpoint -->
+      </p>
     </div>
   </div>
 </section>
@@ -1021,15 +1024,9 @@ window.addEventListener('scroll', () => {
 });
 
 // ── CONTACT FORM ───────────────────────────────────────────────
-function handleForm(e) {
-  e.preventDefault();
-  const btn = e.target.querySelector('.form-submit');
-  btn.textContent = 'Sent ✓';
-  btn.style.background = 'rgba(0,229,255,0.15)';
-  btn.style.color = 'var(--accent)';
-  btn.style.border = '1px solid rgba(0,229,255,0.3)';
-  btn.disabled = true;
-}
+// Form now handled by Formspree (action attribute on form).
+// To set up: go to https://formspree.io, sign up free, create a form,
+// then replace YOUR_FORM_ID in the form action URL above.
 </script>
 </body>
 </html>
