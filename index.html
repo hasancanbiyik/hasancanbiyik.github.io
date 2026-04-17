@@ -7,38 +7,33 @@
 <meta name="description" content="Computational linguist and NLP/ML engineer specializing in cross-lingual transfer, euphemism detection, and production AI systems."/>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
-  /* Warm paper palette — not pure white, not beige enough to look yellowed */
-  --bg:         #F5F1EA;
-  --bg-warm:    #EFEAE1;
-  --surface:    #FBF8F3;
-  --border:     rgba(30, 26, 22, 0.08);
-  --border-2:   rgba(30, 26, 22, 0.14);
-  --border-3:   rgba(30, 26, 22, 0.22);
+  /* Cool ivory palette — "old paper under fluorescent lab light", not warm cream */
+  --bg:          #ECEAE3;
+  --bg-deep:     #E2DFD6;
+  --surface:     #F3F1EB;
+  --border:      rgba(26, 26, 26, 0.09);
+  --border-2:    rgba(26, 26, 26, 0.16);
+  --border-3:    rgba(26, 26, 26, 0.26);
 
-  /* Ink — deep warm black, never pure #000 */
-  --ink:        #1E1A16;
-  --ink-soft:   #3A332C;
-  --muted:      #6B5F52;
-  --muted-2:    #9A8C7D;
-  --muted-3:    #C4B9AB;
+  /* Ink — neutral, cool-leaning */
+  --ink:         #1A1A1A;
+  --ink-soft:    #2E2E2E;
+  --muted:       #5C5C5C;
+  --muted-2:     #8A8A8A;
+  --muted-3:     #B5B5B5;
 
-  /* Single accent — burnt sienna, restrained */
-  --accent:     #B8532C;
-  --accent-deep:#8A3D1F;
-  --accent-wash:rgba(184, 83, 44, 0.08);
+  /* Oxblood accent — annotation-ink feel */
+  --accent:      #7A2E2E;
+  --accent-deep: #5C1F1F;
+  --accent-wash: rgba(122, 46, 46, 0.08);
 
-  --r-sm: 4px;
-  --r:    8px;
-  --r-lg: 14px;
-
-  --f-display: 'Fraunces', Georgia, 'Times New Roman', serif;
-  --f-body:    'Inter', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
-  --f-mono:    'JetBrains Mono', ui-monospace, 'SF Mono', monospace;
+  --f-mono: 'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+  --f-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
 }
 
 html { scroll-behavior: smooth; }
@@ -46,8 +41,8 @@ html { scroll-behavior: smooth; }
 body {
   background: var(--bg);
   color: var(--ink);
-  font-family: var(--f-body);
-  font-size: 15px;
+  font-family: var(--f-mono);
+  font-size: 14px;
   line-height: 1.65;
   font-weight: 400;
   -webkit-font-smoothing: antialiased;
@@ -55,75 +50,86 @@ body {
   overflow-x: hidden;
 }
 
-/* Subtle paper grain — very low opacity */
-body::before {
-  content: '';
-  position: fixed; inset: 0;
-  pointer-events: none; z-index: 1;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
-  opacity: 0.04;
-  mix-blend-mode: multiply;
-}
-
 a { color: inherit; text-decoration: none; }
-
 ::selection { background: var(--accent); color: var(--bg); }
 
 /* ── NAV ─────────────────────────────────────────────────────────── */
 nav {
   position: fixed; top: 0; left: 0; right: 0; z-index: 100;
   display: flex; align-items: center; justify-content: space-between;
-  padding: 0 48px; height: 64px;
-  background: rgba(245, 241, 234, 0.82);
-  backdrop-filter: saturate(1.4) blur(18px);
-  -webkit-backdrop-filter: saturate(1.4) blur(18px);
+  padding: 0 40px; height: 56px;
+  background: rgba(236, 234, 227, 0.85);
+  backdrop-filter: saturate(1.2) blur(14px);
+  -webkit-backdrop-filter: saturate(1.2) blur(14px);
   border-bottom: 1px solid var(--border);
 }
 
-.nav-logo {
-  font-family: var(--f-display);
-  font-size: 17px;
-  font-weight: 500;
-  font-style: italic;
+.nav-status {
+  font-family: var(--f-mono);
+  font-size: 11px;
+  color: var(--muted);
+  display: inline-flex; align-items: center; gap: 10px;
   letter-spacing: -0.01em;
-  color: var(--ink);
 }
-.nav-logo span { color: var(--accent); font-style: normal; }
+.nav-status::before {
+  content: '';
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 0 0 rgba(122, 46, 46, 0.45);
+  animation: pulse 2.4s ease infinite;
+}
 
-.nav-links { display: flex; gap: 36px; list-style: none; }
+@keyframes pulse {
+  0%   { box-shadow: 0 0 0 0 rgba(122, 46, 46, 0.45); }
+  70%  { box-shadow: 0 0 0 7px rgba(122, 46, 46, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(122, 46, 46, 0); }
+}
+
+.nav-links { display: flex; gap: 28px; list-style: none; }
 .nav-links a {
-  font-size: 13px;
+  font-family: var(--f-mono);
+  font-size: 12px;
   font-weight: 400;
   color: var(--muted);
-  transition: color 0.25s ease;
+  letter-spacing: -0.01em;
+  transition: color 0.2s ease;
   position: relative;
+  padding: 4px 0;
+}
+.nav-links a::before {
+  content: '';
+  position: absolute;
+  left: -14px; top: 50%;
+  width: 6px; height: 1px;
+  background: var(--accent);
+  transform: translateY(-50%) scaleX(0);
+  transform-origin: right;
+  transition: transform 0.2s ease;
 }
 .nav-links a:hover { color: var(--ink); }
+.nav-links a:hover::before { transform: translateY(-50%) scaleX(1); transform-origin: left; }
 .nav-links a.active { color: var(--ink); }
-.nav-links a.active::after {
-  content: ''; position: absolute;
-  left: 0; right: 0; bottom: -22px; height: 1px;
-  background: var(--accent);
-}
+.nav-links a.active::before { transform: translateY(-50%) scaleX(1); }
 
 .nav-cta {
-  font-size: 13px;
+  font-family: var(--f-mono);
+  font-size: 12px;
   font-weight: 500;
   color: var(--ink);
-  padding: 8px 16px;
-  border-radius: 999px;
-  border: 1px solid var(--border-2);
+  padding: 6px 12px;
+  border: 1px solid var(--border-3);
   background: transparent;
-  transition: all 0.25s ease;
+  transition: all 0.2s ease;
   display: inline-flex; align-items: center; gap: 6px;
+  letter-spacing: -0.01em;
 }
 .nav-cta:hover {
   background: var(--ink);
   color: var(--bg);
   border-color: var(--ink);
 }
-.nav-cta .arrow { font-size: 11px; transition: transform 0.25s ease; }
-.nav-cta:hover .arrow { transform: translate(2px, -2px); }
+.nav-cta .bracket { color: var(--muted-2); transition: color 0.2s ease; }
+.nav-cta:hover .bracket { color: var(--bg-deep); }
 
 /* ── HERO ────────────────────────────────────────────────────────── */
 #hero {
@@ -131,178 +137,147 @@ nav {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 120px 48px 80px;
+  padding: 120px 40px 80px;
   max-width: 1100px;
   margin: 0 auto;
   position: relative;
-  z-index: 2;
 }
 
-.hero-eyebrow {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
+.hero-meta {
   font-family: var(--f-mono);
   font-size: 11px;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--muted);
-  margin-bottom: 36px;
+  color: var(--muted-2);
+  margin-bottom: 40px;
+  display: flex; flex-direction: column; gap: 2px;
   animation: fadeUp 0.8s ease both;
 }
-.hero-eyebrow .dot {
-  width: 6px; height: 6px; border-radius: 50%;
-  background: var(--accent);
-  box-shadow: 0 0 0 0 rgba(184, 83, 44, 0.45);
-  animation: pulse 2.4s ease infinite;
-}
-
-@keyframes pulse {
-  0%   { box-shadow: 0 0 0 0 rgba(184, 83, 44, 0.45); }
-  70%  { box-shadow: 0 0 0 8px rgba(184, 83, 44, 0); }
-  100% { box-shadow: 0 0 0 0 rgba(184, 83, 44, 0); }
-}
+.hero-meta .line { display: flex; gap: 14px; }
+.hero-meta .key { color: var(--muted-2); min-width: 72px; }
+.hero-meta .val { color: var(--ink-soft); }
+.hero-meta .val.accent { color: var(--accent); }
 
 h1.hero-name {
-  font-family: var(--f-display);
-  font-size: clamp(52px, 8.5vw, 128px);
-  font-weight: 300;
-  line-height: 0.92;
-  letter-spacing: -0.045em;
+  font-family: var(--f-mono);
+  font-size: clamp(38px, 6.5vw, 84px);
+  font-weight: 500;
+  line-height: 1.0;
+  letter-spacing: -0.055em;
   color: var(--ink);
-  margin-bottom: 28px;
+  margin-bottom: 32px;
   animation: fadeUp 0.9s 0.08s ease both;
-  font-variation-settings: "opsz" 144, "SOFT" 30;
 }
-h1.hero-name em {
-  font-style: italic;
-  font-weight: 300;
+h1.hero-name .last-name {
+  color: var(--ink);
+}
+h1.hero-name .underscore {
   color: var(--accent);
+  animation: blink 1.2s step-end infinite;
 }
 
-.hero-title {
-  font-family: var(--f-body);
-  font-size: 15px;
-  font-weight: 400;
-  color: var(--muted);
-  margin-bottom: 40px;
-  letter-spacing: -0.005em;
-  animation: fadeUp 0.9s 0.18s ease both;
-  display: flex; align-items: center; gap: 14px;
-  flex-wrap: wrap;
-}
-.hero-title .sep {
-  width: 4px; height: 4px; border-radius: 50%;
-  background: var(--muted-2);
+@keyframes blink {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
 }
 
 .hero-bio {
   max-width: 640px;
-  font-size: 19px;
-  line-height: 1.55;
-  font-weight: 300;
+  font-family: var(--f-mono);
+  font-size: 14px;
+  line-height: 1.75;
+  font-weight: 400;
   color: var(--ink-soft);
   margin-bottom: 52px;
-  letter-spacing: -0.005em;
+  letter-spacing: -0.01em;
   animation: fadeUp 0.9s 0.28s ease both;
 }
 .hero-bio strong {
-  font-weight: 500;
+  font-weight: 600;
   color: var(--ink);
 }
 .hero-bio .accent-word {
-  font-family: var(--f-display);
-  font-style: italic;
-  font-weight: 400;
   color: var(--accent);
-  letter-spacing: -0.01em;
+  font-weight: 500;
+  border-bottom: 1px dashed rgba(122, 46, 46, 0.35);
+  padding-bottom: 1px;
 }
 
 .hero-actions {
-  display: flex; gap: 14px; flex-wrap: wrap;
+  display: flex; gap: 10px; flex-wrap: wrap;
   animation: fadeUp 0.9s 0.38s ease both;
+}
+
+.btn-primary, .btn-ghost {
+  font-family: var(--f-mono);
+  font-size: 13px;
+  font-weight: 500;
+  padding: 10px 18px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: inline-flex; align-items: center; gap: 8px;
+  letter-spacing: -0.01em;
+  border-radius: 0;
 }
 
 .btn-primary {
   background: var(--ink);
   color: var(--bg);
-  font-family: var(--f-body);
-  font-size: 14px;
-  font-weight: 500;
-  padding: 13px 24px;
-  border-radius: 999px;
   border: 1px solid var(--ink);
-  cursor: pointer;
-  transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1), background 0.3s ease;
-  display: inline-flex; align-items: center; gap: 8px;
 }
 .btn-primary:hover {
-  transform: translateY(-1px);
   background: var(--accent-deep);
   border-color: var(--accent-deep);
+  transform: translateY(-1px);
 }
-.btn-primary .arrow { transition: transform 0.3s ease; }
-.btn-primary:hover .arrow { transform: translateX(3px); }
+.btn-primary .bracket { color: var(--muted-3); }
+.btn-primary:hover .bracket { color: rgba(255,255,255,0.5); }
 
 .btn-ghost {
   background: transparent;
   color: var(--ink);
-  font-family: var(--f-body);
-  font-size: 14px;
-  font-weight: 500;
-  padding: 13px 24px;
-  border-radius: 999px;
   border: 1px solid var(--border-3);
-  transition: all 0.3s ease;
-  display: inline-flex; align-items: center; gap: 8px;
 }
 .btn-ghost:hover {
   border-color: var(--ink);
   background: var(--surface);
 }
+.btn-ghost .bracket { color: var(--muted-2); }
 
 /* ── SECTION WRAPPER ─────────────────────────────────────────────── */
 section {
   max-width: 1100px;
   margin: 0 auto;
-  padding: 120px 48px;
+  padding: 100px 40px;
   position: relative;
-  z-index: 2;
 }
 
 .section-head {
   display: grid;
-  grid-template-columns: 180px 1fr;
+  grid-template-columns: 200px 1fr;
   gap: 48px;
-  margin-bottom: 64px;
+  margin-bottom: 56px;
   align-items: baseline;
+  padding-bottom: 24px;
+  border-bottom: 1px solid var(--border);
 }
 
-.section-eyebrow {
+.section-num {
   font-family: var(--f-mono);
   font-size: 11px;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--muted);
-  padding-top: 6px;
+  color: var(--muted-2);
 }
-.section-eyebrow::before {
-  content: '§ ';
-  color: var(--accent);
-}
+.section-num .hash { color: var(--accent); margin-right: 2px; }
 
 .section-title {
-  font-family: var(--f-display);
-  font-size: clamp(32px, 4.5vw, 54px);
-  font-weight: 300;
-  letter-spacing: -0.035em;
-  line-height: 1.05;
+  font-family: var(--f-mono);
+  font-size: clamp(22px, 2.6vw, 30px);
+  font-weight: 500;
+  letter-spacing: -0.03em;
+  line-height: 1.15;
   color: var(--ink);
 }
-.section-title em {
-  font-style: italic;
-  font-weight: 300;
-  color: var(--accent);
+.section-title .sub {
+  color: var(--muted);
+  font-weight: 400;
 }
 
 .divider {
@@ -310,77 +285,83 @@ section {
   border-top: 1px solid var(--border);
   max-width: 1100px;
   margin: 0 auto;
-  position: relative;
-  z-index: 2;
 }
 
 /* ── ABOUT ───────────────────────────────────────────────────────── */
 .about-grid {
   display: grid;
-  grid-template-columns: 180px 1fr;
+  grid-template-columns: 200px 1fr;
   gap: 48px;
   align-items: start;
 }
 
-.about-spacer { /* reserved column on the left, matches section-head */ }
-
 .about-content {
   display: grid;
-  grid-template-columns: 1.15fr 0.85fr;
-  gap: 64px;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 56px;
 }
 
 .about-text p {
   color: var(--ink-soft);
-  font-size: 17px;
-  line-height: 1.7;
-  margin-bottom: 20px;
-  font-weight: 300;
-  letter-spacing: -0.003em;
+  font-size: 14.5px;
+  line-height: 1.75;
+  margin-bottom: 18px;
+  font-weight: 400;
+  letter-spacing: -0.005em;
+  font-family: var(--f-mono);
 }
 .about-text p strong {
   font-weight: 500;
   color: var(--ink);
 }
 .about-text p em {
-  font-family: var(--f-display);
-  font-style: italic;
-  font-weight: 400;
+  font-style: normal;
   color: var(--accent);
+  font-weight: 500;
+  border-bottom: 1px dashed rgba(122, 46, 46, 0.3);
+  padding-bottom: 1px;
 }
 
 .about-skills {
   display: flex;
   flex-direction: column;
-  gap: 28px;
+  gap: 24px;
 }
+
+.skill-block {
+  border-left: 2px solid var(--border-2);
+  padding-left: 16px;
+  transition: border-color 0.25s ease;
+}
+.skill-block:hover { border-left-color: var(--accent); }
 
 .skill-group-label {
   font-family: var(--f-mono);
   font-size: 10px;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
   color: var(--muted);
-  margin-bottom: 12px;
-  padding-bottom: 10px;
-  border-bottom: 1px solid var(--border);
+  margin-bottom: 10px;
+}
+.skill-group-label::before {
+  content: '// ';
+  color: var(--muted-3);
 }
 
 .skill-list {
   display: flex;
   flex-wrap: wrap;
-  gap: 6px 14px;
+  gap: 4px 12px;
+  font-family: var(--f-mono);
 }
 
 .skill-list span {
-  font-size: 14px;
+  font-size: 12px;
   color: var(--ink-soft);
   font-weight: 400;
   position: relative;
-  padding-right: 14px;
+  padding-right: 12px;
 }
 .skill-list span:not(:last-child)::after {
-  content: '·';
+  content: ',';
   position: absolute;
   right: 0;
   color: var(--muted-3);
@@ -390,210 +371,83 @@ section {
   font-weight: 500;
 }
 
-/* ── PROJECTS ────────────────────────────────────────────────────── */
-.projects-list {
-  display: flex;
-  flex-direction: column;
-  border-top: 1px solid var(--border);
-}
-
-.project-item {
-  display: grid;
-  grid-template-columns: 60px 1fr auto;
-  gap: 28px;
-  align-items: center;
-  padding: 28px 0;
-  border-bottom: 1px solid var(--border);
-  transition: padding 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
-  position: relative;
-}
-.project-item::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: var(--surface);
-  opacity: 0;
-  transition: opacity 0.35s ease;
-  z-index: -1;
-  margin: 0 -24px;
-  border-radius: var(--r);
-}
-.project-item:hover {
-  padding-left: 24px;
-  padding-right: 24px;
-}
-.project-item:hover::before {
-  opacity: 1;
-}
-
-.project-num {
-  font-family: var(--f-mono);
-  font-size: 12px;
-  color: var(--muted-2);
-  letter-spacing: 0.06em;
-}
-
-.project-main {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-}
-
-.project-name {
-  font-family: var(--f-display);
-  font-size: 24px;
-  font-weight: 400;
-  color: var(--ink);
-  letter-spacing: -0.02em;
-  line-height: 1.15;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-.project-name a {
-  transition: color 0.25s ease;
-}
-.project-item:hover .project-name a { color: var(--accent); }
-
-.project-tag {
-  font-family: var(--f-mono);
-  font-size: 10px;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--muted);
-  padding: 3px 8px;
-  border: 1px solid var(--border-2);
-  border-radius: 4px;
-  font-weight: 400;
-}
-.project-tag.live {
-  color: var(--accent);
-  border-color: rgba(184, 83, 44, 0.25);
-  background: var(--accent-wash);
-}
-
-.project-desc {
-  font-size: 14.5px;
-  color: var(--muted);
-  line-height: 1.55;
-  font-weight: 400;
-  max-width: 700px;
-}
-
-.project-actions {
-  display: flex;
-  gap: 8px;
-  align-items: center;
-}
-.project-link {
-  font-family: var(--f-mono);
-  font-size: 12px;
-  color: var(--ink-soft);
-  padding: 8px 14px;
-  border-radius: 999px;
-  border: 1px solid var(--border-2);
-  transition: all 0.25s ease;
-  white-space: nowrap;
-  display: inline-flex; align-items: center; gap: 6px;
-}
-.project-link:hover {
-  border-color: var(--ink);
-  background: var(--ink);
-  color: var(--bg);
-}
-.project-link.demo {
-  border-color: rgba(184, 83, 44, 0.3);
-  color: var(--accent);
-  background: var(--accent-wash);
-}
-.project-link.demo:hover {
-  background: var(--accent);
-  color: var(--bg);
-  border-color: var(--accent);
-}
-
 /* ── RESEARCH / PUBLICATIONS ─────────────────────────────────────── */
 .pub-list {
   display: flex;
   flex-direction: column;
-  border-top: 1px solid var(--border);
+  gap: 0;
 }
 
 .pub-item {
   display: grid;
-  grid-template-columns: 80px 1fr auto;
-  gap: 32px;
+  grid-template-columns: 200px 1fr auto;
+  gap: 48px;
   align-items: baseline;
-  padding: 32px 0;
+  padding: 24px 0;
   border-bottom: 1px solid var(--border);
-  transition: padding 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
+  transition: all 0.3s ease;
   cursor: pointer;
   position: relative;
 }
+.pub-item:first-child { border-top: 1px solid var(--border); }
 .pub-item::before {
   content: '';
   position: absolute;
-  inset: 0;
-  background: var(--surface);
-  opacity: 0;
-  transition: opacity 0.35s ease;
-  z-index: -1;
-  margin: 0 -24px;
-  border-radius: var(--r);
+  left: 0; top: 0; bottom: 0;
+  width: 2px;
+  background: var(--accent);
+  transform: scaleY(0);
+  transition: transform 0.3s ease;
 }
-.pub-item:hover {
-  padding-left: 24px;
-  padding-right: 24px;
-}
-.pub-item:hover::before {
-  opacity: 1;
-}
+.pub-item:hover::before { transform: scaleY(1); }
+.pub-item:hover { padding-left: 20px; }
 
-.pub-year {
-  font-family: var(--f-display);
-  font-size: 22px;
-  font-weight: 300;
-  font-style: italic;
-  color: var(--accent);
-  letter-spacing: -0.01em;
+.pub-citation {
+  font-family: var(--f-mono);
+  font-size: 11px;
+  color: var(--muted);
+  line-height: 1.5;
 }
+.pub-citation .year { color: var(--accent); font-weight: 500; }
+.pub-citation .venue { display: block; margin-top: 4px; color: var(--ink-soft); }
 
 .pub-body { display: flex; flex-direction: column; gap: 8px; }
 
 .pub-title {
-  font-family: var(--f-display);
-  font-size: 21px;
-  font-weight: 400;
-  line-height: 1.25;
+  font-family: var(--f-mono);
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 1.4;
   color: var(--ink);
-  letter-spacing: -0.02em;
-  transition: color 0.25s ease;
+  letter-spacing: -0.015em;
+  transition: color 0.2s ease;
 }
 .pub-item:hover .pub-title { color: var(--accent); }
 
-.pub-venue {
-  font-size: 13.5px;
+.pub-authors {
+  font-family: var(--f-mono);
+  font-size: 11.5px;
   color: var(--muted);
   line-height: 1.5;
-  font-weight: 400;
+  font-style: italic;
 }
-.pub-venue em { font-style: italic; color: var(--ink-soft); }
 
 .pub-links {
   display: flex;
   flex-wrap: wrap;
   gap: 6px;
-  margin-top: 6px;
+  margin-top: 4px;
 }
 .pub-link {
   font-family: var(--f-mono);
-  font-size: 11px;
-  padding: 4px 10px;
+  font-size: 10.5px;
+  padding: 3px 8px;
   border: 1px solid var(--border-2);
-  border-radius: 4px;
   color: var(--muted);
-  transition: all 0.25s ease;
+  transition: all 0.2s ease;
 }
+.pub-link::before { content: '['; color: var(--muted-3); margin-right: 2px; }
+.pub-link::after { content: ']'; color: var(--muted-3); margin-left: 2px; }
 .pub-link:hover {
   border-color: var(--accent);
   color: var(--accent);
@@ -603,14 +457,11 @@ section {
 .pub-badge {
   font-family: var(--f-mono);
   font-size: 10px;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
   color: var(--muted);
-  padding: 5px 10px;
+  padding: 4px 8px;
   border: 1px solid var(--border-2);
-  border-radius: 999px;
   white-space: nowrap;
-  transition: all 0.25s ease;
+  transition: all 0.2s ease;
 }
 .pub-item:hover .pub-badge {
   border-color: var(--accent);
@@ -621,194 +472,308 @@ section {
   font-family: var(--f-mono);
   font-size: 11px;
   color: var(--muted-2);
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  padding: 20px 0;
-  text-align: center;
+  padding: 24px 0 0;
+}
+.pub-note::before { content: '// '; color: var(--muted-3); }
+
+/* ── PROJECTS ────────────────────────────────────────────────────── */
+.projects-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.project-item {
+  display: grid;
+  grid-template-columns: 60px 1fr auto;
+  gap: 28px;
+  align-items: start;
+  padding: 24px 0;
+  border-bottom: 1px solid var(--border);
+  transition: all 0.3s ease;
+  position: relative;
+}
+.project-item:first-child { border-top: 1px solid var(--border); }
+.project-item::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 2px;
+  background: var(--accent);
+  transform: scaleY(0);
+  transition: transform 0.3s ease;
+}
+.project-item:hover::before { transform: scaleY(1); }
+.project-item:hover { padding-left: 20px; }
+
+.project-num {
+  font-family: var(--f-mono);
+  font-size: 11px;
+  color: var(--muted-2);
+  padding-top: 2px;
+}
+
+.project-main {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.project-name {
+  font-family: var(--f-mono);
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--ink);
+  letter-spacing: -0.02em;
+  line-height: 1.3;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.project-name a {
+  transition: color 0.2s ease;
+}
+.project-item:hover .project-name a { color: var(--accent); }
+
+.project-tag {
+  font-family: var(--f-mono);
+  font-size: 9.5px;
+  color: var(--muted);
+  padding: 2px 7px;
+  border: 1px solid var(--border-2);
+  font-weight: 400;
+}
+.project-tag.live {
+  color: var(--accent);
+  border-color: rgba(122, 46, 46, 0.3);
+  background: var(--accent-wash);
+}
+
+.project-desc {
+  font-family: var(--f-mono);
+  font-size: 12.5px;
+  color: var(--muted);
+  line-height: 1.65;
+  font-weight: 400;
+  max-width: 680px;
+  letter-spacing: -0.005em;
+}
+.project-desc em {
+  font-style: normal;
+  color: var(--accent);
+  font-weight: 500;
+}
+
+.project-actions {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  padding-top: 2px;
+}
+.project-link {
+  font-family: var(--f-mono);
+  font-size: 11px;
+  color: var(--ink-soft);
+  padding: 6px 11px;
+  border: 1px solid var(--border-2);
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+.project-link:hover {
+  border-color: var(--ink);
+  background: var(--ink);
+  color: var(--bg);
+}
+.project-link.demo {
+  border-color: rgba(122, 46, 46, 0.3);
+  color: var(--accent);
+  background: var(--accent-wash);
+}
+.project-link.demo:hover {
+  background: var(--accent);
+  color: var(--bg);
+  border-color: var(--accent);
 }
 
 /* ── CONTACT ─────────────────────────────────────────────────────── */
 .contact-grid {
   display: grid;
-  grid-template-columns: 180px 1fr;
+  grid-template-columns: 200px 1fr;
   gap: 48px;
   align-items: start;
 }
 
 .contact-intro {
-  font-family: var(--f-display);
-  font-size: clamp(24px, 3vw, 32px);
-  font-weight: 300;
-  line-height: 1.3;
-  color: var(--ink);
-  letter-spacing: -0.02em;
+  font-family: var(--f-mono);
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.65;
+  color: var(--ink-soft);
+  letter-spacing: -0.015em;
   margin-bottom: 40px;
   max-width: 640px;
 }
 .contact-intro em {
-  font-style: italic;
+  font-style: normal;
   color: var(--accent);
+  font-weight: 500;
+  border-bottom: 1px dashed rgba(122, 46, 46, 0.3);
+  padding-bottom: 1px;
 }
 
 .contact-links {
   display: flex;
   flex-direction: column;
-  max-width: 640px;
-  border-top: 1px solid var(--border);
+  max-width: 680px;
 }
 
 .contact-link {
   display: grid;
-  grid-template-columns: 120px 1fr auto;
-  gap: 20px;
+  grid-template-columns: 110px 1fr auto;
+  gap: 24px;
   align-items: center;
-  padding: 22px 4px;
+  padding: 18px 4px;
   border-bottom: 1px solid var(--border);
-  transition: padding 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+  transition: all 0.3s ease;
   position: relative;
 }
+.contact-link:first-child { border-top: 1px solid var(--border); }
 .contact-link::before {
   content: '';
   position: absolute;
-  inset: 0;
-  background: var(--surface);
-  opacity: 0;
-  transition: opacity 0.3s ease;
-  z-index: -1;
-  margin: 0 -20px;
-  border-radius: var(--r);
+  left: 0; top: 0; bottom: 0;
+  width: 2px;
+  background: var(--accent);
+  transform: scaleY(0);
+  transition: transform 0.3s ease;
 }
-.contact-link:hover {
-  padding-left: 20px;
-  padding-right: 20px;
-}
-.contact-link:hover::before {
-  opacity: 1;
-}
+.contact-link:hover::before { transform: scaleY(1); }
+.contact-link:hover { padding-left: 20px; }
 
 .contact-label {
   font-family: var(--f-mono);
   font-size: 11px;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--muted);
+  color: var(--muted-2);
 }
+.contact-label::before { content: '> '; color: var(--muted-3); }
 
 .contact-value {
-  font-family: var(--f-display);
-  font-size: 18px;
-  font-weight: 400;
+  font-family: var(--f-mono);
+  font-size: 14px;
+  font-weight: 500;
   color: var(--ink);
-  letter-spacing: -0.01em;
-  transition: color 0.25s ease;
+  letter-spacing: -0.015em;
+  transition: color 0.2s ease;
 }
-.contact-link:hover .contact-value {
-  color: var(--accent);
-  font-style: italic;
-}
+.contact-link:hover .contact-value { color: var(--accent); }
 
 .contact-arrow {
-  font-family: var(--f-body);
-  font-size: 18px;
+  font-family: var(--f-mono);
+  font-size: 14px;
   color: var(--muted-2);
-  transition: all 0.3s ease;
+  transition: all 0.25s ease;
 }
 .contact-link:hover .contact-arrow {
   color: var(--accent);
-  transform: translate(4px, -4px);
+  transform: translate(3px, -3px);
 }
 
 /* ── FOOTER ──────────────────────────────────────────────────────── */
 footer {
   border-top: 1px solid var(--border);
-  padding: 36px 48px;
+  padding: 32px 40px;
   max-width: 1100px;
   margin: 0 auto;
-  display: flex;
-  align-items: flex-end;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 16px;
-  position: relative;
-  z-index: 2;
+  display: grid;
+  grid-template-columns: 200px 1fr auto;
+  gap: 48px;
+  align-items: baseline;
 }
 
-.footer-mark {
-  font-family: var(--f-display);
-  font-size: clamp(32px, 5vw, 52px);
-  font-weight: 300;
-  font-style: italic;
-  color: var(--ink);
-  letter-spacing: -0.03em;
-  line-height: 1;
+.footer-label {
+  font-family: var(--f-mono);
+  font-size: 10px;
+  color: var(--muted-2);
 }
-.footer-mark span { color: var(--accent); }
+.footer-label::before { content: '// '; color: var(--muted-3); }
+
+.footer-main {
+  font-family: var(--f-mono);
+  font-size: 12px;
+  color: var(--ink-soft);
+  letter-spacing: -0.01em;
+}
+.footer-main .accent { color: var(--accent); }
 
 .footer-meta {
   font-family: var(--f-mono);
-  font-size: 11px;
-  letter-spacing: 0.1em;
+  font-size: 10.5px;
   color: var(--muted);
   text-align: right;
-  line-height: 1.8;
 }
-.footer-meta a { color: var(--ink-soft); transition: color 0.25s ease; }
-.footer-meta a:hover { color: var(--accent); }
 
 /* ── ANIMATIONS ──────────────────────────────────────────────────── */
 @keyframes fadeUp {
-  from { opacity: 0; transform: translateY(20px); }
+  from { opacity: 0; transform: translateY(18px); }
   to   { opacity: 1; transform: translateY(0); }
 }
 
 .reveal {
   opacity: 0;
-  transform: translateY(24px);
-  transition: opacity 0.8s cubic-bezier(0.2, 0.8, 0.2, 1),
-              transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+  transform: translateY(20px);
+  transition: opacity 0.7s cubic-bezier(0.2, 0.8, 0.2, 1),
+              transform 0.7s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 .reveal.visible { opacity: 1; transform: translateY(0); }
 
 /* ── RESPONSIVE ──────────────────────────────────────────────────── */
 @media (max-width: 900px) {
-  nav { padding: 0 24px; height: 58px; }
+  nav { padding: 0 20px; height: 54px; }
+  .nav-status { font-size: 10px; }
   .nav-links { display: none; }
-  #hero { padding: 100px 24px 60px; }
-  section { padding: 80px 24px; }
-  footer { padding: 32px 24px; }
+  #hero { padding: 100px 20px 60px; }
+  section { padding: 72px 20px; }
+  footer {
+    padding: 28px 20px;
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  .footer-meta { text-align: left; }
 
   .section-head,
   .about-grid,
   .contact-grid {
     grid-template-columns: 1fr;
-    gap: 16px;
+    gap: 12px;
   }
 
-  .about-content { grid-template-columns: 1fr; gap: 48px; }
-
-  .project-item {
-    grid-template-columns: 40px 1fr;
-    gap: 16px;
-    row-gap: 14px;
-  }
-  .project-actions {
-    grid-column: 1 / -1;
-    padding-left: 56px;
-    flex-wrap: wrap;
-  }
+  .about-content { grid-template-columns: 1fr; gap: 40px; }
 
   .pub-item {
     grid-template-columns: 1fr;
     gap: 12px;
   }
   .pub-badge { justify-self: start; }
+  .pub-item:hover { padding-left: 12px; }
+
+  .project-item {
+    grid-template-columns: 36px 1fr;
+    gap: 14px;
+    row-gap: 12px;
+  }
+  .project-actions {
+    grid-column: 1 / -1;
+    padding-left: 50px;
+    flex-wrap: wrap;
+  }
+  .project-item:hover { padding-left: 12px; }
 
   .contact-link {
     grid-template-columns: 1fr auto;
-    gap: 4px;
     row-gap: 6px;
   }
   .contact-label { grid-column: 1 / -1; }
+  .contact-link:hover { padding-left: 12px; }
 }
 
 @media (max-width: 520px) {
@@ -821,42 +786,38 @@ footer {
 
 <!-- NAV -->
 <nav>
-  <a href="#" class="nav-logo">Hasan<span>.</span></a>
+  <div class="nav-status">open to work</div>
   <ul class="nav-links">
-    <li><a href="#about">About</a></li>
-    <li><a href="#research">Research</a></li>
-    <li><a href="#projects">Projects</a></li>
-    <li><a href="#contact">Contact</a></li>
+    <li><a href="#about">about</a></li>
+    <li><a href="#research">research</a></li>
+    <li><a href="#projects">projects</a></li>
+    <li><a href="#contact">contact</a></li>
   </ul>
   <a href="https://drive.google.com/file/d/1YPlsspkHKGILiUhbFiLVl74KoeofpuXQ/view?usp=drive_link" target="_blank" class="nav-cta">
-    CV <span class="arrow">↗</span>
+    cv <span class="bracket">↗</span>
   </a>
 </nav>
 
 <!-- HERO -->
 <div id="hero">
-  <div class="hero-eyebrow">
-    <span class="dot"></span>
-    Open to NLP · ML · AI engineering roles
+  <div class="hero-meta">
+    <div class="line"><span class="key">name</span><span class="val">hasan can biyik</span></div>
+    <div class="line"><span class="key">role</span><span class="val">computational linguist, nlp engineer</span></div>
+    <div class="line"><span class="key">status</span><span class="val accent">seeking · nlp / ml / ai engineering</span></div>
+    <div class="line"><span class="key">location</span><span class="val">united states</span></div>
   </div>
 
-  <h1 class="hero-name">Hasan Can<br><em>Biyik.</em></h1>
-
-  <div class="hero-title">
-    <span>Computational Linguist</span>
-    <span class="sep"></span>
-    <span>NLP &amp; AI Engineer</span>
-    <span class="sep"></span>
-    <span>Based in the U.S.</span>
-  </div>
+  <h1 class="hero-name">
+    hasan_can<br><span class="last-name">biyik</span><span class="underscore">_</span>
+  </h1>
 
   <p class="hero-bio">
-    I build systems that understand <span class="accent-word">language</span> — from cross-lingual euphemism detection to production RAG pipelines. MS in Computational Linguistics from Montclair State, with an AI/ML specialization and publications at <strong>ACL</strong> and <strong>EACL</strong>.
+    I build systems that understand <span class="accent-word">language</span> — from cross-lingual euphemism detection to production RAG pipelines. MS in Computational Linguistics from Montclair State, AI/ML specialization. Published at <strong>ACL</strong> and <strong>EACL</strong>. Interested in how meaning fails to transfer: euphemism, sarcasm, framing — the places language models tend to miss.
   </p>
 
   <div class="hero-actions">
-    <a href="#research" class="btn-primary">Read the research <span class="arrow">→</span></a>
-    <a href="#contact" class="btn-ghost">Get in touch</a>
+    <a href="#research" class="btn-primary">view research <span class="bracket">→</span></a>
+    <a href="#contact" class="btn-ghost">get in touch <span class="bracket">→</span></a>
   </div>
 </div>
 
@@ -865,12 +826,12 @@ footer {
 <!-- ABOUT -->
 <section id="about">
   <div class="section-head">
-    <div class="section-eyebrow">About</div>
-    <h2 class="section-title">A linguist who <em>ships</em>.</h2>
+    <div class="section-num"><span class="hash">§</span> 01 · about</div>
+    <h2 class="section-title">background <span class="sub">// a linguist who ships.</span></h2>
   </div>
 
   <div class="about-grid reveal">
-    <div class="about-spacer"></div>
+    <div></div>
     <div class="about-content">
       <div class="about-text">
         <p>
@@ -885,35 +846,35 @@ footer {
       </div>
 
       <div class="about-skills">
-        <div>
-          <div class="skill-group-label">Core</div>
+        <div class="skill-block">
+          <div class="skill-group-label">core</div>
           <div class="skill-list">
-            <span class="featured">Python</span>
-            <span class="featured">PyTorch</span>
-            <span class="featured">HuggingFace</span>
-            <span class="featured">NLP / NLU</span>
-            <span>Transformers</span>
-            <span>Fine-tuning</span>
+            <span class="featured">python</span>
+            <span class="featured">pytorch</span>
+            <span class="featured">huggingface</span>
+            <span class="featured">nlp / nlu</span>
+            <span>transformers</span>
+            <span>fine-tuning</span>
           </div>
         </div>
-        <div>
-          <div class="skill-group-label">ML &amp; Data</div>
+        <div class="skill-block">
+          <div class="skill-group-label">ml &amp; data</div>
           <div class="skill-list">
             <span>scikit-learn</span>
             <span>pandas</span>
-            <span>SQL</span>
-            <span>RAG systems</span>
-            <span>Vector DBs</span>
-            <span>AWS</span>
+            <span>sql</span>
+            <span>rag systems</span>
+            <span>vector dbs</span>
+            <span>aws</span>
           </div>
         </div>
-        <div>
-          <div class="skill-group-label">Tools &amp; Infra</div>
+        <div class="skill-block">
+          <div class="skill-group-label">tools &amp; infra</div>
           <div class="skill-list">
-            <span>FastAPI</span>
-            <span>Git</span>
-            <span>LaTeX</span>
-            <span>Linux / HPC</span>
+            <span>fastapi</span>
+            <span>git</span>
+            <span>latex</span>
+            <span>linux / hpc</span>
           </div>
         </div>
       </div>
@@ -923,199 +884,200 @@ footer {
 
 <hr class="divider"/>
 
-<!-- RESEARCH / PUBLICATIONS — moved up, per your ACL/EACL work being the lede -->
+<!-- RESEARCH -->
 <section id="research">
   <div class="section-head">
-    <div class="section-eyebrow">Research</div>
-    <h2 class="section-title">Published <em>work</em>.</h2>
+    <div class="section-num"><span class="hash">§</span> 02 · research</div>
+    <h2 class="section-title">publications <span class="sub">// peer-reviewed &amp; presented.</span></h2>
   </div>
 
   <div class="pub-list">
 
     <div class="pub-item reveal" onclick="window.open('https://arxiv.org/abs/2602.16957','_blank')">
-      <div class="pub-year">2026</div>
+      <div class="pub-citation">
+        <span class="year">2026</span>
+        <span class="venue">eacl 2026<br>rabat, morocco</span>
+      </div>
       <div class="pub-body">
         <div class="pub-title">When Semantic Overlap Is Not Enough: Cross-Lingual Euphemism Transfer Between Turkish and English</div>
-        <div class="pub-venue">EACL 2026 · <em>Biyik, H., Barak, L., Peng, J., Feldman, A.</em></div>
+        <div class="pub-authors">Biyik, H., Barak, L., Peng, J., Feldman, A.</div>
         <div class="pub-links">
-          <a href="https://drive.google.com/file/d/175udbcgBX8IsKw1ulGuj-k3srIRmzimA/view?usp=sharing" target="_blank" class="pub-link" onclick="event.stopPropagation()">Dataset</a>
-          <a href="https://github.com/hasancanbiyik/PETs-investigating-LLMs-generalization-capabilities" target="_blank" class="pub-link" onclick="event.stopPropagation()">GitHub</a>
+          <a href="https://drive.google.com/file/d/175udbcgBX8IsKw1ulGuj-k3srIRmzimA/view?usp=sharing" target="_blank" class="pub-link" onclick="event.stopPropagation()">dataset</a>
+          <a href="https://github.com/hasancanbiyik/PETs-investigating-LLMs-generalization-capabilities" target="_blank" class="pub-link" onclick="event.stopPropagation()">github</a>
         </div>
       </div>
-      <div class="pub-badge">Published ↗</div>
+      <div class="pub-badge">published ↗</div>
     </div>
 
     <div class="pub-item reveal" onclick="window.open('https://aclanthology.org/2024.sigturk-1.7/','_blank')">
-      <div class="pub-year">2024</div>
+      <div class="pub-citation">
+        <span class="year">2024</span>
+        <span class="venue">sigturk @ acl 2024<br>bangkok</span>
+      </div>
       <div class="pub-body">
         <div class="pub-title">Turkish Delights: A Dataset on Turkish Euphemisms</div>
-        <div class="pub-venue">SIGTURK @ ACL 2024, Bangkok · <em>Biyik, H., Lee, P., Feldman, A.</em></div>
+        <div class="pub-authors">Biyik, H., Lee, P., Feldman, A.</div>
         <div class="pub-links">
-          <a href="https://drive.google.com/file/d/1s-KVj785fR5Ubdy2WrHlm8F3xyEpWjZ4/view?usp=sharing" target="_blank" class="pub-link" onclick="event.stopPropagation()">Dataset (trimmed)</a>
-          <a href="https://drive.google.com/file/d/15u3P2IMr97F85C1bdban1Yn0MhaP1uJJ/view?usp=sharing" target="_blank" class="pub-link" onclick="event.stopPropagation()">Dataset (full)</a>
-          <a href="https://github.com/hasancanbiyik/Turkish_PETs" target="_blank" class="pub-link" onclick="event.stopPropagation()">GitHub</a>
+          <a href="https://drive.google.com/file/d/1s-KVj785fR5Ubdy2WrHlm8F3xyEpWjZ4/view?usp=sharing" target="_blank" class="pub-link" onclick="event.stopPropagation()">dataset.trimmed</a>
+          <a href="https://drive.google.com/file/d/15u3P2IMr97F85C1bdban1Yn0MhaP1uJJ/view?usp=sharing" target="_blank" class="pub-link" onclick="event.stopPropagation()">dataset.full</a>
+          <a href="https://github.com/hasancanbiyik/Turkish_PETs" target="_blank" class="pub-link" onclick="event.stopPropagation()">github</a>
         </div>
       </div>
-      <div class="pub-badge">Published ↗</div>
+      <div class="pub-badge">published ↗</div>
     </div>
 
     <div class="pub-item reveal" onclick="window.open('https://drive.google.com/file/d/1xEpwwYM9JMp_UYSwRS8vYQpw__pjZioD/view','_blank')">
-      <div class="pub-year">2024</div>
+      <div class="pub-citation">
+        <span class="year">2024</span>
+        <span class="venue">student research<br>montclair state univ.</span>
+      </div>
       <div class="pub-body">
         <div class="pub-title">Analysis of the Tone and Framing of the LGBTQ+ Community in Turkish Media</div>
-        <div class="pub-venue">Student Research Symposium, Montclair State University · <em>Biyik, H.</em></div>
+        <div class="pub-authors">Biyik, H.</div>
       </div>
-      <div class="pub-badge">Presentation ↗</div>
+      <div class="pub-badge">presentation ↗</div>
     </div>
 
   </div>
-  <div class="pub-note">More publications coming soon</div>
+  <div class="pub-note">more publications forthcoming</div>
 </section>
 
 <hr class="divider"/>
 
-<!-- PROJECTS — ordered strongest first -->
+<!-- PROJECTS -->
 <section id="projects">
   <div class="section-head">
-    <div class="section-eyebrow">Work</div>
-    <h2 class="section-title">Selected <em>projects</em>.</h2>
+    <div class="section-num"><span class="hash">§</span> 03 · projects</div>
+    <h2 class="section-title">selected work <span class="sub">// code, demos, experiments.</span></h2>
   </div>
 
   <div class="projects-list">
 
-    <!-- 01 — tied to flagship EACL research -->
     <div class="project-item reveal">
-      <div class="project-num">01</div>
+      <div class="project-num">/01</div>
       <div class="project-main">
         <div class="project-name">
-          <a href="https://github.com/hasancanbiyik/euphemism-detector" target="_blank">Euphemism Detector</a>
-          <span class="project-tag live">Live</span>
+          <a href="https://github.com/hasancanbiyik/euphemism-detector" target="_blank">euphemism_detector</a>
+          <span class="project-tag live">live</span>
         </div>
         <div class="project-desc">
           Multilingual euphemism detection fine-tuned on XLM-RoBERTa. Classifies euphemistic vs. literal usage across five languages (TR/EN/ES/ZH/YO), served through a FastAPI backend on HuggingFace Spaces.
         </div>
       </div>
       <div class="project-actions">
-        <a href="https://huggingface.co/spaces/hasancanbiyik/euphemism-detector-multilingual" target="_blank" class="project-link demo">Live demo →</a>
-        <a href="https://github.com/hasancanbiyik/euphemism-detector" target="_blank" class="project-link">GitHub</a>
+        <a href="https://huggingface.co/spaces/hasancanbiyik/euphemism-detector-multilingual" target="_blank" class="project-link demo">demo →</a>
+        <a href="https://github.com/hasancanbiyik/euphemism-detector" target="_blank" class="project-link">github</a>
       </div>
     </div>
 
-    <!-- 02 — sarcasm / Chandler Effect -->
     <div class="project-item reveal">
-      <div class="project-num">02</div>
+      <div class="project-num">/02</div>
       <div class="project-main">
         <div class="project-name">
-          <a href="https://github.com/hasancanbiyik/sarcasm_detection" target="_blank">Sarcasm Detection</a>
+          <a href="https://github.com/hasancanbiyik/sarcasm_detection" target="_blank">sarcasm_detection</a>
         </div>
         <div class="project-desc">
           Sarcasm detection in sitcom dialogue using fine-tuned transformers and zero-shot LLMs. Reached 85% F1 with Twitter-RoBERTa, and surfaced the <em>"Chandler Effect"</em> — models learning character-identity shortcuts instead of linguistic sarcasm features.
         </div>
       </div>
       <div class="project-actions">
-        <a href="https://github.com/hasancanbiyik/sarcasm_detection" target="_blank" class="project-link">GitHub →</a>
+        <a href="https://github.com/hasancanbiyik/sarcasm_detection" target="_blank" class="project-link">github →</a>
       </div>
     </div>
 
-    <!-- 03 — research agent -->
     <div class="project-item reveal">
-      <div class="project-num">03</div>
+      <div class="project-num">/03</div>
       <div class="project-main">
         <div class="project-name">
-          <a href="https://github.com/hasancanbiyik/multi-source-research-agent" target="_blank">Multi-Source Research Agent</a>
+          <a href="https://github.com/hasancanbiyik/multi-source-research-agent" target="_blank">multi_source_research_agent</a>
         </div>
         <div class="project-desc">
           LLM-powered research system that retrieves and synthesizes information from the web and Reddit using LangGraph orchestration, ChromaDB semantic retrieval, and GPT-4 reasoning.
         </div>
       </div>
       <div class="project-actions">
-        <a href="https://github.com/hasancanbiyik/multi-source-research-agent" target="_blank" class="project-link">GitHub →</a>
+        <a href="https://github.com/hasancanbiyik/multi-source-research-agent" target="_blank" class="project-link">github →</a>
       </div>
     </div>
 
-    <!-- 04 — RAG chatbot -->
     <div class="project-item reveal">
-      <div class="project-num">04</div>
+      <div class="project-num">/04</div>
       <div class="project-main">
         <div class="project-name">
-          <a href="https://github.com/hasancanbiyik/immigration_chatbot" target="_blank">RAG Chatbot — AWS Bedrock</a>
-          <span class="project-tag live">Live</span>
+          <a href="https://github.com/hasancanbiyik/immigration_chatbot" target="_blank">rag_chatbot_aws</a>
+          <span class="project-tag live">live</span>
         </div>
         <div class="project-desc">
           Chatbot built on Amazon Lex with AWS Bedrock (Claude / Titan) for LLM inference, and retrieval-augmented generation via Bedrock Knowledge Bases for semantic search over domain documents.
         </div>
       </div>
       <div class="project-actions">
-        <a href="https://immigration-chatbot.streamlit.app/" target="_blank" class="project-link demo">Live demo →</a>
-        <a href="https://github.com/hasancanbiyik/immigration_chatbot" target="_blank" class="project-link">GitHub</a>
+        <a href="https://immigration-chatbot.streamlit.app/" target="_blank" class="project-link demo">demo →</a>
+        <a href="https://github.com/hasancanbiyik/immigration_chatbot" target="_blank" class="project-link">github</a>
       </div>
     </div>
 
-    <!-- 05 — Turkish sentiment -->
     <div class="project-item reveal">
-      <div class="project-num">05</div>
+      <div class="project-num">/05</div>
       <div class="project-main">
         <div class="project-name">
-          <a href="https://github.com/hasancanbiyik/turkish-product-sentiment-analyzer" target="_blank">Turkish Product Sentiment Analyzer</a>
-          <span class="project-tag live">Live</span>
+          <a href="https://github.com/hasancanbiyik/turkish-product-sentiment-analyzer" target="_blank">turkish_sentiment_analyzer</a>
+          <span class="project-tag live">live</span>
         </div>
         <div class="project-desc">
           BERTurk fine-tuned on 235K Turkish product reviews for binary sentiment classification. 94.2% accuracy with real-time inference and interactive Plotly visualizations.
         </div>
       </div>
       <div class="project-actions">
-        <a href="https://turkish-sentiment-analyzer-translator.streamlit.app/" target="_blank" class="project-link demo">Live demo →</a>
-        <a href="https://github.com/hasancanbiyik/turkish-product-sentiment-analyzer" target="_blank" class="project-link">GitHub</a>
+        <a href="https://turkish-sentiment-analyzer-translator.streamlit.app/" target="_blank" class="project-link demo">demo →</a>
+        <a href="https://github.com/hasancanbiyik/turkish-product-sentiment-analyzer" target="_blank" class="project-link">github</a>
       </div>
     </div>
 
-    <!-- 06 — ATS -->
     <div class="project-item reveal">
-      <div class="project-num">06</div>
+      <div class="project-num">/06</div>
       <div class="project-main">
         <div class="project-name">
-          <a href="https://github.com/hasancanbiyik/resume-fit-analyzer-smart-ats" target="_blank">Resume Fit Analyzer — Smart ATS</a>
-          <span class="project-tag live">Live</span>
+          <a href="https://github.com/hasancanbiyik/resume-fit-analyzer-smart-ats" target="_blank">resume_fit_analyzer</a>
+          <span class="project-tag live">live</span>
         </div>
         <div class="project-desc">
           AI-powered ATS resume analyzer that scores fit against job descriptions, identifies gaps, and suggests improvements using semantic similarity and LLM reasoning.
         </div>
       </div>
       <div class="project-actions">
-        <a href="https://resume-fit-analyzer-smart-ats.streamlit.app/" target="_blank" class="project-link demo">Live demo →</a>
-        <a href="https://github.com/hasancanbiyik/resume-fit-analyzer-smart-ats" target="_blank" class="project-link">GitHub</a>
+        <a href="https://resume-fit-analyzer-smart-ats.streamlit.app/" target="_blank" class="project-link demo">demo →</a>
+        <a href="https://github.com/hasancanbiyik/resume-fit-analyzer-smart-ats" target="_blank" class="project-link">github</a>
       </div>
     </div>
 
-    <!-- 07 — prosody -->
     <div class="project-item reveal">
-      <div class="project-num">07</div>
+      <div class="project-num">/07</div>
       <div class="project-main">
         <div class="project-name">
-          <a href="https://github.com/hasancanbiyik/prosodic_event_detection" target="_blank">Prosodic Event Detection</a>
+          <a href="https://github.com/hasancanbiyik/prosodic_event_detection" target="_blank">prosodic_event_detection</a>
         </div>
         <div class="project-desc">
           CNN / LSTM / MLP models for prosodic prominence and boundary detection in speech. 85% F1 on prominence; a 117% improvement over classical ML baselines.
         </div>
       </div>
       <div class="project-actions">
-        <a href="https://github.com/hasancanbiyik/prosodic_event_detection" target="_blank" class="project-link">GitHub →</a>
+        <a href="https://github.com/hasancanbiyik/prosodic_event_detection" target="_blank" class="project-link">github →</a>
       </div>
     </div>
 
-    <!-- 08 — NSFW -->
     <div class="project-item reveal">
-      <div class="project-num">08</div>
+      <div class="project-num">/08</div>
       <div class="project-main">
         <div class="project-name">
-          <a href="https://github.com/hasancanbiyik/nsfw_identifier" target="_blank">NSFW Content Identifier</a>
+          <a href="https://github.com/hasancanbiyik/nsfw_identifier" target="_blank">nsfw_identifier</a>
         </div>
         <div class="project-desc">
           Content-moderation classifier for identifying NSFW imagery using fine-tuned transformer models. Packaged as a Chrome extension ready for deployment.
         </div>
       </div>
       <div class="project-actions">
-        <a href="https://github.com/hasancanbiyik/nsfw_identifier" target="_blank" class="project-link">GitHub →</a>
+        <a href="https://github.com/hasancanbiyik/nsfw_identifier" target="_blank" class="project-link">github →</a>
       </div>
     </div>
 
@@ -1127,12 +1089,12 @@ footer {
 <!-- CONTACT -->
 <section id="contact">
   <div class="section-head">
-    <div class="section-eyebrow">Contact</div>
-    <h2 class="section-title">Let's <em>talk</em>.</h2>
+    <div class="section-num"><span class="hash">§</span> 04 · contact</div>
+    <h2 class="section-title">get in touch <span class="sub">// channels open.</span></h2>
   </div>
 
   <div class="contact-grid reveal">
-    <div class="about-spacer"></div>
+    <div></div>
     <div>
       <p class="contact-intro">
         Actively looking for roles in <em>NLP, ML, and AI engineering</em>. If you're working on something interesting with language models or multilingual data, I'd love to hear from you.
@@ -1140,23 +1102,23 @@ footer {
 
       <div class="contact-links">
         <a href="/cdn-cgi/l/email-protection#a8cad1c386c0c9dbc9c6cbc9c6e8cfc5c9c1c486cbc7c5" class="contact-link">
-          <div class="contact-label">Email</div>
+          <div class="contact-label">email</div>
           <div class="contact-value"><span class="__cf_email__" data-cfemail="80e2f9ebaee8e1f3e1eee3e1eec0e7ede1e9ecaee3efed">[email&#160;protected]</span></div>
           <div class="contact-arrow">↗</div>
         </a>
         <a href="https://www.linkedin.com/in/hasancanbyk/" target="_blank" class="contact-link">
-          <div class="contact-label">LinkedIn</div>
+          <div class="contact-label">linkedin</div>
           <div class="contact-value">linkedin.com/in/hasancanbyk</div>
           <div class="contact-arrow">↗</div>
         </a>
         <a href="https://github.com/hasancanbiyik" target="_blank" class="contact-link">
-          <div class="contact-label">GitHub</div>
+          <div class="contact-label">github</div>
           <div class="contact-value">github.com/hasancanbiyik</div>
           <div class="contact-arrow">↗</div>
         </a>
         <a href="https://drive.google.com/file/d/1YPlsspkHKGILiUhbFiLVl74KoeofpuXQ/view?usp=drive_link" target="_blank" class="contact-link">
-          <div class="contact-label">Resume</div>
-          <div class="contact-value">Download CV (PDF)</div>
+          <div class="contact-label">cv</div>
+          <div class="contact-value">download resume (pdf)</div>
           <div class="contact-arrow">↗</div>
         </a>
       </div>
@@ -1166,10 +1128,11 @@ footer {
 
 <!-- FOOTER -->
 <footer>
-  <div class="footer-mark">Hasan Can Biyik<span>.</span></div>
+  <div class="footer-label">eof</div>
+  <div class="footer-main">hasan can biyik<span class="accent">_</span></div>
   <div class="footer-meta">
-    © 2026 · Designed &amp; built by hand<br>
-    Computational Linguist &middot; NLP Engineer
+    © 2026 · hand-built<br>
+    computational linguist · nlp engineer
   </div>
 </footer>
 
@@ -1186,11 +1149,11 @@ const observer = new IntersectionObserver((entries) => {
 }, { threshold: 0.05, rootMargin: '0px 0px -40px 0px' });
 
 document.querySelectorAll('.reveal').forEach((el, i) => {
-  el.style.transitionDelay = `${(i % 5) * 0.06}s`;
+  el.style.transitionDelay = `${(i % 5) * 0.05}s`;
   observer.observe(el);
   const rect = el.getBoundingClientRect();
   if (rect.top < window.innerHeight) {
-    setTimeout(() => el.classList.add('visible'), i * 50);
+    setTimeout(() => el.classList.add('visible'), i * 40);
   }
 });
 
