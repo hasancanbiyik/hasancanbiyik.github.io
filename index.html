@@ -6,643 +6,857 @@
 <title>Hasan Can Biyik — Computational Linguist & NLP Engineer</title>
 <meta name="description" content="Computational linguist and NLP/ML engineer specializing in cross-lingual transfer, euphemism detection, and production AI systems."/>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
-  --bg:         #080808;
-  --surface:    #101010;
-  --surface2:   #141414;
-  --border:     #1c1c1c;
-  --border2:    #262626;
-  --text:       #ebebeb;
-  --muted:      #444;
-  --muted2:     #777;
-  --muted3:     #aaa;
-  --accent:     #00E5FF;
-  --accent-dim: rgba(0,229,255,0.06);
-  --accent-glow: rgba(0,229,255,0.15);
-  --r:          8px;
-  --font-h:     'Syne', sans-serif;
-  --font-m:     'DM Mono', monospace;
+  /* Warm paper palette — not pure white, not beige enough to look yellowed */
+  --bg:         #F5F1EA;
+  --bg-warm:    #EFEAE1;
+  --surface:    #FBF8F3;
+  --border:     rgba(30, 26, 22, 0.08);
+  --border-2:   rgba(30, 26, 22, 0.14);
+  --border-3:   rgba(30, 26, 22, 0.22);
+
+  /* Ink — deep warm black, never pure #000 */
+  --ink:        #1E1A16;
+  --ink-soft:   #3A332C;
+  --muted:      #6B5F52;
+  --muted-2:    #9A8C7D;
+  --muted-3:    #C4B9AB;
+
+  /* Single accent — burnt sienna, restrained */
+  --accent:     #B8532C;
+  --accent-deep:#8A3D1F;
+  --accent-wash:rgba(184, 83, 44, 0.08);
+
+  --r-sm: 4px;
+  --r:    8px;
+  --r-lg: 14px;
+
+  --f-display: 'Fraunces', Georgia, 'Times New Roman', serif;
+  --f-body:    'Inter', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
+  --f-mono:    'JetBrains Mono', ui-monospace, 'SF Mono', monospace;
 }
 
 html { scroll-behavior: smooth; }
 
 body {
   background: var(--bg);
-  color: var(--text);
-  font-family: var(--font-m);
-  font-size: 13px;
-  line-height: 1.7;
+  color: var(--ink);
+  font-family: var(--f-body);
+  font-size: 15px;
+  line-height: 1.65;
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
 }
 
-/* noise overlay */
-body::after {
-  content:''; position:fixed; inset:0; pointer-events:none; z-index:998;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
-  opacity: 0.4;
+/* Subtle paper grain — very low opacity */
+body::before {
+  content: '';
+  position: fixed; inset: 0;
+  pointer-events: none; z-index: 1;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
+  opacity: 0.04;
+  mix-blend-mode: multiply;
 }
 
-/* ── PARTICLE CANVAS ────────────────────────────────────────────── */
-#particle-canvas {
-  position: fixed;
-  inset: 0;
-  z-index: 0;
-  pointer-events: none;
-}
+a { color: inherit; text-decoration: none; }
+
+::selection { background: var(--accent); color: var(--bg); }
 
 /* ── NAV ─────────────────────────────────────────────────────────── */
 nav {
   position: fixed; top: 0; left: 0; right: 0; z-index: 100;
   display: flex; align-items: center; justify-content: space-between;
-  padding: 0 40px; height: 56px;
+  padding: 0 48px; height: 64px;
+  background: rgba(245, 241, 234, 0.82);
+  backdrop-filter: saturate(1.4) blur(18px);
+  -webkit-backdrop-filter: saturate(1.4) blur(18px);
   border-bottom: 1px solid var(--border);
-  background: rgba(8,8,8,0.88);
-  backdrop-filter: blur(14px);
 }
 
 .nav-logo {
-  font-family: var(--font-h);
-  font-size: 13px; font-weight: 700;
-  letter-spacing: 0.06em;
-  color: var(--text);
-  text-decoration: none;
+  font-family: var(--f-display);
+  font-size: 17px;
+  font-weight: 500;
+  font-style: italic;
+  letter-spacing: -0.01em;
+  color: var(--ink);
 }
-.nav-logo span { color: var(--accent); }
+.nav-logo span { color: var(--accent); font-style: normal; }
 
-.nav-links {
-  display: flex; gap: 32px; list-style: none;
-}
+.nav-links { display: flex; gap: 36px; list-style: none; }
 .nav-links a {
-  font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase;
-  color: var(--muted2); text-decoration: none;
-  transition: color 0.18s;
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--muted);
+  transition: color 0.25s ease;
+  position: relative;
 }
-.nav-links a:hover { color: var(--text); }
+.nav-links a:hover { color: var(--ink); }
+.nav-links a.active { color: var(--ink); }
+.nav-links a.active::after {
+  content: ''; position: absolute;
+  left: 0; right: 0; bottom: -22px; height: 1px;
+  background: var(--accent);
+}
 
 .nav-cta {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--ink);
+  padding: 8px 16px;
+  border-radius: 999px;
+  border: 1px solid var(--border-2);
   background: transparent;
-  color: var(--accent);
-  font-family: var(--font-h); font-size: 11px; font-weight: 700;
-  letter-spacing: 0.08em; text-transform: uppercase;
-  padding: 7px 16px; border-radius: var(--r);
-  text-decoration: none;
-  border: 1px solid var(--accent);
-  transition: background 0.18s, color 0.18s, transform 0.18s;
+  transition: all 0.25s ease;
+  display: inline-flex; align-items: center; gap: 6px;
 }
 .nav-cta:hover {
-  background: var(--accent);
-  color: #080808;
-  transform: translateY(-1px);
+  background: var(--ink);
+  color: var(--bg);
+  border-color: var(--ink);
 }
+.nav-cta .arrow { font-size: 11px; transition: transform 0.25s ease; }
+.nav-cta:hover .arrow { transform: translate(2px, -2px); }
 
 /* ── HERO ────────────────────────────────────────────────────────── */
 #hero {
-  min-height: 100vh;
+  min-height: 92vh;
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
-  padding: 100px 80px 80px;
+  padding: 120px 48px 80px;
+  max-width: 1100px;
+  margin: 0 auto;
   position: relative;
-  overflow: hidden;
-  z-index: 1;
-  text-align: center;
+  z-index: 2;
 }
 
-/* subtle glow behind text */
-#hero::after {
-  content: '';
-  position: absolute;
-  width: 500px; height: 500px;
-  background: radial-gradient(circle, rgba(0,229,255,0.05) 0%, transparent 70%);
-  top: 50%; left: 50%;
-  transform: translate(-50%, -50%);
-  pointer-events: none;
+.hero-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--f-mono);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 36px;
+  animation: fadeUp 0.8s ease both;
 }
-
-.hero-left {
-  position: relative; z-index: 1;
-}
-
-.hero-tag {
-  display: inline-flex; align-items: center; gap: 8px;
-  font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase;
-  color: var(--muted2);
-  border: 1px solid var(--border2);
-  padding: 5px 14px; border-radius: 20px;
-  margin-bottom: 32px;
-  animation: fadeUp 0.7s ease both;
-}
-.hero-tag::before {
-  content: '';
-  width: 5px; height: 5px; border-radius: 50%;
+.hero-eyebrow .dot {
+  width: 6px; height: 6px; border-radius: 50%;
   background: var(--accent);
-  box-shadow: 0 0 8px var(--accent);
-  animation: pulse 2s ease infinite;
+  box-shadow: 0 0 0 0 rgba(184, 83, 44, 0.45);
+  animation: pulse 2.4s ease infinite;
 }
 
 @keyframes pulse {
-  0%,100% { opacity:1; box-shadow: 0 0 8px var(--accent); }
-  50% { opacity:0.4; box-shadow: 0 0 3px var(--accent); }
+  0%   { box-shadow: 0 0 0 0 rgba(184, 83, 44, 0.45); }
+  70%  { box-shadow: 0 0 0 8px rgba(184, 83, 44, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(184, 83, 44, 0); }
 }
 
 h1.hero-name {
-  font-family: var(--font-h);
-  font-size: clamp(42px, 6vw, 80px);
-  font-weight: 800;
-  line-height: 0.95;
-  letter-spacing: -0.03em;
-  color: var(--text);
-  margin-bottom: 8px;
-  animation: fadeUp 0.7s 0.1s ease both;
+  font-family: var(--f-display);
+  font-size: clamp(52px, 8.5vw, 128px);
+  font-weight: 300;
+  line-height: 0.92;
+  letter-spacing: -0.045em;
+  color: var(--ink);
+  margin-bottom: 28px;
+  animation: fadeUp 0.9s 0.08s ease both;
+  font-variation-settings: "opsz" 144, "SOFT" 30;
 }
-h1.hero-name .accent { color: var(--accent); }
+h1.hero-name em {
+  font-style: italic;
+  font-weight: 300;
+  color: var(--accent);
+}
 
 .hero-title {
-  font-family: var(--font-m);
-  font-size: clamp(10px, 1.2vw, 12px);
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--muted2);
-  margin-bottom: 36px;
-  animation: fadeUp 0.7s 0.18s ease both;
+  font-family: var(--f-body);
+  font-size: 15px;
+  font-weight: 400;
+  color: var(--muted);
+  margin-bottom: 40px;
+  letter-spacing: -0.005em;
+  animation: fadeUp 0.9s 0.18s ease both;
+  display: flex; align-items: center; gap: 14px;
+  flex-wrap: wrap;
+}
+.hero-title .sep {
+  width: 4px; height: 4px; border-radius: 50%;
+  background: var(--muted-2);
 }
 
 .hero-bio {
-  max-width: 600px;
-  font-size: 14px; line-height: 1.85;
-  color: var(--muted3);
-  margin: 0 auto 44px;
-  animation: fadeUp 0.7s 0.25s ease both;
+  max-width: 640px;
+  font-size: 19px;
+  line-height: 1.55;
+  font-weight: 300;
+  color: var(--ink-soft);
+  margin-bottom: 52px;
+  letter-spacing: -0.005em;
+  animation: fadeUp 0.9s 0.28s ease both;
 }
-.hero-bio strong { color: var(--text); font-weight: 400; }
+.hero-bio strong {
+  font-weight: 500;
+  color: var(--ink);
+}
+.hero-bio .accent-word {
+  font-family: var(--f-display);
+  font-style: italic;
+  font-weight: 400;
+  color: var(--accent);
+  letter-spacing: -0.01em;
+}
 
 .hero-actions {
-  display: flex; gap: 12px; flex-wrap: wrap;
-  justify-content: center;
-  animation: fadeUp 0.7s 0.32s ease both;
+  display: flex; gap: 14px; flex-wrap: wrap;
+  animation: fadeUp 0.9s 0.38s ease both;
 }
 
 .btn-primary {
-  background: var(--accent); color: #080808;
-  font-family: var(--font-h); font-size: 12px; font-weight: 700;
-  letter-spacing: 0.06em;
-  padding: 11px 24px; border-radius: var(--r);
-  text-decoration: none; border: none; cursor: pointer;
-  transition: opacity 0.18s, transform 0.18s, box-shadow 0.18s;
-  display: inline-flex; align-items: center; gap: 7px;
+  background: var(--ink);
+  color: var(--bg);
+  font-family: var(--f-body);
+  font-size: 14px;
+  font-weight: 500;
+  padding: 13px 24px;
+  border-radius: 999px;
+  border: 1px solid var(--ink);
+  cursor: pointer;
+  transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1), background 0.3s ease;
+  display: inline-flex; align-items: center; gap: 8px;
 }
 .btn-primary:hover {
-  opacity: 0.85;
-  transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(0,229,255,0.2);
+  transform: translateY(-1px);
+  background: var(--accent-deep);
+  border-color: var(--accent-deep);
 }
+.btn-primary .arrow { transition: transform 0.3s ease; }
+.btn-primary:hover .arrow { transform: translateX(3px); }
 
 .btn-ghost {
-  background: transparent; color: var(--muted3);
-  font-family: var(--font-m); font-size: 12px;
-  letter-spacing: 0.06em;
-  padding: 11px 24px; border-radius: var(--r);
-  text-decoration: none;
-  border: 1px solid var(--border2);
-  transition: border-color 0.18s, color 0.18s, transform 0.18s;
-  display: inline-flex; align-items: center; gap: 7px;
+  background: transparent;
+  color: var(--ink);
+  font-family: var(--f-body);
+  font-size: 14px;
+  font-weight: 500;
+  padding: 13px 24px;
+  border-radius: 999px;
+  border: 1px solid var(--border-3);
+  transition: all 0.3s ease;
+  display: inline-flex; align-items: center; gap: 8px;
 }
-.btn-ghost:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-1px); }
-
-/* ── HERO RIGHT — STATS CARD ─────────────────────────────────────── */
-.hero-right {
-  position: relative; z-index: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  gap: 16px;
-  animation: fadeUp 0.7s 0.4s ease both;
-}
-
-.stat-card {
+.btn-ghost:hover {
+  border-color: var(--ink);
   background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: var(--r);
-  padding: 20px 28px;
-  width: 220px;
-  transition: border-color 0.2s, transform 0.2s;
-}
-.stat-card:hover {
-  border-color: rgba(0,229,255,0.25);
-  transform: translateX(-4px);
-}
-
-.stat-num {
-  font-family: var(--font-h);
-  font-size: 36px; font-weight: 800;
-  line-height: 1; color: var(--text);
-  margin-bottom: 4px;
-}
-.stat-num .accent { color: var(--accent); }
-
-.stat-label {
-  font-size: 10px; letter-spacing: 0.14em;
-  text-transform: uppercase; color: var(--muted2);
-}
-
-.hero-right-divider {
-  width: 1px; height: 40px;
-  background: linear-gradient(to bottom, transparent, var(--border2), transparent);
-  align-self: flex-end;
-  margin-right: 110px;
 }
 
 /* ── SECTION WRAPPER ─────────────────────────────────────────────── */
 section {
-  max-width: 960px; margin: 0 auto;
-  padding: 100px 40px;
-  position: relative; z-index: 1;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 120px 48px;
+  position: relative;
+  z-index: 2;
+}
+
+.section-head {
+  display: grid;
+  grid-template-columns: 180px 1fr;
+  gap: 48px;
+  margin-bottom: 64px;
+  align-items: baseline;
 }
 
 .section-eyebrow {
-  font-size: 10px; letter-spacing: 0.2em;
-  text-transform: uppercase; color: var(--accent);
-  margin-bottom: 8px;
+  font-family: var(--f-mono);
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--muted);
+  padding-top: 6px;
+}
+.section-eyebrow::before {
+  content: '§ ';
+  color: var(--accent);
 }
 
 .section-title {
-  font-family: var(--font-h);
-  font-size: clamp(24px, 4vw, 36px);
-  font-weight: 700; letter-spacing: -0.02em;
-  margin-bottom: 48px;
-  color: var(--text);
+  font-family: var(--f-display);
+  font-size: clamp(32px, 4.5vw, 54px);
+  font-weight: 300;
+  letter-spacing: -0.035em;
+  line-height: 1.05;
+  color: var(--ink);
+}
+.section-title em {
+  font-style: italic;
+  font-weight: 300;
+  color: var(--accent);
 }
 
 .divider {
   border: none;
   border-top: 1px solid var(--border);
-  max-width: 960px; margin: 0 auto;
-  position: relative; z-index: 1;
+  max-width: 1100px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
 }
 
 /* ── ABOUT ───────────────────────────────────────────────────────── */
 .about-grid {
   display: grid;
-  grid-template-columns: 1.1fr 0.9fr;
-  gap: 56px;
-  align-items: start;
-}
-
-.about-text p {
-  color: var(--muted3); font-size: 14px; line-height: 1.9;
-  margin-bottom: 16px;
-}
-.about-text p strong { color: var(--text); font-weight: 400; }
-
-.about-skills { display: flex; flex-direction: column; gap: 20px; }
-
-.skill-group-label {
-  font-size: 10px; letter-spacing: 0.16em;
-  text-transform: uppercase; color: var(--muted);
-  margin-bottom: 10px;
-}
-
-.skill-tags { display: flex; flex-wrap: wrap; gap: 6px; }
-
-.tag {
-  font-size: 11px; letter-spacing: 0.04em;
-  padding: 4px 12px; border-radius: 20px;
-  border: 1px solid var(--border2);
-  color: var(--muted3);
-  transition: border-color 0.18s, color 0.18s;
-}
-.tag:hover { border-color: var(--accent); color: var(--accent); }
-.tag.accent {
-  border-color: rgba(0,229,255,0.3);
-  color: var(--accent);
-  background: var(--accent-dim);
-}
-
-/* ── PROJECTS ────────────────────────────────────────────────────── */
-.projects-grid {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-.project-row {
-  display: grid;
-  grid-template-columns: 1fr auto;
-  align-items: stretch;
-  border: 1px solid var(--border);
-  border-radius: var(--r);
-  overflow: hidden;
-  transition: border-color 0.2s;
-}
-.project-row:hover { border-color: rgba(0,229,255,0.2); }
-
-.project-card {
-  background: var(--surface);
-  padding: 20px 24px;
-  text-decoration: none; color: inherit;
-  display: flex; flex-direction: column;
-  position: relative; overflow: hidden;
-}
-.project-card::before {
-  content: '';
-  position: absolute; inset: 0;
-  background: linear-gradient(135deg, rgba(0,229,255,0.04) 0%, transparent 60%);
-  opacity: 0; transition: opacity 0.3s;
-}
-.project-row:hover .project-card::before { opacity: 1; }
-.project-row:hover .project-arrow { color: var(--accent); transform: translate(2px,-2px); }
-
-.project-icon {
-  width: 36px; height: 36px;
-  background: var(--accent-dim);
-  border: 1px solid rgba(0,229,255,0.15);
-  border-radius: 8px;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 16px;
-}
-
-.project-arrow {
-  color: var(--muted); font-size: 13px;
-  transition: color 0.18s, transform 0.18s;
-}
-.project-card:hover .project-arrow { color: var(--accent); transform: translate(2px,-2px); }
-
-.project-name {
-  font-family: var(--font-h);
-  font-size: 15px; font-weight: 700;
-  margin-bottom: 6px; color: var(--text);
-}
-
-.project-desc {
-  font-size: 12px; color: var(--muted2);
-  line-height: 1.7;
-}
-.demo-btn {
-  display: flex; align-items: center; justify-content: center;
-  flex-shrink: 0;
-  width: 120px;
-  font-family: var(--font-h); font-size: 11px; letter-spacing: 0.08em; font-weight: 700;
-  padding: 0 20px;
-  border-left: 1px solid var(--border);
-  color: var(--accent);
-  background: rgba(0,229,255,0.04);
-  text-decoration: none;
-  text-align: center;
-  transition: background 0.18s;
-}
-.demo-btn:hover {
-  background: rgba(0,229,255,0.12);
-}
-
-/* ── PUBLICATIONS ────────────────────────────────────────────────── */
-.pub-list { display: flex; flex-direction: column; gap: 2px; max-width: 960px; margin: 0 auto; }
-
-.pub-item {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: var(--r);
-  padding: 24px 28px;
-  transition: border-color 0.2s;
-  display: grid;
-  grid-template-columns: auto 1fr auto;
-  gap: 20px;
-  align-items: center;
-}
-.pub-item:hover { border-color: rgba(0,229,255,0.18); }
-
-.pub-year {
-  font-family: var(--font-h);
-  font-size: 11px; font-weight: 600;
-  color: var(--accent);
-  letter-spacing: 0.06em;
-  white-space: nowrap;
-}
-
-.pub-title {
-  font-family: var(--font-h);
-  font-size: 14px; font-weight: 600;
-  color: var(--text); margin-bottom: 4px;
-  line-height: 1.4;
-}
-
-.pub-venue {
-  font-size: 11px; color: var(--muted2);
-  letter-spacing: 0.04em;
-}
-.pub-venue em { color: var(--muted3); font-style: normal; }
-
-.pub-badge {
-  font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase;
-  padding: 4px 12px; border-radius: 20px; white-space: nowrap;
-  border: 1px solid rgba(0,229,255,0.25);
-  color: var(--accent); background: var(--accent-dim);
-}
-.pub-badge.review {
-  border-color: var(--border2);
-  color: var(--muted2); background: transparent;
-}
-
-.pub-links {
-  display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px;
-}
-.pub-link {
-  font-size: 10px; letter-spacing: 0.06em;
-  padding: 3px 10px; border-radius: 20px;
-  border: 1px solid var(--border2);
-  color: var(--muted2); background: transparent;
-  text-decoration: none;
-  transition: border-color 0.18s, color 0.18s;
-}
-.pub-link:hover {
-  border-color: rgba(0,229,255,0.35);
-  color: var(--accent);
-}
-
-.pub-placeholder {
-  border: 1px dashed var(--border2);
-  border-radius: var(--r);
-  padding: 24px 28px;
-  text-align: center;
-  color: var(--muted);
-  font-size: 12px;
-  letter-spacing: 0.06em;
-  margin-top: 8px;
-}
-
-/* ── CONTACT ─────────────────────────────────────────────────────── */
-.contact-wrap {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 180px 1fr;
   gap: 48px;
   align-items: start;
 }
 
-.contact-left p {
-  font-size: 14px; color: var(--muted3); line-height: 1.9;
-  margin-bottom: 32px;
+.about-spacer { /* reserved column on the left, matches section-head */ }
+
+.about-content {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: 64px;
 }
 
-.contact-links { display: flex; flex-direction: column; gap: 10px; }
-
-.contact-link {
-  display: flex; align-items: center; gap: 14px;
-  padding: 14px 18px;
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: var(--r);
-  text-decoration: none; color: var(--muted3);
-  font-size: 13px;
-  transition: border-color 0.18s, color 0.18s, transform 0.18s;
+.about-text p {
+  color: var(--ink-soft);
+  font-size: 17px;
+  line-height: 1.7;
+  margin-bottom: 20px;
+  font-weight: 300;
+  letter-spacing: -0.003em;
 }
-.contact-link:hover { border-color: var(--accent); color: var(--text); transform: translateX(4px); }
-
-.contact-link-icon {
-  width: 32px; height: 32px;
-  background: var(--accent-dim);
-  border: 1px solid rgba(0,229,255,0.15);
-  border-radius: 6px;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 14px; flex-shrink: 0;
+.about-text p strong {
+  font-weight: 500;
+  color: var(--ink);
+}
+.about-text p em {
+  font-family: var(--f-display);
+  font-style: italic;
+  font-weight: 400;
   color: var(--accent);
 }
 
-.contact-link-label { flex: 1; }
-.contact-link-handle { font-size: 11px; color: var(--muted); }
-.contact-link-arrow { color: var(--muted); font-size: 12px; transition: color 0.18s, transform 0.18s; }
-.contact-link:hover .contact-link-arrow { color: var(--accent); transform: translateX(3px); }
+.about-skills {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
 
-.contact-right {
+.skill-group-label {
+  font-family: var(--f-mono);
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 12px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--border);
+}
+
+.skill-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 14px;
+}
+
+.skill-list span {
+  font-size: 14px;
+  color: var(--ink-soft);
+  font-weight: 400;
+  position: relative;
+  padding-right: 14px;
+}
+.skill-list span:not(:last-child)::after {
+  content: '·';
+  position: absolute;
+  right: 0;
+  color: var(--muted-3);
+}
+.skill-list span.featured {
+  color: var(--accent);
+  font-weight: 500;
+}
+
+/* ── PROJECTS ────────────────────────────────────────────────────── */
+.projects-list {
+  display: flex;
+  flex-direction: column;
+  border-top: 1px solid var(--border);
+}
+
+.project-item {
+  display: grid;
+  grid-template-columns: 60px 1fr auto;
+  gap: 28px;
+  align-items: center;
+  padding: 28px 0;
+  border-bottom: 1px solid var(--border);
+  transition: padding 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
+  position: relative;
+}
+.project-item::before {
+  content: '';
+  position: absolute;
+  inset: 0;
   background: var(--surface);
-  border: 1px solid var(--border);
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  z-index: -1;
+  margin: 0 -24px;
   border-radius: var(--r);
-  padding: 32px;
+}
+.project-item:hover {
+  padding-left: 24px;
+  padding-right: 24px;
+}
+.project-item:hover::before {
+  opacity: 1;
 }
 
-.contact-right h3 {
-  font-family: var(--font-h);
-  font-size: 16px; font-weight: 700;
-  margin-bottom: 20px; color: var(--text);
+.project-num {
+  font-family: var(--f-mono);
+  font-size: 12px;
+  color: var(--muted-2);
+  letter-spacing: 0.06em;
 }
 
-.form-field { margin-bottom: 16px; }
-.form-label {
-  display: block;
-  font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase;
-  color: var(--muted); margin-bottom: 8px;
+.project-main {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
 }
-.form-input, .form-textarea {
-  width: 100%; background: var(--bg);
-  border: 1px solid var(--border2); border-radius: 6px;
-  padding: 10px 14px;
-  font-family: var(--font-m); font-size: 13px; color: var(--text);
-  outline: none; resize: none;
-  transition: border-color 0.18s, box-shadow 0.18s;
-  caret-color: var(--accent);
+
+.project-name {
+  font-family: var(--f-display);
+  font-size: 24px;
+  font-weight: 400;
+  color: var(--ink);
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
-.form-input:focus, .form-textarea:focus {
+.project-name a {
+  transition: color 0.25s ease;
+}
+.project-item:hover .project-name a { color: var(--accent); }
+
+.project-tag {
+  font-family: var(--f-mono);
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+  padding: 3px 8px;
+  border: 1px solid var(--border-2);
+  border-radius: 4px;
+  font-weight: 400;
+}
+.project-tag.live {
+  color: var(--accent);
+  border-color: rgba(184, 83, 44, 0.25);
+  background: var(--accent-wash);
+}
+
+.project-desc {
+  font-size: 14.5px;
+  color: var(--muted);
+  line-height: 1.55;
+  font-weight: 400;
+  max-width: 700px;
+}
+
+.project-actions {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+.project-link {
+  font-family: var(--f-mono);
+  font-size: 12px;
+  color: var(--ink-soft);
+  padding: 8px 14px;
+  border-radius: 999px;
+  border: 1px solid var(--border-2);
+  transition: all 0.25s ease;
+  white-space: nowrap;
+  display: inline-flex; align-items: center; gap: 6px;
+}
+.project-link:hover {
+  border-color: var(--ink);
+  background: var(--ink);
+  color: var(--bg);
+}
+.project-link.demo {
+  border-color: rgba(184, 83, 44, 0.3);
+  color: var(--accent);
+  background: var(--accent-wash);
+}
+.project-link.demo:hover {
+  background: var(--accent);
+  color: var(--bg);
   border-color: var(--accent);
-  box-shadow: 0 0 0 3px rgba(0,229,255,0.06);
 }
-::placeholder { color: var(--muted); }
-.form-textarea { min-height: 100px; }
 
-.form-submit {
-  width: 100%;
-  background: var(--accent); color: #080808;
-  font-family: var(--font-h); font-size: 13px; font-weight: 700;
-  letter-spacing: 0.04em;
-  padding: 12px; border-radius: var(--r); border: none; cursor: pointer;
-  transition: opacity 0.18s, transform 0.18s, box-shadow 0.18s;
-  margin-top: 4px;
+/* ── RESEARCH / PUBLICATIONS ─────────────────────────────────────── */
+.pub-list {
+  display: flex;
+  flex-direction: column;
+  border-top: 1px solid var(--border);
 }
-.form-submit:hover {
-  opacity: 0.85;
-  transform: translateY(-1px);
-  box-shadow: 0 6px 20px rgba(0,229,255,0.2);
+
+.pub-item {
+  display: grid;
+  grid-template-columns: 80px 1fr auto;
+  gap: 32px;
+  align-items: baseline;
+  padding: 32px 0;
+  border-bottom: 1px solid var(--border);
+  transition: padding 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
+  cursor: pointer;
+  position: relative;
+}
+.pub-item::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--surface);
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  z-index: -1;
+  margin: 0 -24px;
+  border-radius: var(--r);
+}
+.pub-item:hover {
+  padding-left: 24px;
+  padding-right: 24px;
+}
+.pub-item:hover::before {
+  opacity: 1;
+}
+
+.pub-year {
+  font-family: var(--f-display);
+  font-size: 22px;
+  font-weight: 300;
+  font-style: italic;
+  color: var(--accent);
+  letter-spacing: -0.01em;
+}
+
+.pub-body { display: flex; flex-direction: column; gap: 8px; }
+
+.pub-title {
+  font-family: var(--f-display);
+  font-size: 21px;
+  font-weight: 400;
+  line-height: 1.25;
+  color: var(--ink);
+  letter-spacing: -0.02em;
+  transition: color 0.25s ease;
+}
+.pub-item:hover .pub-title { color: var(--accent); }
+
+.pub-venue {
+  font-size: 13.5px;
+  color: var(--muted);
+  line-height: 1.5;
+  font-weight: 400;
+}
+.pub-venue em { font-style: italic; color: var(--ink-soft); }
+
+.pub-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 6px;
+}
+.pub-link {
+  font-family: var(--f-mono);
+  font-size: 11px;
+  padding: 4px 10px;
+  border: 1px solid var(--border-2);
+  border-radius: 4px;
+  color: var(--muted);
+  transition: all 0.25s ease;
+}
+.pub-link:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  background: var(--accent-wash);
+}
+
+.pub-badge {
+  font-family: var(--f-mono);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+  padding: 5px 10px;
+  border: 1px solid var(--border-2);
+  border-radius: 999px;
+  white-space: nowrap;
+  transition: all 0.25s ease;
+}
+.pub-item:hover .pub-badge {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.pub-note {
+  font-family: var(--f-mono);
+  font-size: 11px;
+  color: var(--muted-2);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 20px 0;
+  text-align: center;
+}
+
+/* ── CONTACT ─────────────────────────────────────────────────────── */
+.contact-grid {
+  display: grid;
+  grid-template-columns: 180px 1fr;
+  gap: 48px;
+  align-items: start;
+}
+
+.contact-intro {
+  font-family: var(--f-display);
+  font-size: clamp(24px, 3vw, 32px);
+  font-weight: 300;
+  line-height: 1.3;
+  color: var(--ink);
+  letter-spacing: -0.02em;
+  margin-bottom: 40px;
+  max-width: 640px;
+}
+.contact-intro em {
+  font-style: italic;
+  color: var(--accent);
+}
+
+.contact-links {
+  display: flex;
+  flex-direction: column;
+  max-width: 640px;
+  border-top: 1px solid var(--border);
+}
+
+.contact-link {
+  display: grid;
+  grid-template-columns: 120px 1fr auto;
+  gap: 20px;
+  align-items: center;
+  padding: 22px 4px;
+  border-bottom: 1px solid var(--border);
+  transition: padding 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+  position: relative;
+}
+.contact-link::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--surface);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: -1;
+  margin: 0 -20px;
+  border-radius: var(--r);
+}
+.contact-link:hover {
+  padding-left: 20px;
+  padding-right: 20px;
+}
+.contact-link:hover::before {
+  opacity: 1;
+}
+
+.contact-label {
+  font-family: var(--f-mono);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.contact-value {
+  font-family: var(--f-display);
+  font-size: 18px;
+  font-weight: 400;
+  color: var(--ink);
+  letter-spacing: -0.01em;
+  transition: color 0.25s ease;
+}
+.contact-link:hover .contact-value {
+  color: var(--accent);
+  font-style: italic;
+}
+
+.contact-arrow {
+  font-family: var(--f-body);
+  font-size: 18px;
+  color: var(--muted-2);
+  transition: all 0.3s ease;
+}
+.contact-link:hover .contact-arrow {
+  color: var(--accent);
+  transform: translate(4px, -4px);
 }
 
 /* ── FOOTER ──────────────────────────────────────────────────────── */
 footer {
   border-top: 1px solid var(--border);
-  padding: 28px 40px;
-  display: flex; align-items: center; justify-content: space-between;
-  flex-wrap: wrap; gap: 12px;
-  position: relative; z-index: 1;
+  padding: 36px 48px;
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+  position: relative;
+  z-index: 2;
 }
 
-.footer-name {
-  font-family: var(--font-h);
-  font-size: 12px; font-weight: 700;
-  color: var(--muted2);
+.footer-mark {
+  font-family: var(--f-display);
+  font-size: clamp(32px, 5vw, 52px);
+  font-weight: 300;
+  font-style: italic;
+  color: var(--ink);
+  letter-spacing: -0.03em;
+  line-height: 1;
 }
-.footer-name span { color: var(--accent); }
-.footer-copy { font-size: 11px; color: var(--muted); }
+.footer-mark span { color: var(--accent); }
+
+.footer-meta {
+  font-family: var(--f-mono);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  color: var(--muted);
+  text-align: right;
+  line-height: 1.8;
+}
+.footer-meta a { color: var(--ink-soft); transition: color 0.25s ease; }
+.footer-meta a:hover { color: var(--accent); }
 
 /* ── ANIMATIONS ──────────────────────────────────────────────────── */
 @keyframes fadeUp {
-  from { opacity:0; transform:translateY(16px); }
-  to   { opacity:1; transform:translateY(0); }
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
 .reveal {
-  opacity: 0; transform: translateY(20px);
-  transition: opacity 0.6s ease, transform 0.6s ease;
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.8s cubic-bezier(0.2, 0.8, 0.2, 1),
+              transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 .reveal.visible { opacity: 1; transform: translateY(0); }
 
 /* ── RESPONSIVE ──────────────────────────────────────────────────── */
-@media (max-width: 860px) {
-  #hero {
-    padding: 100px 40px 60px;
+@media (max-width: 900px) {
+  nav { padding: 0 24px; height: 58px; }
+  .nav-links { display: none; }
+  #hero { padding: 100px 24px 60px; }
+  section { padding: 80px 24px; }
+  footer { padding: 32px 24px; }
+
+  .section-head,
+  .about-grid,
+  .contact-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
   }
+
+  .about-content { grid-template-columns: 1fr; gap: 48px; }
+
+  .project-item {
+    grid-template-columns: 40px 1fr;
+    gap: 16px;
+    row-gap: 14px;
+  }
+  .project-actions {
+    grid-column: 1 / -1;
+    padding-left: 56px;
+    flex-wrap: wrap;
+  }
+
+  .pub-item {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+  .pub-badge { justify-self: start; }
+
+  .contact-link {
+    grid-template-columns: 1fr auto;
+    gap: 4px;
+    row-gap: 6px;
+  }
+  .contact-label { grid-column: 1 / -1; }
 }
 
-@media (max-width: 680px) {
-  nav { padding: 0 20px; }
-  .nav-links { display: none; }
-  section { padding: 72px 20px; }
-  #hero { padding: 100px 20px 60px; }
-  .about-grid, .contact-wrap { grid-template-columns: 1fr; }
-  .pub-item { grid-template-columns: 1fr; gap: 8px; }
-  .pub-badge { justify-self: start; }
-  footer { padding: 24px 20px; }
+@media (max-width: 520px) {
+  .hero-actions { flex-direction: column; align-items: stretch; }
+  .btn-primary, .btn-ghost { justify-content: center; }
 }
 </style>
 </head>
 <body>
 
-<!-- PARTICLE CANVAS -->
-<canvas id="particle-canvas"></canvas>
-
 <!-- NAV -->
 <nav>
-  <a href="#" class="nav-logo">HCB<span>.</span></a>
+  <a href="#" class="nav-logo">Hasan<span>.</span></a>
   <ul class="nav-links">
     <li><a href="#about">About</a></li>
+    <li><a href="#research">Research</a></li>
     <li><a href="#projects">Projects</a></li>
-    <li><a href="#publications">Research</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
-  <a href="https://drive.google.com/file/d/1YPlsspkHKGILiUhbFiLVl74KoeofpuXQ/view?usp=drive_link" target="_blank" class="nav-cta" id="cv-link">Download CV</a>
+  <a href="https://drive.google.com/file/d/1YPlsspkHKGILiUhbFiLVl74KoeofpuXQ/view?usp=drive_link" target="_blank" class="nav-cta">
+    CV <span class="arrow">↗</span>
+  </a>
 </nav>
 
 <!-- HERO -->
 <div id="hero">
-  <div class="hero-left">
-    <div class="hero-tag">Open to work</div>
-    <h1 class="hero-name">HASAN<br>CAN <span class="accent">BIYIK</span></h1>
-    <div class="hero-title">Computational Linguist &nbsp;·&nbsp; AI & NLP Engineer</div>
-    <p class="hero-bio">
-      I build systems that understand language — from <strong>cross-lingual euphemism detection</strong> to <strong>production RAG pipelines</strong>. MS in Computational Linguistics (Montclair State, AI/ML specialization). Currently looking for industry roles in <strong>NLP, AI, ML engineering, and Generative AI-Related Roles</strong>.
-    </p>
-    <div class="hero-actions">
-      <a href="#projects" class="btn-primary">View Projects →</a>
-      <a href="#contact" class="btn-ghost">Get in Touch</a>
-    </div>
+  <div class="hero-eyebrow">
+    <span class="dot"></span>
+    Open to NLP · ML · AI engineering roles
+  </div>
+
+  <h1 class="hero-name">Hasan Can<br><em>Biyik.</em></h1>
+
+  <div class="hero-title">
+    <span>Computational Linguist</span>
+    <span class="sep"></span>
+    <span>NLP &amp; AI Engineer</span>
+    <span class="sep"></span>
+    <span>Based in the U.S.</span>
+  </div>
+
+  <p class="hero-bio">
+    I build systems that understand <span class="accent-word">language</span> — from cross-lingual euphemism detection to production RAG pipelines. MS in Computational Linguistics from Montclair State, with an AI/ML specialization and publications at <strong>ACL</strong> and <strong>EACL</strong>.
+  </p>
+
+  <div class="hero-actions">
+    <a href="#research" class="btn-primary">Read the research <span class="arrow">→</span></a>
+    <a href="#contact" class="btn-ghost">Get in touch</a>
   </div>
 </div>
 
@@ -650,50 +864,57 @@ footer {
 
 <!-- ABOUT -->
 <section id="about">
-  <div class="section-eyebrow">About</div>
-  <div class="section-title">Background</div>
+  <div class="section-head">
+    <div class="section-eyebrow">About</div>
+    <h2 class="section-title">A linguist who <em>ships</em>.</h2>
+  </div>
+
   <div class="about-grid reveal">
-    <div class="about-text">
-      <p>
-        I'm a <strong>computational linguist</strong> based in the US, with a Master's of Science degree in Computational Linguistics from Montclair State University, specializing in AI and machine learning. My research sits at the intersection of NLP and cross-lingual transfer, specifically how meaning shifts across languages in subtle, culturally-loaded ways.
-      </p>
-      <p>
-        My published work covers <strong>euphemism detection in Turkish and English</strong>, sarcasm detection in sitcom dialogue, and cross-lingual transfer learning using transformer models. I've presented at ACL-affiliated venues and managed annotation pipelines across multiple languages.
-      </p>
-      <p>
-        Outside research, I build things: <strong>production RAG systems</strong>, AWS-deployed models, and full-stack NLP tools from training scripts to web interfaces. I'm targeting AI, NLP, AI engineering, chatbot development, LLM fine-tuning roles while continuing to publish.
-      </p>
-    </div>
-    <div class="about-skills">
-      <div>
-        <div class="skill-group-label">Core</div>
-        <div class="skill-tags">
-          <span class="tag accent">Python</span>
-          <span class="tag accent">PyTorch</span>
-          <span class="tag accent">HuggingFace</span>
-          <span class="tag accent">NLP / NLU</span>
-          <span class="tag">Transformers</span>
-          <span class="tag">Fine-tuning</span>
-        </div>
+    <div class="about-spacer"></div>
+    <div class="about-content">
+      <div class="about-text">
+        <p>
+          My research sits at the intersection of NLP and <em>cross-lingual transfer</em> — specifically, how meaning shifts across languages in subtle, culturally-loaded ways. Euphemism, sarcasm, framing: the things language models tend to miss.
+        </p>
+        <p>
+          Published work covers <strong>euphemism detection in Turkish and English</strong>, sarcasm in sitcom dialogue, and cross-lingual transfer with transformer models. I've presented at ACL-affiliated venues and managed multilingual annotation pipelines end-to-end.
+        </p>
+        <p>
+          Outside research, I build: production RAG systems, AWS-deployed models, full-stack NLP tools from training script to web UI. Currently targeting industry roles in <strong>AI, NLP, LLM fine-tuning, and applied research</strong> — while continuing to publish.
+        </p>
       </div>
-      <div>
-        <div class="skill-group-label">ML & Data</div>
-        <div class="skill-tags">
-          <span class="tag">scikit-learn</span>
-          <span class="tag">pandas</span>
-          <span class="tag">SQL</span>
-          <span class="tag">RAG Systems</span>
-          <span class="tag">Vector DBs</span>
-          <span class="tag">AWS</span>
+
+      <div class="about-skills">
+        <div>
+          <div class="skill-group-label">Core</div>
+          <div class="skill-list">
+            <span class="featured">Python</span>
+            <span class="featured">PyTorch</span>
+            <span class="featured">HuggingFace</span>
+            <span class="featured">NLP / NLU</span>
+            <span>Transformers</span>
+            <span>Fine-tuning</span>
+          </div>
         </div>
-      </div>
-      <div>
-        <div class="skill-group-label">Tools & Other</div>
-        <div class="skill-tags">
-          <span class="tag">FastAPI</span>
-          <span class="tag">Git</span>
-          <span class="tag">LaTeX</span>
-          <span class="tag">Linux / HPC</span>
+        <div>
+          <div class="skill-group-label">ML &amp; Data</div>
+          <div class="skill-list">
+            <span>scikit-learn</span>
+            <span>pandas</span>
+            <span>SQL</span>
+            <span>RAG systems</span>
+            <span>Vector DBs</span>
+            <span>AWS</span>
+          </div>
+        </div>
+        <div>
+          <div class="skill-group-label">Tools &amp; Infra</div>
+          <div class="skill-list">
+            <span>FastAPI</span>
+            <span>Git</span>
+            <span>LaTeX</span>
+            <span>Linux / HPC</span>
+          </div>
         </div>
       </div>
     </div>
@@ -702,136 +923,202 @@ footer {
 
 <hr class="divider"/>
 
-<!-- PROJECTS -->
-<section id="projects">
-  <div class="section-eyebrow">Work</div>
-  <div class="section-title">Projects</div>
-  <div class="projects-grid">
-
-    <div class="project-row reveal">
-      <a href="https://github.com/hasancanbiyik/euphemism-detector" target="_blank" class="project-card">
-        <div class="project-card-top"><div class="project-icon">🔍</div><div class="project-arrow">↗</div></div>
-        <div class="project-name">Euphemism Detector</div>
-        <div class="project-desc">Multilingual euphemism detection fine-tuned on XLM-RoBERTa. Classifies euphemistic vs. literal usage across 7 languages with a FastAPI web UI.</div>
-      </a>
-      <a href="https://huggingface.co/spaces/hasancanbiyik/euphemism-detector-multilingual" target="_blank" class="demo-btn">▶ Live Demo</a>
-    </div>
-
-
-
-    <div class="project-row reveal">
-      <a href="https://github.com/hasancanbiyik/sarcasm_detection" target="_blank" class="project-card">
-        <div class="project-card-top"><div class="project-icon">😏</div><div class="project-arrow">↗</div></div>
-        <div class="project-name">Sarcasm Detection</div>
-        <div class="project-desc">Sarcasm detection in sitcom dialogue using fine-tuned transformers and zero-shot LLMs. Achieved 85% F1 with Twitter-RoBERTa. Discovered the "Chandler Effect" — models exploiting character shortcuts over linguistic patterns.</div>
-      </a>
-      <a href="https://github.com/hasancanbiyik/sarcasm_detection" target="_blank" class="demo-btn">GitHub →</a>
-    </div>
-
-    <div class="project-row reveal">
-      <a href="https://github.com/hasancanbiyik/multi-source-research-agent" target="_blank" class="project-card">
-        <div class="project-card-top"><div class="project-icon">🤖</div><div class="project-arrow">↗</div></div>
-        <div class="project-name">Multi-Source Research Agent</div>
-        <div class="project-desc">LLM-powered research system that retrieves and synthesizes information from web and Reddit using LangGraph orchestration, ChromaDB semantic retrieval, and GPT-4 reasoning.</div>
-      </a>
-      <a href="https://github.com/hasancanbiyik/multi-source-research-agent" target="_blank" class="demo-btn">GitHub →</a>
-    </div>
-
-    <div class="project-row reveal">
-      <a href="https://github.com/hasancanbiyik/resume-fit-analyzer-smart-ats" target="_blank" class="project-card">
-        <div class="project-card-top"><div class="project-icon">📄</div><div class="project-arrow">↗</div></div>
-        <div class="project-name">Resume Fit Analyzer — Smart ATS</div>
-        <div class="project-desc">AI-powered ATS resume analyzer that scores fit against job descriptions, identifies gaps, and suggests improvements using semantic similarity and LLM reasoning.</div>
-      </a>
-      <a href="https://resume-fit-analyzer-smart-ats.streamlit.app/" target="_blank" class="demo-btn">▶ Live Demo</a>
-    </div>
-
-    <div class="project-row reveal">
-      <a href="https://github.com/hasancanbiyik/immigration_chatbot" target="_blank" class="project-card">
-        <div class="project-card-top"><div class="project-icon">💬</div><div class="project-arrow">↗</div></div>
-        <div class="project-name">RAG Chatbot — AWS Bedrock</div>
-        <div class="project-desc">AI chatbot using Amazon Lex, AWS Bedrock (Claude/Titan) for LLM inference, and RAG with Bedrock Knowledge Bases for semantic search over domain documents.</div>
-      </a>
-      <a href="https://immigration-chatbot.streamlit.app/" target="_blank" class="demo-btn">▶ Live Demo</a>
-    </div>
-
-    <div class="project-row reveal">
-      <a href="https://github.com/hasancanbiyik/turkish-product-sentiment-analyzer" target="_blank" class="project-card">
-        <div class="project-card-top"><div class="project-icon">🇹🇷</div><div class="project-arrow">↗</div></div>
-        <div class="project-name">Turkish Product Sentiment Analyzer</div>
-        <div class="project-desc">Fine-tuned BERTurk on 235K Turkish product reviews for binary sentiment classification. 94.2% accuracy with real-time inference and interactive Plotly visualizations.</div>
-      </a>
-      <a href="https://turkish-sentiment-analyzer-translator.streamlit.app/" target="_blank" class="demo-btn">▶ Live Demo</a>
-    </div>
-
-    <div class="project-row reveal">
-      <a href="https://github.com/hasancanbiyik/prosodic_event_detection" target="_blank" class="project-card">
-        <div class="project-card-top"><div class="project-icon">🎙️</div><div class="project-arrow">↗</div></div>
-        <div class="project-name">Prosodic Event Detection</div>
-        <div class="project-desc">CNN/LSTM/MLP models for prosodic prominence and boundary detection in speech. 85% F1 on prominence, 117% improvement over classical ML baselines.</div>
-      </a>
-      <a href="https://github.com/hasancanbiyik/prosodic_event_detection" target="_blank" class="demo-btn">GitHub →</a>
-    </div>
-
-    <div class="project-row reveal">
-      <a href="https://github.com/hasancanbiyik/nsfw_identifier" target="_blank" class="project-card">
-        <div class="project-card-top"><div class="project-icon">🛡️</div><div class="project-arrow">↗</div></div>
-        <div class="project-name">NSFW Content Identifier</div>
-        <div class="project-desc">Content moderation classifier for identifying NSFW pictures using fine-tuned transformer models. Chrome extension also developed and ready for use.</div>
-      </a>
-      <a href="https://github.com/hasancanbiyik/nsfw_identifier" target="_blank" class="demo-btn">GitHub →</a>
-    </div>
-
-  </div>
-</section>
-
-<hr class="divider"/>
-
-<!-- RESEARCH -->
+<!-- RESEARCH / PUBLICATIONS — moved up, per your ACL/EACL work being the lede -->
 <section id="research">
-  <div class="section-eyebrow">Research</div>
-  <div class="section-title">Publications</div>
+  <div class="section-head">
+    <div class="section-eyebrow">Research</div>
+    <h2 class="section-title">Published <em>work</em>.</h2>
+  </div>
+
   <div class="pub-list">
 
-    <div class="pub-item reveal" onclick="window.open('https://arxiv.org/abs/2602.16957','_blank')" style="cursor:pointer;">
+    <div class="pub-item reveal" onclick="window.open('https://arxiv.org/abs/2602.16957','_blank')">
       <div class="pub-year">2026</div>
-      <div class="pub-content">
+      <div class="pub-body">
         <div class="pub-title">When Semantic Overlap Is Not Enough: Cross-Lingual Euphemism Transfer Between Turkish and English</div>
-        <div class="pub-venue">EACL 2026 &nbsp;·&nbsp; <em>Biyik, H., Barak L., Peng J., Feldman A.</em></div>
+        <div class="pub-venue">EACL 2026 · <em>Biyik, H., Barak, L., Peng, J., Feldman, A.</em></div>
         <div class="pub-links">
-          <a href="https://drive.google.com/file/d/175udbcgBX8IsKw1ulGuj-k3srIRmzimA/view?usp=sharing" target="_blank" class="pub-link" onclick="event.stopPropagation()">📂 Dataset</a>
-          <a href="https://github.com/hasancanbiyik/PETs-investigating-LLMs-generalization-capabilities" target="_blank" class="pub-link" onclick="event.stopPropagation()">⌥ GitHub</a>
-        </div>
-      </div>
-      <div class="pub-badge">PUBLISHED ↗</div>
-    </div>
-
-    <div class="pub-item reveal" onclick="window.open('https://aclanthology.org/2024.sigturk-1.7/','_blank')" style="cursor:pointer;">
-      <div class="pub-year">2024</div>
-      <div class="pub-content">
-        <div class="pub-title">Turkish Delights: A Dataset on Turkish Euphemisms</div>
-        <div class="pub-venue">SIGTURK @ ACL 2024, Bangkok &nbsp;·&nbsp; <em>Biyik, H., Lee, P., & Feldman, A.</em></div>
-        <div class="pub-links">
-          <a href="https://drive.google.com/file/d/1s-KVj785fR5Ubdy2WrHlm8F3xyEpWjZ4/view?usp=sharing" target="_blank" class="pub-link" onclick="event.stopPropagation()">📂 Dataset (trimmed)</a>
-          <a href="https://drive.google.com/file/d/15u3P2IMr97F85C1bdban1Yn0MhaP1uJJ/view?usp=sharing" target="_blank" class="pub-link" onclick="event.stopPropagation()">📂 Dataset (full · 6–7K)</a>
-          <a href="https://github.com/hasancanbiyik/Turkish_PETs" target="_blank" class="pub-link" onclick="event.stopPropagation()">⌥ GitHub</a>
+          <a href="https://drive.google.com/file/d/175udbcgBX8IsKw1ulGuj-k3srIRmzimA/view?usp=sharing" target="_blank" class="pub-link" onclick="event.stopPropagation()">Dataset</a>
+          <a href="https://github.com/hasancanbiyik/PETs-investigating-LLMs-generalization-capabilities" target="_blank" class="pub-link" onclick="event.stopPropagation()">GitHub</a>
         </div>
       </div>
       <div class="pub-badge">Published ↗</div>
     </div>
 
-    <div class="pub-item reveal" onclick="window.open('https://drive.google.com/file/d/1xEpwwYM9JMp_UYSwRS8vYQpw__pjZioD/view','_blank')" style="cursor:pointer;">
+    <div class="pub-item reveal" onclick="window.open('https://aclanthology.org/2024.sigturk-1.7/','_blank')">
       <div class="pub-year">2024</div>
-      <div class="pub-content">
+      <div class="pub-body">
+        <div class="pub-title">Turkish Delights: A Dataset on Turkish Euphemisms</div>
+        <div class="pub-venue">SIGTURK @ ACL 2024, Bangkok · <em>Biyik, H., Lee, P., Feldman, A.</em></div>
+        <div class="pub-links">
+          <a href="https://drive.google.com/file/d/1s-KVj785fR5Ubdy2WrHlm8F3xyEpWjZ4/view?usp=sharing" target="_blank" class="pub-link" onclick="event.stopPropagation()">Dataset (trimmed)</a>
+          <a href="https://drive.google.com/file/d/15u3P2IMr97F85C1bdban1Yn0MhaP1uJJ/view?usp=sharing" target="_blank" class="pub-link" onclick="event.stopPropagation()">Dataset (full)</a>
+          <a href="https://github.com/hasancanbiyik/Turkish_PETs" target="_blank" class="pub-link" onclick="event.stopPropagation()">GitHub</a>
+        </div>
+      </div>
+      <div class="pub-badge">Published ↗</div>
+    </div>
+
+    <div class="pub-item reveal" onclick="window.open('https://drive.google.com/file/d/1xEpwwYM9JMp_UYSwRS8vYQpw__pjZioD/view','_blank')">
+      <div class="pub-year">2024</div>
+      <div class="pub-body">
         <div class="pub-title">Analysis of the Tone and Framing of the LGBTQ+ Community in Turkish Media</div>
-        <div class="pub-venue">Student Research Symposium, Montclair State University &nbsp;·&nbsp; <em>Biyik, H.</em></div>
+        <div class="pub-venue">Student Research Symposium, Montclair State University · <em>Biyik, H.</em></div>
       </div>
       <div class="pub-badge">Presentation ↗</div>
     </div>
 
   </div>
-  <div class="pub-placeholder reveal" style="margin-top:12px;">
-    More publications will be added here
+  <div class="pub-note">More publications coming soon</div>
+</section>
+
+<hr class="divider"/>
+
+<!-- PROJECTS — ordered strongest first -->
+<section id="projects">
+  <div class="section-head">
+    <div class="section-eyebrow">Work</div>
+    <h2 class="section-title">Selected <em>projects</em>.</h2>
+  </div>
+
+  <div class="projects-list">
+
+    <!-- 01 — tied to flagship EACL research -->
+    <div class="project-item reveal">
+      <div class="project-num">01</div>
+      <div class="project-main">
+        <div class="project-name">
+          <a href="https://github.com/hasancanbiyik/euphemism-detector" target="_blank">Euphemism Detector</a>
+          <span class="project-tag live">Live</span>
+        </div>
+        <div class="project-desc">
+          Multilingual euphemism detection fine-tuned on XLM-RoBERTa. Classifies euphemistic vs. literal usage across five languages (TR/EN/ES/ZH/YO), served through a FastAPI backend on HuggingFace Spaces.
+        </div>
+      </div>
+      <div class="project-actions">
+        <a href="https://huggingface.co/spaces/hasancanbiyik/euphemism-detector-multilingual" target="_blank" class="project-link demo">Live demo →</a>
+        <a href="https://github.com/hasancanbiyik/euphemism-detector" target="_blank" class="project-link">GitHub</a>
+      </div>
+    </div>
+
+    <!-- 02 — sarcasm / Chandler Effect -->
+    <div class="project-item reveal">
+      <div class="project-num">02</div>
+      <div class="project-main">
+        <div class="project-name">
+          <a href="https://github.com/hasancanbiyik/sarcasm_detection" target="_blank">Sarcasm Detection</a>
+        </div>
+        <div class="project-desc">
+          Sarcasm detection in sitcom dialogue using fine-tuned transformers and zero-shot LLMs. Reached 85% F1 with Twitter-RoBERTa, and surfaced the <em>"Chandler Effect"</em> — models learning character-identity shortcuts instead of linguistic sarcasm features.
+        </div>
+      </div>
+      <div class="project-actions">
+        <a href="https://github.com/hasancanbiyik/sarcasm_detection" target="_blank" class="project-link">GitHub →</a>
+      </div>
+    </div>
+
+    <!-- 03 — research agent -->
+    <div class="project-item reveal">
+      <div class="project-num">03</div>
+      <div class="project-main">
+        <div class="project-name">
+          <a href="https://github.com/hasancanbiyik/multi-source-research-agent" target="_blank">Multi-Source Research Agent</a>
+        </div>
+        <div class="project-desc">
+          LLM-powered research system that retrieves and synthesizes information from the web and Reddit using LangGraph orchestration, ChromaDB semantic retrieval, and GPT-4 reasoning.
+        </div>
+      </div>
+      <div class="project-actions">
+        <a href="https://github.com/hasancanbiyik/multi-source-research-agent" target="_blank" class="project-link">GitHub →</a>
+      </div>
+    </div>
+
+    <!-- 04 — RAG chatbot -->
+    <div class="project-item reveal">
+      <div class="project-num">04</div>
+      <div class="project-main">
+        <div class="project-name">
+          <a href="https://github.com/hasancanbiyik/immigration_chatbot" target="_blank">RAG Chatbot — AWS Bedrock</a>
+          <span class="project-tag live">Live</span>
+        </div>
+        <div class="project-desc">
+          Chatbot built on Amazon Lex with AWS Bedrock (Claude / Titan) for LLM inference, and retrieval-augmented generation via Bedrock Knowledge Bases for semantic search over domain documents.
+        </div>
+      </div>
+      <div class="project-actions">
+        <a href="https://immigration-chatbot.streamlit.app/" target="_blank" class="project-link demo">Live demo →</a>
+        <a href="https://github.com/hasancanbiyik/immigration_chatbot" target="_blank" class="project-link">GitHub</a>
+      </div>
+    </div>
+
+    <!-- 05 — Turkish sentiment -->
+    <div class="project-item reveal">
+      <div class="project-num">05</div>
+      <div class="project-main">
+        <div class="project-name">
+          <a href="https://github.com/hasancanbiyik/turkish-product-sentiment-analyzer" target="_blank">Turkish Product Sentiment Analyzer</a>
+          <span class="project-tag live">Live</span>
+        </div>
+        <div class="project-desc">
+          BERTurk fine-tuned on 235K Turkish product reviews for binary sentiment classification. 94.2% accuracy with real-time inference and interactive Plotly visualizations.
+        </div>
+      </div>
+      <div class="project-actions">
+        <a href="https://turkish-sentiment-analyzer-translator.streamlit.app/" target="_blank" class="project-link demo">Live demo →</a>
+        <a href="https://github.com/hasancanbiyik/turkish-product-sentiment-analyzer" target="_blank" class="project-link">GitHub</a>
+      </div>
+    </div>
+
+    <!-- 06 — ATS -->
+    <div class="project-item reveal">
+      <div class="project-num">06</div>
+      <div class="project-main">
+        <div class="project-name">
+          <a href="https://github.com/hasancanbiyik/resume-fit-analyzer-smart-ats" target="_blank">Resume Fit Analyzer — Smart ATS</a>
+          <span class="project-tag live">Live</span>
+        </div>
+        <div class="project-desc">
+          AI-powered ATS resume analyzer that scores fit against job descriptions, identifies gaps, and suggests improvements using semantic similarity and LLM reasoning.
+        </div>
+      </div>
+      <div class="project-actions">
+        <a href="https://resume-fit-analyzer-smart-ats.streamlit.app/" target="_blank" class="project-link demo">Live demo →</a>
+        <a href="https://github.com/hasancanbiyik/resume-fit-analyzer-smart-ats" target="_blank" class="project-link">GitHub</a>
+      </div>
+    </div>
+
+    <!-- 07 — prosody -->
+    <div class="project-item reveal">
+      <div class="project-num">07</div>
+      <div class="project-main">
+        <div class="project-name">
+          <a href="https://github.com/hasancanbiyik/prosodic_event_detection" target="_blank">Prosodic Event Detection</a>
+        </div>
+        <div class="project-desc">
+          CNN / LSTM / MLP models for prosodic prominence and boundary detection in speech. 85% F1 on prominence; a 117% improvement over classical ML baselines.
+        </div>
+      </div>
+      <div class="project-actions">
+        <a href="https://github.com/hasancanbiyik/prosodic_event_detection" target="_blank" class="project-link">GitHub →</a>
+      </div>
+    </div>
+
+    <!-- 08 — NSFW -->
+    <div class="project-item reveal">
+      <div class="project-num">08</div>
+      <div class="project-main">
+        <div class="project-name">
+          <a href="https://github.com/hasancanbiyik/nsfw_identifier" target="_blank">NSFW Content Identifier</a>
+        </div>
+        <div class="project-desc">
+          Content-moderation classifier for identifying NSFW imagery using fine-tuned transformer models. Packaged as a Chrome extension ready for deployment.
+        </div>
+      </div>
+      <div class="project-actions">
+        <a href="https://github.com/hasancanbiyik/nsfw_identifier" target="_blank" class="project-link">GitHub →</a>
+      </div>
+    </div>
+
   </div>
 </section>
 
@@ -839,173 +1126,71 @@ footer {
 
 <!-- CONTACT -->
 <section id="contact">
-  <div class="section-eyebrow">Contact</div>
-  <div class="section-title">Get in Touch</div>
-  <div class="contact-wrap">
-    <div class="contact-left reveal">
-      <p>
-        I'm actively looking for <strong style="color:var(--text)">NLP, ML, AI engineering roles</strong>. If you're working on something interesting with language models or data, let's connect.
+  <div class="section-head">
+    <div class="section-eyebrow">Contact</div>
+    <h2 class="section-title">Let's <em>talk</em>.</h2>
+  </div>
+
+  <div class="contact-grid reveal">
+    <div class="about-spacer"></div>
+    <div>
+      <p class="contact-intro">
+        Actively looking for roles in <em>NLP, ML, and AI engineering</em>. If you're working on something interesting with language models or multilingual data, I'd love to hear from you.
       </p>
+
       <div class="contact-links">
         <a href="/cdn-cgi/l/email-protection#a8cad1c386c0c9dbc9c6cbc9c6e8cfc5c9c1c486cbc7c5" class="contact-link">
-          <div class="contact-link-icon">✉</div>
-          <div class="contact-link-label">
-            <div>Email</div>
-            <div class="contact-link-handle"><span class="__cf_email__" data-cfemail="80e2f9ebaee8e1f3e1eee3e1eec0e7ede1e9ecaee3efed">[email&#160;protected]</span></div>
-          </div>
-          <div class="contact-link-arrow">→</div>
+          <div class="contact-label">Email</div>
+          <div class="contact-value"><span class="__cf_email__" data-cfemail="80e2f9ebaee8e1f3e1eee3e1eec0e7ede1e9ecaee3efed">[email&#160;protected]</span></div>
+          <div class="contact-arrow">↗</div>
         </a>
         <a href="https://www.linkedin.com/in/hasancanbyk/" target="_blank" class="contact-link">
-          <div class="contact-link-icon">in</div>
-          <div class="contact-link-label">
-            <div>LinkedIn</div>
-            <div class="contact-link-handle">linkedin.com/in/hasancanbyk</div>
-          </div>
-          <div class="contact-link-arrow">→</div>
+          <div class="contact-label">LinkedIn</div>
+          <div class="contact-value">linkedin.com/in/hasancanbyk</div>
+          <div class="contact-arrow">↗</div>
         </a>
         <a href="https://github.com/hasancanbiyik" target="_blank" class="contact-link">
-          <div class="contact-link-icon">⌥</div>
-          <div class="contact-link-label">
-            <div>GitHub</div>
-            <div class="contact-link-handle">github.com/hasancanbiyik</div>
-          </div>
-          <div class="contact-link-arrow">→</div>
+          <div class="contact-label">GitHub</div>
+          <div class="contact-value">github.com/hasancanbiyik</div>
+          <div class="contact-arrow">↗</div>
+        </a>
+        <a href="https://drive.google.com/file/d/1YPlsspkHKGILiUhbFiLVl74KoeofpuXQ/view?usp=drive_link" target="_blank" class="contact-link">
+          <div class="contact-label">Resume</div>
+          <div class="contact-value">Download CV (PDF)</div>
+          <div class="contact-arrow">↗</div>
         </a>
       </div>
-    </div>
-    <div class="contact-right reveal">
-      <h3>Send a message</h3>
-      <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST" id="contact-form">
-        <div class="form-field">
-          <label class="form-label">Name</label>
-          <input type="text" name="name" class="form-input" placeholder="Your name" required/>
-        </div>
-        <div class="form-field">
-          <label class="form-label">Email</label>
-          <input type="email" name="email" class="form-input" placeholder="your@email.com" required/>
-        </div>
-        <div class="form-field">
-          <label class="form-label">Message</label>
-          <textarea name="message" class="form-textarea" placeholder="What's on your mind?" required></textarea>
-        </div>
-        <button type="submit" class="form-submit">Send Message</button>
-      </form>
-      <p style="font-size:10px; color:var(--muted); margin-top:8px;">
-        <!-- Replace YOUR_FORM_ID above: go to formspree.io, create free account, get your form endpoint -->
-      </p>
     </div>
   </div>
 </section>
 
 <!-- FOOTER -->
 <footer>
-  <div class="footer-name">HASAN CAN BIYIK<span>.</span></div>
-  <div class="footer-copy">© 2026 · Computational Linguist & NLP Engineer</div>
+  <div class="footer-mark">Hasan Can Biyik<span>.</span></div>
+  <div class="footer-meta">
+    © 2026 · Designed &amp; built by hand<br>
+    Computational Linguist &middot; NLP Engineer
+  </div>
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-// ── PARTICLE NETWORK ──────────────────────────────────────────────
-const canvas = document.getElementById('particle-canvas');
-const ctx = canvas.getContext('2d');
-
-let particles = [];
-let animationId;
-
-const CONFIG = {
-  count: 55,
-  color: '0, 229, 255',
-  maxDist: 140,
-  speed: 0.35,
-  radius: 1.5,
-  opacity: 0.18,
-  lineOpacity: 0.07,
-};
-
-function resize() {
-  canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight;
-}
-
-function createParticle() {
-  return {
-    x: Math.random() * canvas.width,
-    y: Math.random() * canvas.height,
-    vx: (Math.random() - 0.5) * CONFIG.speed,
-    vy: (Math.random() - 0.5) * CONFIG.speed,
-  };
-}
-
-function init() {
-  resize();
-  particles = Array.from({ length: CONFIG.count }, createParticle);
-}
-
-function draw() {
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-  // draw connections
-  for (let i = 0; i < particles.length; i++) {
-    for (let j = i + 1; j < particles.length; j++) {
-      const dx = particles[i].x - particles[j].x;
-      const dy = particles[i].y - particles[j].y;
-      const dist = Math.sqrt(dx * dx + dy * dy);
-      if (dist < CONFIG.maxDist) {
-        const alpha = CONFIG.lineOpacity * (1 - dist / CONFIG.maxDist);
-        ctx.beginPath();
-        ctx.strokeStyle = `rgba(${CONFIG.color}, ${alpha})`;
-        ctx.lineWidth = 0.6;
-        ctx.moveTo(particles[i].x, particles[i].y);
-        ctx.lineTo(particles[j].x, particles[j].y);
-        ctx.stroke();
-      }
-    }
-  }
-
-  // draw dots
-  particles.forEach(p => {
-    ctx.beginPath();
-    ctx.arc(p.x, p.y, CONFIG.radius, 0, Math.PI * 2);
-    ctx.fillStyle = `rgba(${CONFIG.color}, ${CONFIG.opacity})`;
-    ctx.fill();
-  });
-
-  // update positions
-  particles.forEach(p => {
-    p.x += p.vx;
-    p.y += p.vy;
-    if (p.x < 0 || p.x > canvas.width) p.vx *= -1;
-    if (p.y < 0 || p.y > canvas.height) p.vy *= -1;
-  });
-
-  animationId = requestAnimationFrame(draw);
-}
-
-window.addEventListener('resize', () => {
-  cancelAnimationFrame(animationId);
-  init();
-  draw();
-});
-
-init();
-draw();
-
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+<script>
 // ── SCROLL REVEAL ──────────────────────────────────────────────
 const observer = new IntersectionObserver((entries) => {
-  entries.forEach(e => {
+  entries.forEach((e) => {
     if (e.isIntersecting) {
       e.target.classList.add('visible');
       observer.unobserve(e.target);
     }
   });
-}, { threshold: 0.01, rootMargin: '0px' });
+}, { threshold: 0.05, rootMargin: '0px 0px -40px 0px' });
 
 document.querySelectorAll('.reveal').forEach((el, i) => {
-  el.style.transitionDelay = `${(i % 4) * 0.07}s`;
+  el.style.transitionDelay = `${(i % 5) * 0.06}s`;
   observer.observe(el);
-  // Force visible if already in viewport on load
   const rect = el.getBoundingClientRect();
   if (rect.top < window.innerHeight) {
-    setTimeout(() => el.classList.add('visible'), i * 60);
+    setTimeout(() => el.classList.add('visible'), i * 50);
   }
 });
 
@@ -1013,20 +1198,18 @@ document.querySelectorAll('.reveal').forEach((el, i) => {
 const sections = document.querySelectorAll('section[id]');
 const navLinks = document.querySelectorAll('.nav-links a');
 
-window.addEventListener('scroll', () => {
+function setActive() {
+  const scrollPos = window.scrollY + 120;
   let current = '';
-  sections.forEach(s => {
-    if (window.scrollY >= s.offsetTop - 120) current = s.id;
+  sections.forEach((s) => {
+    if (scrollPos >= s.offsetTop) current = s.id;
   });
-  navLinks.forEach(a => {
-    a.style.color = a.getAttribute('href') === `#${current}` ? 'var(--text)' : '';
+  navLinks.forEach((a) => {
+    a.classList.toggle('active', a.getAttribute('href') === `#${current}`);
   });
-});
-
-// ── CONTACT FORM ───────────────────────────────────────────────
-// Form now handled by Formspree (action attribute on form).
-// To set up: go to https://formspree.io, sign up free, create a form,
-// then replace YOUR_FORM_ID in the form action URL above.
+}
+window.addEventListener('scroll', setActive, { passive: true });
+setActive();
 </script>
 </body>
 </html>
