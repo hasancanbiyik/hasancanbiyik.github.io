@@ -913,11 +913,11 @@ nav {
 h1.hero-name {
   animation: fadeUp 0.7s 0.05s ease both;
   color: var(--text);
-  font-family: var(--display);
-  font-size: clamp(54px, 8vw, 92px);
-  font-weight: 600;
-  letter-spacing: -0.055em;
-  line-height: 0.98;
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: clamp(52px, 7.5vw, 86px);
+  font-weight: 400;
+  letter-spacing: -0.05em;
+  line-height: 1;
   margin-bottom: 34px;
   max-width: 900px;
 }
@@ -983,22 +983,10 @@ section {
 }
 
 .section-head {
-  align-items: start;
-  display: grid;
-  gap: 44px;
-  grid-template-columns: minmax(180px, 0.55fr) 1.45fr;
-  margin-bottom: 62px;
+  display: block;
+  margin-bottom: 46px;
 }
-.section-num {
-  color: var(--accent-dark);
-  font-family: var(--sans);
-  font-size: 13px;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  padding-top: 9px;
-  text-transform: uppercase;
-}
-.section-num .hash { display: none; }
+.section-num { display: none; }
 .section-title {
   color: var(--text);
   font-family: var(--display);
@@ -1006,6 +994,7 @@ section {
   font-weight: 600;
   letter-spacing: -0.04em;
   line-height: 1.08;
+  max-width: 780px;
 }
 .section-title .sub {
   color: var(--quiet);
@@ -1316,8 +1305,7 @@ footer {
 @media (max-width: 820px) {
   .nav-links { display: none; }
   #hero { padding-top: 140px; padding-bottom: 88px; }
-  .section-head { gap: 12px; grid-template-columns: 1fr; margin-bottom: 44px; }
-  .section-num { padding-top: 0; }
+  .section-head { margin-bottom: 38px; }
   .about-content { gap: 48px; grid-template-columns: 1fr; }
   .pub-item { grid-template-columns: 110px minmax(0, 1fr); }
   .pub-badge { display: none; }
@@ -1403,8 +1391,7 @@ footer {
 <!-- ABOUT -->
 <section id="about">
   <div class="section-head">
-    <div class="section-num">About</div>
-    <h2 class="section-title">Research rigor, practical systems.<span class="sub">A computational-linguistics foundation with hands-on model development, evaluation, and deployment.</span></h2>
+    <h2 class="section-title">Research rigor, practical systems.</h2>
   </div>
 
   <div class="about-grid reveal">
@@ -1412,13 +1399,10 @@ footer {
     <div class="about-content">
       <div class="about-text">
         <p>
-          My research sits at the intersection of NLP and <em>cross-lingual transfer</em> — specifically, how meaning shifts across languages in subtle, culturally dependent ways. I work on euphemism, humor, sarcasm, irony, and prosody: language phenomena that require more than surface-level matching.
+          I study how meaning changes across languages and contexts, with work on <em>euphemism, humor, sarcasm, irony, and prosody</em>. My peer-reviewed research focuses on Turkish euphemism detection and Turkish–English transfer with multilingual transformers.
         </p>
         <p>
-          My peer-reviewed work covers <strong>Turkish euphemism detection</strong> and Turkish–English transfer with multilingual transformers. I have also led annotation teams, built multilingual datasets, fine-tuned language models, and designed controlled evaluations of model behavior and agreement.
-        </p>
-        <p>
-          Beyond research, I build complete systems: agentic retrieval services, FastAPI and React/Streamlit applications, containerized ML APIs, monitoring workflows, Azure deployments, local Kubernetes deployments, and Terraform-defined AWS infrastructure. I am now targeting industry roles in <strong>NLP, language engineering, applied AI, and ML engineering</strong>.
+          I also build end-to-end NLP and AI systems—from multilingual datasets and model evaluation to retrieval services, APIs, testing, and deployment. I’m now bringing that combination of <strong>linguistic analysis and engineering</strong> to industry roles.
         </p>
       </div>
 
@@ -1478,8 +1462,7 @@ footer {
 <!-- RESEARCH -->
 <section id="research">
   <div class="section-head">
-    <div class="section-num">Research</div>
-    <h2 class="section-title">Publications and presentations.<span class="sub">Peer-reviewed work on Turkish euphemisms and cross-lingual transfer.</span></h2>
+    <h2 class="section-title">Publications and presentations.</h2>
   </div>
 
   <div class="pub-list">
@@ -1538,8 +1521,7 @@ footer {
 <!-- PROJECTS -->
 <section id="projects">
   <div class="section-head">
-    <div class="section-num">Projects</div>
-    <h2 class="section-title">Selected work.<span class="sub">Research systems, deployed applications, and end-to-end ML engineering.</span></h2>
+    <h2 class="section-title">Selected work.</h2>
   </div>
 
   <div class="projects-list">
@@ -1706,8 +1688,7 @@ footer {
 <!-- CONTACT -->
 <section id="contact">
   <div class="section-head">
-    <div class="section-num">Contact</div>
-    <h2 class="section-title">Let’s work together.<span class="sub">Open to NLP, language engineering, applied AI, and ML engineering opportunities.</span></h2>
+    <h2 class="section-title">Let’s work together.</h2>
   </div>
 
   <div class="contact-grid reveal">
