@@ -3,11 +3,11 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Hasan Can Biyik — Computational Linguist & NLP Engineer</title>
-<meta name="description" content="Computational linguist and NLP/ML engineer specializing in cross-lingual transfer, euphemism detection, and production AI systems."/>
+<title>Hasan Can Biyik — Computational Linguist &amp; NLP Engineer</title>
+<meta name="description" content="Computational linguist and NLP/AI engineer building multilingual models, LLM evaluations, retrieval agents, and tested, deployable ML systems."/>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500&amp;family=Inter:wght@300;400;500;600&amp;display=swap" rel="stylesheet">
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -548,6 +548,11 @@ section {
   border-color: rgba(122, 46, 46, 0.3);
   background: var(--accent-wash);
 }
+.project-tag.deployed {
+  color: #315f4c;
+  border-color: rgba(49, 95, 76, 0.32);
+  background: rgba(49, 95, 76, 0.07);
+}
 
 .project-desc {
   font-family: var(--f-mono);
@@ -560,6 +565,18 @@ section {
 }
 .project-desc em {
   font-style: normal;
+  color: var(--accent);
+  font-weight: 500;
+}
+
+.project-stack {
+  font-family: var(--f-mono);
+  font-size: 10.5px;
+  color: var(--muted-2);
+  line-height: 1.55;
+}
+.project-stack::before {
+  content: 'stack // ';
   color: var(--accent);
   font-weight: 500;
 }
@@ -802,7 +819,7 @@ footer {
 <div id="hero">
   <div class="hero-meta">
     <div class="line"><span class="key">name</span><span class="val">hasan can biyik</span></div>
-    <div class="line"><span class="key">role</span><span class="val">computational linguist, nlp engineer</span></div>
+    <div class="line"><span class="key">role</span><span class="val">computational linguist, nlp / ai engineer</span></div>
     <div class="line"><span class="key">status</span><span class="val accent">seeking · nlp / ml / ai engineering</span></div>
     <div class="line"><span class="key">location</span><span class="val">united states</span></div>
   </div>
@@ -812,7 +829,7 @@ footer {
   </h1>
 
   <p class="hero-bio">
-    I build systems that understand <span class="accent-word">language</span> — from cross-lingual euphemism detection to production RAG pipelines. MS in Computational Linguistics from Montclair State, AI/ML specialization. Published at <strong>ACL</strong> and <strong>EACL</strong>. Interested in how meaning fails to transfer: euphemism, sarcasm, framing — the places language models tend to miss.
+    I build systems that work with <span class="accent-word">language</span> — from multilingual transformer research and LLM evaluation to retrieval agents and deployed ML services. I hold an M.S. in Computational Linguistics from Montclair State and am first author of two peer-reviewed <strong>SIGTURK</strong> papers in the ACL Anthology. My work combines linguistic analysis with Python, model evaluation, APIs, testing, and deployment.
   </p>
 
   <div class="hero-actions">
@@ -835,13 +852,13 @@ footer {
     <div class="about-content">
       <div class="about-text">
         <p>
-          My research sits at the intersection of NLP and <em>cross-lingual transfer</em> — specifically, how meaning shifts across languages in subtle, culturally-loaded ways. Euphemism, sarcasm, framing: the things language models tend to miss.
+          My research sits at the intersection of NLP and <em>cross-lingual transfer</em> — specifically, how meaning shifts across languages in subtle, culturally dependent ways. I work on euphemism, humor, sarcasm, irony, and prosody: language phenomena that require more than surface-level matching.
         </p>
         <p>
-          Published work covers <strong>euphemism detection in Turkish and English</strong>, sarcasm in sitcom dialogue, and cross-lingual transfer with transformer models. I've presented at ACL-affiliated venues and managed multilingual annotation pipelines end-to-end.
+          My peer-reviewed work covers <strong>Turkish euphemism detection</strong> and Turkish–English transfer with multilingual transformers. I have also led annotation teams, built multilingual datasets, fine-tuned language models, and designed controlled evaluations of model behavior and agreement.
         </p>
         <p>
-          Outside research, I build: production RAG systems, AWS-deployed models, full-stack NLP tools from training script to web UI. Currently targeting industry roles in <strong>AI, NLP, LLM fine-tuning, and applied research</strong> — while continuing to publish.
+          Beyond research, I build complete systems: agentic retrieval services, FastAPI and React/Streamlit applications, containerized ML APIs, monitoring workflows, Azure deployments, local Kubernetes deployments, and Terraform-defined AWS infrastructure. I am now targeting industry roles in <strong>NLP, language engineering, applied AI, and ML engineering</strong>.
         </p>
       </div>
 
@@ -851,10 +868,11 @@ footer {
           <div class="skill-list">
             <span class="featured">python</span>
             <span class="featured">pytorch</span>
-            <span class="featured">huggingface</span>
+            <span class="featured">hugging face</span>
             <span class="featured">nlp / nlu</span>
             <span>transformers</span>
-            <span>fine-tuning</span>
+            <span>multilingual nlp</span>
+            <span>llm evaluation</span>
           </div>
         </div>
         <div class="skill-block">
@@ -863,18 +881,31 @@ footer {
             <span>scikit-learn</span>
             <span>pandas</span>
             <span>sql</span>
-            <span>rag systems</span>
-            <span>vector dbs</span>
-            <span>aws</span>
+            <span>xgboost</span>
+            <span>statistical evaluation</span>
+            <span>data annotation</span>
           </div>
         </div>
         <div class="skill-block">
-          <div class="skill-group-label">tools &amp; infra</div>
+          <div class="skill-group-label">ai systems</div>
           <div class="skill-list">
             <span>fastapi</span>
+            <span>langgraph</span>
+            <span>rag</span>
+            <span>chromadb</span>
+            <span>streamlit</span>
+          </div>
+        </div>
+        <div class="skill-block">
+          <div class="skill-group-label">mlops &amp; infra</div>
+          <div class="skill-list">
+            <span>docker</span>
+            <span>mlflow</span>
+            <span>prometheus</span>
+            <span>azure</span>
+            <span>kubernetes</span>
+            <span>terraform / aws</span>
             <span>git</span>
-            <span>latex</span>
-            <span>linux / hpc</span>
           </div>
         </div>
       </div>
@@ -893,10 +924,10 @@ footer {
 
   <div class="pub-list">
 
-    <div class="pub-item reveal" onclick="window.open('https://arxiv.org/abs/2602.16957','_blank')">
+    <div class="pub-item reveal" onclick="window.open('https://aclanthology.org/2026.sigturk-1.11/','_blank')">
       <div class="pub-citation">
         <span class="year">2026</span>
-        <span class="venue">eacl 2026<br>rabat, morocco</span>
+        <span class="venue">sigturk @ eacl 2026<br>rabat, morocco</span>
       </div>
       <div class="pub-body">
         <div class="pub-title">When Semantic Overlap Is Not Enough: Cross-Lingual Euphemism Transfer Between Turkish and English</div>
@@ -939,7 +970,7 @@ footer {
     </div>
 
   </div>
-  <div class="pub-note">more publications forthcoming</div>
+  <div class="pub-note">first author on both peer-reviewed papers</div>
 </section>
 
 <hr class="divider"/>
@@ -957,12 +988,48 @@ footer {
       <div class="project-num">/01</div>
       <div class="project-main">
         <div class="project-name">
-          <a href="https://huggingface.co/spaces/hasancanbiyik/euphemism-detector-multilingual" target="_blank">euphemism_detector</a>
+          <a href="https://github.com/hasancanbiyik/catalog-search-agent" target="_blank">catalog_search_agent</a>
+          <span class="project-tag deployed">deployed</span>
+        </div>
+        <div class="project-desc">
+          Agentic discovery API over 2,000 synthetic biospecimen records. LangGraph routes natural-language requests to approved structured and semantic tools, while a deterministic SQLite layer enforces server-side access rules and returns permitted records with validated citations. Includes a 23-scenario evaluation harness and a multi-stage Docker deployment on Azure Container Apps.
+        </div>
+        <div class="project-stack">LangGraph · FastAPI · BGE embeddings · Chroma · SQLite · Docker · Azure</div>
+      </div>
+      <div class="project-actions">
+        <a href="https://github.com/hasancanbiyik/catalog-search-agent" target="_blank" class="project-link">github →</a>
+      </div>
+    </div>
+
+    <div class="project-item reveal">
+      <div class="project-num">/02</div>
+      <div class="project-main">
+        <div class="project-name">
+          <a href="https://huggingface.co/spaces/hasancanbiyik/immigration-assistant" target="_blank">immigration_document_assistant</a>
           <span class="project-tag live">live</span>
         </div>
         <div class="project-desc">
-          Multilingual euphemism detection fine-tuned on XLM-RoBERTa. Classifies euphemistic vs. literal usage across seven languages (TR/EN/ES/ZH/YO/UK/PL), with support for Ukrainian and Polish, served through a FastAPI backend on HuggingFace Spaces.
+          Full-stack RAG workflow for immigration documents with source-grounded, page-cited Q&amp;A; translation drafts and a USCIS-oriented certification template for qualified human review; case timelines; and RFE issue extraction. Supports client-scoped retrieval, multimodal Gemini processing with targeted local fallbacks, and 149 passing tests. Built as a workflow demonstration, not a substitute for legal advice.
         </div>
+        <div class="project-stack">FastAPI · React · ChromaDB · Gemini 2.5 Flash · BGE-M3 · OPUS-MT · Docker</div>
+      </div>
+      <div class="project-actions">
+        <a href="https://huggingface.co/spaces/hasancanbiyik/immigration-assistant" target="_blank" class="project-link demo">demo →</a>
+        <a href="https://github.com/hasancanbiyik/immigration-assistant" target="_blank" class="project-link">github</a>
+      </div>
+    </div>
+
+    <div class="project-item reveal">
+      <div class="project-num">/03</div>
+      <div class="project-main">
+        <div class="project-name">
+          <a href="https://huggingface.co/spaces/hasancanbiyik/euphemism-detector-multilingual" target="_blank">multilingual_euphemism_detector</a>
+          <span class="project-tag live">live</span>
+        </div>
+        <div class="project-desc">
+          Context-sensitive euphemism disambiguation with XLM-RoBERTa, trained on 19,490 labeled examples across seven languages and evaluated at 0.808 macro-F1. Provides single and CSV batch inference, language detection, confidence scores, model weights, and a public FastAPI demo. Its separate 22-language synthetic transfer benchmark is presented as preliminary rather than production-readiness evidence.
+        </div>
+        <div class="project-stack">XLM-RoBERTa · PyTorch · Hugging Face · FastAPI · Docker · GitHub Actions</div>
       </div>
       <div class="project-actions">
         <a href="https://huggingface.co/spaces/hasancanbiyik/euphemism-detector-multilingual" target="_blank" class="project-link demo">demo →</a>
@@ -971,66 +1038,34 @@ footer {
     </div>
 
     <div class="project-item reveal">
-      <div class="project-num">/02</div>
-      <div class="project-main">
-        <div class="project-name">
-          <a href="https://github.com/hasancanbiyik/sarcasm_detection" target="_blank">sarcasm_detection</a>
-        </div>
-        <div class="project-desc">
-          Sarcasm detection in sitcom dialogue using fine-tuned transformers and zero-shot LLMs. Reached 85% F1 with Twitter-RoBERTa, and surfaced the <em>"Chandler Effect"</em> — models learning character-identity shortcuts instead of linguistic sarcasm features.
-        </div>
-      </div>
-      <div class="project-actions">
-        <a href="https://github.com/hasancanbiyik/sarcasm_detection" target="_blank" class="project-link">github →</a>
-      </div>
-    </div>
-
-    <div class="project-item reveal">
-      <div class="project-num">/03</div>
-      <div class="project-main">
-        <div class="project-name">
-          <a href="https://github.com/hasancanbiyik/multi-source-research-agent" target="_blank">multi_source_research_agent</a>
-        </div>
-        <div class="project-desc">
-          LLM-powered research system that retrieves and synthesizes information from the web and Reddit using LangGraph orchestration, ChromaDB semantic retrieval, and GPT-4 reasoning.
-        </div>
-      </div>
-      <div class="project-actions">
-        <a href="https://github.com/hasancanbiyik/multi-source-research-agent" target="_blank" class="project-link">github →</a>
-      </div>
-    </div>
-
-    <div class="project-item reveal">
       <div class="project-num">/04</div>
       <div class="project-main">
         <div class="project-name">
-          <a href="https://turkish-sentiment-analyzer-translator.streamlit.app/" target="_blank">turkish_sentiment_analyzer</a>
-          <span class="project-tag live">live</span>
+          <span>context_sensitive_language_evaluation</span>
+          <span class="project-tag">research</span>
         </div>
         <div class="project-desc">
-          BERTurk fine-tuned on 235K Turkish product reviews for binary sentiment classification. 94.2% accuracy with real-time inference and interactive Plotly visualizations.
+          Built controlled evaluations for context-sensitive humor and sarcasm judgments across local and frontier models. The humor study produced 270,675 outputs across 21 configurations; the sarcasm benchmark contains 59,698 LLM judgments over 3,142 participant responses. Developed resumable batch pipelines, agreement and context-effect analyses, evidence-linked coding of model explanations, and 43 automated tests.
         </div>
+        <div class="project-stack">Python · LLM evaluation · statistical testing · Qualtrics · Ollama · Slurm HPC</div>
       </div>
-      <div class="project-actions">
-        <a href="https://turkish-sentiment-analyzer-translator.streamlit.app/" target="_blank" class="project-link demo">demo →</a>
-        <a href="https://github.com/hasancanbiyik/turkish-product-sentiment-analyzer" target="_blank" class="project-link">github</a>
-      </div>
+      <div class="project-actions"></div>
     </div>
 
     <div class="project-item reveal">
       <div class="project-num">/05</div>
       <div class="project-main">
         <div class="project-name">
-          <a href="https://resume-fit-analyzer-smart-ats.streamlit.app/#smart-ats-no-api-key-needed" target="_blank">resume_fit_analyzer</a>
-          <span class="project-tag live">live</span>
+          <a href="https://github.com/hasancanbiyik/predictive-maintenance-mlops" target="_blank">predictive_maintenance_mlops</a>
+          <span class="project-tag">reference system</span>
         </div>
         <div class="project-desc">
-          AI-powered ATS resume analyzer that scores fit against job descriptions, identifies gaps, and suggests improvements using semantic similarity and LLM reasoning.
+          End-to-end MLOps reference implementation on the 10,000-row UCI AI4I dataset, where XGBoost reached 0.768 minority-class F1 versus 0.677 for Random Forest. Tracks and promotes models with MLflow, serves predictions through FastAPI, and adds monitoring, drift-triggered retraining, Docker, Kubernetes, CI/CD, and 24 passing tests. Terraform defines AWS VPC, EKS, and ECR infrastructure; the AWS deployment has not been applied.
         </div>
+        <div class="project-stack">XGBoost · MLflow · FastAPI · Docker · Kubernetes · Prometheus · Grafana · Evidently · Terraform</div>
       </div>
       <div class="project-actions">
-        <a href="https://resume-fit-analyzer-smart-ats.streamlit.app/#smart-ats-no-api-key-needed" target="_blank" class="project-link demo">demo →</a>
-        <a href="https://github.com/hasancanbiyik/resume-fit-analyzer-smart-ats" target="_blank" class="project-link">github</a>
+        <a href="https://github.com/hasancanbiyik/predictive-maintenance-mlops" target="_blank" class="project-link">github →</a>
       </div>
     </div>
 
@@ -1041,8 +1076,9 @@ footer {
           <a href="https://github.com/hasancanbiyik/prosodic_event_detection" target="_blank">prosodic_event_detection</a>
         </div>
         <div class="project-desc">
-          CNN / LSTM / MLP models for prosodic prominence and boundary detection in speech. 85% F1 on prominence; a 117% improvement over classical ML baselines.
+          Speaker-disjoint speech pipeline for pitch-accent and intonational-boundary detection using 16 acoustic features at 10 ms resolution. A corrected v0.2 evaluation compares classical baselines with Conv1D, CNN, and BiLSTM models on matched tasks; the frame-level Conv1D reached 0.562 prominence F1 and 0.251 boundary F1 in a one-seed, single-held-out-speaker experiment. Packaged as a Python library with a CLI and 36 tests.
         </div>
+        <div class="project-stack">Python · audio signal processing · scikit-learn · Conv1D · BiLSTM · pytest</div>
       </div>
       <div class="project-actions">
         <a href="https://github.com/hasancanbiyik/prosodic_event_detection" target="_blank" class="project-link">github →</a>
@@ -1053,18 +1089,56 @@ footer {
       <div class="project-num">/07</div>
       <div class="project-main">
         <div class="project-name">
-          <a href="https://github.com/hasancanbiyik/nsfw_identifier" target="_blank">nsfw_identifier</a>
+          <a href="https://github.com/hasancanbiyik/multi-source-research-agent" target="_blank">multi_source_research_agent</a>
         </div>
         <div class="project-desc">
-          Content-moderation classifier for identifying NSFW imagery using fine-tuned transformer models. Packaged as a Chrome extension ready for deployment.
+          Tutorial-inspired research assistant, substantially extended into a multi-service application. LangGraph runs Google, Bing, and Reddit retrieval in parallel, performs per-source GPT analysis, and synthesizes a source-attributed answer. Added a versioned FastAPI backend, Streamlit UI, persistent ChromaDB re-querying, Prometheus metrics, and Docker Compose deployment.
         </div>
+        <div class="project-stack">LangGraph · GPT-4 / 3.5 · FastAPI · Streamlit · ChromaDB · Prometheus · Docker Compose</div>
       </div>
       <div class="project-actions">
-        <a href="https://github.com/hasancanbiyik/nsfw_identifier" target="_blank" class="project-link">github →</a>
+        <a href="https://github.com/hasancanbiyik/multi-source-research-agent" target="_blank" class="project-link">github →</a>
+      </div>
+    </div>
+
+    <div class="project-item reveal">
+      <div class="project-num">/08</div>
+      <div class="project-main">
+        <div class="project-name">
+          <a href="https://turkish-sentiment-analyzer-translator.streamlit.app/" target="_blank">turkish_sentiment_analyzer</a>
+          <span class="project-tag live">live</span>
+        </div>
+        <div class="project-desc">
+          Interactive Turkish product-review application integrating a pretrained BERTurk-based binary sentiment classifier with Helsinki-NLP OPUS-MT translation. Supports real-time single-review and multi-review batch inference, exploration of a 235,000-review dataset, and Plotly sentiment and confidence visualizations.
+        </div>
+        <div class="project-stack">BERTurk · OPUS-MT · Streamlit · Plotly · pandas</div>
+      </div>
+      <div class="project-actions">
+        <a href="https://turkish-sentiment-analyzer-translator.streamlit.app/" target="_blank" class="project-link demo">demo →</a>
+        <a href="https://github.com/hasancanbiyik/turkish-product-sentiment-analyzer" target="_blank" class="project-link">github</a>
+      </div>
+    </div>
+
+    <div class="project-item reveal">
+      <div class="project-num">/09</div>
+      <div class="project-main">
+        <div class="project-name">
+          <a href="https://resume-fit-analyzer-smart-ats.streamlit.app/" target="_blank">resume_fit_analyzer</a>
+          <span class="project-tag live">live</span>
+        </div>
+        <div class="project-desc">
+          Local-first résumé–job-description comparison tool combining TF-IDF term coverage with SentenceTransformer similarity. Reports score components, matched and missing terms, per-sentence diagnostics, and a downloadable JSON report without an external inference API after model download. Suggested bullets are explicitly labeled as heuristic drafts whose placeholder metrics must be replaced and verified.
+        </div>
+        <div class="project-stack">Streamlit · TF-IDF · SentenceTransformers · cosine similarity · local inference</div>
+      </div>
+      <div class="project-actions">
+        <a href="https://resume-fit-analyzer-smart-ats.streamlit.app/" target="_blank" class="project-link demo">demo →</a>
+        <a href="https://github.com/hasancanbiyik/resume-fit-analyzer-smart-ats" target="_blank" class="project-link">github</a>
       </div>
     </div>
 
   </div>
+  <div class="pub-note">metrics reflect the documented evaluation setting for each project; preliminary and pending deployment work is labeled explicitly</div>
 </section>
 
 <hr class="divider"/>
@@ -1084,9 +1158,9 @@ footer {
       </p>
 
       <div class="contact-links">
-        <a href="/cdn-cgi/l/email-protection#a8cad1c386c0c9dbc9c6cbc9c6e8cfc5c9c1c486cbc7c5" class="contact-link">
+        <a href="mailto:byk.hasancan@gmail.com" class="contact-link">
           <div class="contact-label">email</div>
-          <div class="contact-value"><span class="__cf_email__" data-cfemail="80e2f9ebaee8e1f3e1eee3e1eec0e7ede1e9ecaee3efed">[email&#160;protected]</span></div>
+          <div class="contact-value">byk.hasancan@gmail.com</div>
           <div class="contact-arrow">↗</div>
         </a>
         <a href="https://www.linkedin.com/in/hasancanbyk/" target="_blank" class="contact-link">
@@ -1099,7 +1173,7 @@ footer {
           <div class="contact-value">github.com/hasancanbiyik</div>
           <div class="contact-arrow">↗</div>
         </a>
-        <a href="https://drive.google.com/file/d/1YPlsspkHKGILiUhbFiLVl74KoeofpuXQ/view?usp=drive_link" target="_blank" class="contact-link">
+        <a href="https://drive.google.com/file/d/1LtM560XloxRdfWvihc1LRUeEYRLVRvDv/view?usp=sharing" target="_blank" class="contact-link">
           <div class="contact-label">cv</div>
           <div class="contact-value">download resume (pdf)</div>
           <div class="contact-arrow">↗</div>
@@ -1119,7 +1193,6 @@ footer {
   </div>
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
 <script>
 // ── SCROLL REVEAL ──────────────────────────────────────────────
 const observer = new IntersectionObserver((entries) => {
